@@ -9,13 +9,18 @@ class Inscripcion extends Model
     protected $guarded = [];
     protected $table = 'inscripciones';
 
-    function usuario()
+    public function usuario()
     {
     	return $this->belongsTo(Usuario::class,'id_usuario');
     }
 
-    function actividad()
+    public function actividad()
     {
     	return $this->belongsTo(Actividad::class,'id_actividad');
+    }
+
+    public function path_admin()
+    {
+    	return "/admin/inscripcion/{$this->id}";
     }
 }

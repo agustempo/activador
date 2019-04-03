@@ -33,14 +33,14 @@
 		<div class="field">
 			<label class="label">{{ __(('actividades.fecha_inicio')) }}</label>
 	  		<div class="control">
-				<input class="input" type="text" name="fecha_inicio" value="{{ $actividad->fecha_inicio }}" ></input>
+				<input class="input" type="text" name="fecha_inicio" value="" ></input>
 			</div>
 		</div>
 
 		<div class="field">
 			<label class="label">{{ __(('actividades.fecha_fin')) }}</label>
 	  		<div class="control">
-				<input class="input" type="text" name="fecha_fin" value="{{ $actividad->fecha_fin }}" ></input>
+				<input class="input" type="text" name="fecha_fin" value="" ></input>
 			</div>
 		</div>
 

@@ -43,25 +43,25 @@ class InscripcionesController extends Controller
         //
     }
 
-    public function update(Actividad $actividad, Inscripcion $inscripcion)
+    public function update(Inscripcion $inscripcion)
     {
-        if(auth()->user()->isNot($actividad->creador))
+        if(auth()->user()->isNot($inscripcion->actividad->creador))
             abort(403); 
 
         if(request()->has('confirmar'))
-                    $inscripcion->update(['confirmada' => request('confirmar')==true ]);
+            $inscripcion->update(['confirmada' => request('confirmar')==true ]);
 
-        return redirect($actividad->path_admin());
+        return redirect($inscripcion->actividad->path_admin());
     }
 
-    public function destroy(Actividad $actividad, Inscripcion $inscripcion)
+    public function destroy(Inscripcion $inscripcion)
     {
 
-        if(auth()->user()->isNot($actividad->creador))
+        if(auth()->user()->isNot($inscripcion->actividad->creador))
             abort(403); 
 
         $inscripcion->delete();
 
-        return redirect($actividad->path_admin());
+        return redirect($inscripcion->actividad->path_admin());
     }
 }

@@ -106,34 +106,11 @@ class AdministrarActividadesTest extends TestCase
         //ENTONCES
         $response->assertSessionHasErrors(['fecha_inicio', 'fecha_fin']);
     }
-    
-    /** @test **/
 
-    public function invitado_ve_actividades()
-    {
-        $this->withoutExceptionHandling();
-
-        //DADO que existe una actividad
-        factory('App\Actividad')->create([
-            'nombre' => 'Prueba',
-            'id_creador' => factory('App\Usuario')->create()
-
-        ]);
-
-        //CUANDO entro al endpoint /actividades la veo en el listado
-
-        $response = $this->get('/actividades');
-
-        //ENTONCES debería aparecer una nueva actividad en la base de datos
-        $this->assertDatabaseHas('actividades',[ 'nombre' => 'Prueba' ]);
-
-        //ENTONCES la vista recibe los datos
-        $response->assertSeeText('Prueba');
-    }
 
     /** @test **/
 
-    public function usuario_ve_sus_actividades_creadas()
+    public function usuario_solo_ve_sus_actividades_creadas()
     {
         $this->withoutExceptionHandling();
 
@@ -179,6 +156,38 @@ class AdministrarActividadesTest extends TestCase
         $response = $this->get($actividad_mia->path_admin())->assertStatus(200);
 
         $response = $this->get($actividad_de_otro->path_admin())->assertStatus(403);
+    }
+
+    /** @test **/
+
+    public function solo_usuario_puede_editar_actividad()
+    {
+        //$this->withoutExceptionHandling();
+
+        //DADO 
+        
+        $usuario = factory('App\Usuario')->create();
+        $this->actingAs($usuario);
+
+        $actividad_mia = factory('App\Actividad')->create([
+            'id_creador' => $usuario->id
+        ]);
+        $actividad_de_otro = factory('App\Actividad')->create();
+
+        $actividad_mia->descripcion = 'Modificada';
+        $actividad_de_otro->descripcion = 'Modificada';
+
+        //CUANDO y ENTONCES
+
+        $this->patch($actividad_mia->path_admin(),$actividad_mia->toArray())
+            ->assertRedirect($actividad_mia->path_admin());
+
+        $this->assertDatabaseHas('actividades',$actividad_mia->toArray());
+
+        $this->patch($actividad_de_otro->path_admin(), $actividad_de_otro->toArray())
+            ->assertStatus(403);
+
+        $this->assertDatabaseMissing('actividades',$actividad_de_otro->toArray());
     }
 
 }

@@ -57,14 +57,19 @@ class ActividadesController extends Controller
     public function update(Actividad $actividad)
     {
 
-        request()->validate([
+        if(Auth::user()->isNot($actividad->creador))
+            abort(403);
+
+        $atributos = request()->validate([
             'nombre' => 'required',
-            'descripcion' => 'required'
+            'descripcion' => 'required',
+            'fecha_inicio' => 'required',
+            'fecha_fin' => 'required'
         ]);
         
-        $actividad->update(request()->all());
+        $actividad->update($atributos);
 
-        return redirect('/admin/actividades');
+        return redirect($actividad->path_admin());
     }
 
     public function destroy(Actividad $actividad)

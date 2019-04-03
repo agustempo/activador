@@ -90,7 +90,7 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->delete($actividad->path_admin() . "/inscripcion/" . $inscripcion->id)
+        $this->delete($inscripcion->path_admin())
             ->assertRedirect($actividad->path_admin());
             //->assertStatus(403);
 
@@ -119,7 +119,7 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->delete($actividad->path_admin() . "/inscripcion/" . $inscripcion->id)
+        $this->delete($inscripcion->path_admin())
             ->assertStatus(403);
 
         $this->assertDatabaseHas('inscripciones', [ 
@@ -147,7 +147,7 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->patch($actividad->path_admin() . "/inscripcion/" . $inscripcion->id, [ 'confirmar' => true ])
+        $this->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
             ->assertRedirect($actividad->path_admin());
             //->assertStatus(403);
 
@@ -157,7 +157,7 @@ class InscripcionesTest extends TestCase
             'confirmada' => true
         ]);
 
-        $this->patch($actividad->path_admin() . "/inscripcion/" . $inscripcion->id, [ 'confirmar' => false ])
+        $this->patch($inscripcion->path_admin(), [ 'confirmar' => false ])
             ->assertRedirect($actividad->path_admin());
 
         $this->assertDatabaseHas('inscripciones', [ 
@@ -184,7 +184,7 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->patch($actividad->path_admin() . "/inscripcion/" . $inscripcion->id, [ 'confirmar' => true ])
+        $this->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 

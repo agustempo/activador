@@ -28,8 +28,8 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
     Route::post('/actividades/{actividad}/inscripcion','admin\InscripcionesController@store');
-    Route::delete('/actividades/{actividad}/inscripcion/{inscripcion}','admin\InscripcionesController@destroy');
-    Route::patch('/actividades/{actividad}/inscripcion/{inscripcion}','admin\InscripcionesController@update');
+    Route::delete('/inscripcion/{inscripcion}','admin\InscripcionesController@destroy');
+    Route::patch('/inscripcion/{inscripcion}','admin\InscripcionesController@update');
 
 
 });
