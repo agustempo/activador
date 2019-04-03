@@ -42,8 +42,7 @@ class ActividadesController extends Controller
 
     public function show(Actividad $actividad)
     {
-        if(Auth::user()->isNot($actividad->creador))
-            abort(403);
+        $this->authorize('update', $actividad);
 
         return view('admin.actividades.show', compact('actividad'));
     }
@@ -57,8 +56,7 @@ class ActividadesController extends Controller
     public function update(Actividad $actividad)
     {
 
-        if(Auth::user()->isNot($actividad->creador))
-            abort(403);
+        $this->authorize('update', $actividad);
 
         $atributos = request()->validate([
             'nombre' => 'required',

@@ -29,39 +29,19 @@ class AdministrarActividadesTest extends TestCase
 
     /** @test **/
 
-    public function usuario_crea_una_actividad()
-    {
-        $this->withoutExceptionHandling();
-
-        $this->actingAs(factory('App\Usuario')->create());
-
-
-        $this->post('/admin/actividades',factory('App\Actividad')->raw());
-
-        //ENTONCES debería aparecer una nueva actividad en la base de datos
-        $this->assertDatabaseHas('actividades',[]);
-    }
-
-    /** @test **/
-
     public function actividad_requiere_un_nombre()
     {
         //$this->withoutExceptionHandling();
         
-        //DADO
         $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
 
         $actividad = factory('App\Actividad')->raw([
             'nombre' => '',
             'id_creador' => $usuario->id
         ]);
 
-        //CUANDO        
-        $response = $this->post('/admin/actividades',$actividad);
-
-        //ENTONCES
-        $response->assertSessionHasErrors('nombre');
+        $this->actingAs($usuario)->post('/admin/actividades',$actividad)
+            ->assertSessionHasErrors('nombre');
     }
 
     /** @test **/
@@ -70,19 +50,14 @@ class AdministrarActividadesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
         
-        //DADO
         $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
 
         $actividad = factory('App\Actividad')->raw([
             'descripcion' => ''
         ]);
 
-        //CUANDO        
-        $response = $this->post('/admin/actividades',$actividad);
-
-        //ENTONCES
-        $response->assertSessionHasErrors('descripcion');
+        $this->actingAs($usuario)->post('/admin/actividades',$actividad)
+            ->assertSessionHasErrors('descripcion');
     }
 
     /** @test **/
@@ -91,20 +66,15 @@ class AdministrarActividadesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
         
-        //DADO
         $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
 
         $actividad = factory('App\Actividad')->raw([
             'fecha_inicio' => '',
             'fecha_fin' => ''
         ]);
 
-        //CUANDO        
-        $response = $this->post('/admin/actividades',$actividad);
-
-        //ENTONCES
-        $response->assertSessionHasErrors(['fecha_inicio', 'fecha_fin']);
+        $this->actingAs($usuario)->post('/admin/actividades',$actividad)
+            ->assertSessionHasErrors(['fecha_inicio', 'fecha_fin']);
     }
 
 
@@ -112,27 +82,16 @@ class AdministrarActividadesTest extends TestCase
 
     public function usuario_solo_ve_sus_actividades_creadas()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
 
-        //DADO que existe una actividad creada por usuario atenticado
-        factory('App\Actividad')->create([
-            'nombre' => 'Prueba es mía',
-            'id_creador' => $usuario->id
-        ]);
-        // y una que no
-        factory('App\Actividad')->create([
-            'nombre' => 'Prueba no es mía'
-        ]);
+        $actividad_mia = factory('App\Actividad')->create();
 
-        //CUANDO veo mi listado de actividad ENTONCES deberían aparecer solo las mías
+        $actividad_de_otro = factory('App\Actividad')->create();
 
-        $response = $this->get('/admin/actividades');
-
-        //¡¡
-        $response->assertSeeText('Prueba');
+        $this->actingAs($actividad_mia->creador)->get('/admin/actividades')
+            ->assertSee($actividad_mia->nombre);
     }
 
     /** @test **/
@@ -141,21 +100,12 @@ class AdministrarActividadesTest extends TestCase
     {
         ///$this->withoutExceptionHandling();
 
-        //DADO 
-        
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
-        $actividad_mia = factory('App\Actividad')->create([
-            'id_creador' => $usuario->id
-        ]);
+        $actividad_mia = factory('App\Actividad')->create();
         $actividad_de_otro = factory('App\Actividad')->create();
 
-        //CUANDO y ENTONCES
+        $this->actingAs($actividad_mia->creador)->get($actividad_mia->path_admin())->assertStatus(200);
 
-        $response = $this->get($actividad_mia->path_admin())->assertStatus(200);
-
-        $response = $this->get($actividad_de_otro->path_admin())->assertStatus(403);
+        $this->actingAs($actividad_mia->creador)->get($actividad_de_otro->path_admin())->assertStatus(403);
     }
 
     /** @test **/
@@ -163,8 +113,6 @@ class AdministrarActividadesTest extends TestCase
     public function solo_usuario_puede_editar_actividad()
     {
         //$this->withoutExceptionHandling();
-
-        //DADO 
         
         $usuario = factory('App\Usuario')->create();
         $this->actingAs($usuario);
@@ -177,8 +125,6 @@ class AdministrarActividadesTest extends TestCase
         $actividad_mia->descripcion = 'Modificada';
         $actividad_de_otro->descripcion = 'Modificada';
 
-        //CUANDO y ENTONCES
-
         $this->patch($actividad_mia->path_admin(),$actividad_mia->toArray())
             ->assertRedirect($actividad_mia->path_admin());
 
@@ -188,6 +134,32 @@ class AdministrarActividadesTest extends TestCase
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('actividades',$actividad_de_otro->toArray());
+    }
+
+    /** @test **/
+
+    public function solo_usuario_puede_crear_actividad()
+    {
+        //$this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->raw();
+
+        $this->post('/admin/actividades',$actividad)
+            ->assertRedirect('/login');
+        $this->assertDatabaseMissing('actividades',$actividad);
+
+        $usuario = factory('App\Usuario')->create();
+        $this->actingAs($usuario);
+
+        $actividad_mia = factory('App\Actividad')->raw([
+            'id_creador' => $usuario->id
+        ]);
+
+        $this->post('/admin/actividades', $actividad_mia)
+            ->assertRedirect('/admin/actividades');
+        
+        $this->assertDatabaseHas('actividades', ['id_creador' => $usuario->id]);
+
     }
 
 }

@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\Usuario;
-use App\Actividades;
+use App\Actividad;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class ActividadPolicy
@@ -11,19 +11,19 @@ class ActividadPolicy
     use HandlesAuthorization;
 
     /**
-     * Determine whether the user can view the actividades.
+     * Determine whether the user can view the actividad.
      *
      * @param  \App\Usuario  $user
-     * @param  \App\Actividades  $actividades
+     * @param  \App\Actividad  $actividad
      * @return mixed
      */
-    public function view(Usuario $user, Actividades $actividades)
+    public function view(Usuario $user, Actividad $actividad)
     {
         //
     }
 
     /**
-     * Determine whether the user can create actividades.
+     * Determine whether the user can create actividads.
      *
      * @param  \App\Usuario  $user
      * @return mixed
@@ -34,49 +34,50 @@ class ActividadPolicy
     }
 
     /**
-     * Determine whether the user can update the actividades.
+     * Determine whether the user can update the actividad.
      *
      * @param  \App\Usuario  $user
-     * @param  \App\Actividades  $actividades
+     * @param  \App\Actividad  $actividad
      * @return mixed
      */
-    public function update(Usuario $user, Actividades $actividades)
+    public function update(Usuario $user, Actividad $actividad)
+    {
+        //
+        return $user->is($actividad->creador);
+    }
+
+    /**
+     * Determine whether the user can delete the actividad.
+     *
+     * @param  \App\Usuario  $user
+     * @param  \App\Actividad  $actividad
+     * @return mixed
+     */
+    public function delete(Usuario $user, Actividad $actividad)
     {
         //
     }
 
     /**
-     * Determine whether the user can delete the actividades.
+     * Determine whether the user can restore the actividad.
      *
      * @param  \App\Usuario  $user
-     * @param  \App\Actividades  $actividades
+     * @param  \App\Actividad  $actividad
      * @return mixed
      */
-    public function delete(Usuario $user, Actividades $actividades)
+    public function restore(Usuario $user, Actividad $actividad)
     {
         //
     }
 
     /**
-     * Determine whether the user can restore the actividades.
+     * Determine whether the user can permanently delete the actividad.
      *
      * @param  \App\Usuario  $user
-     * @param  \App\Actividades  $actividades
+     * @param  \App\Actividad  $actividad
      * @return mixed
      */
-    public function restore(Usuario $user, Actividades $actividades)
-    {
-        //
-    }
-
-    /**
-     * Determine whether the user can permanently delete the actividades.
-     *
-     * @param  \App\Usuario  $user
-     * @param  \App\Actividades  $actividades
-     * @return mixed
-     */
-    public function forceDelete(Usuario $user, Actividades $actividades)
+    public function forceDelete(Usuario $user, Actividad $actividad)
     {
         //
     }

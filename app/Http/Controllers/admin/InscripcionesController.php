@@ -23,8 +23,7 @@ class InscripcionesController extends Controller
     public function store(Actividad $actividad)
     {
 
-        if(auth()->user()->isNot($actividad->creador))
-            abort(403);
+        $this->authorize('update', $actividad);
 
         request()->validate([ 'id_usuario' => 'required']);
 
@@ -45,8 +44,7 @@ class InscripcionesController extends Controller
 
     public function update(Inscripcion $inscripcion)
     {
-        if(auth()->user()->isNot($inscripcion->actividad->creador))
-            abort(403); 
+        $this->authorize('update', $inscripcion->actividad); 
 
         if(request()->has('confirmar'))
             $inscripcion->update(['confirmada' => request('confirmar')==true ]);
@@ -57,8 +55,7 @@ class InscripcionesController extends Controller
     public function destroy(Inscripcion $inscripcion)
     {
 
-        if(auth()->user()->isNot($inscripcion->actividad->creador))
-            abort(403); 
+        $this->authorize('update', $inscripcion->actividad); 
 
         $inscripcion->delete();
 

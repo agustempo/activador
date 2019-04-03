@@ -14,21 +14,19 @@ class InscripcionesTest extends TestCase
 
     public function una_actividad_puede_tener_inscriptos()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
-        $actividad = factory('App\Actividad')->create([ 'id_creador' => $usuario->id ] );
+        $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
-        $this->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
+        $this->actingAs($actividad->creador)
+            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
             ->assertRedirect($actividad->path_admin());
 
         $this->get($actividad->path_admin())->assertSee($usuario_a_inscribir->nombre);
 
-        //$this->assertDatabaseHas('insripciones', [ 'id_actividad', $actividad->id ]);
+        $this->assertDatabaseHas('inscripciones', [ 'id_actividad' => $actividad->id ]);
 
     }
 
@@ -38,17 +36,11 @@ class InscripcionesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
+        $actividad = factory('App\Actividad')->create();
 
-        $actividad = factory('App\Actividad')->create([ 'id_creador' => $usuario->id ] );
-
-        $this->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => '' ])
+        $this->actingAs($actividad->creador)
+            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => '' ])
             ->assertSessionHasErrors('id_usuario');
-
-        //$this->get($actividad->path_admin())->assertSee($usuario_a_inscribir->nombre);
-
-        //$this->assertDatabaseHas('insripciones', [ 'id_actividad', $actividad->id ]);
 
     }
 
@@ -58,14 +50,12 @@ class InscripcionesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
         $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
-        $this->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
+        $this->actingAs(factory('App\Usuario')->create())
+            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 'id_actividad', $actividad->id ]);
@@ -76,12 +66,9 @@ class InscripcionesTest extends TestCase
 
     public function el_creador_puede_desinscribir_un_usuario()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
-        $actividad = factory('App\Actividad')->create([ 'id_creador' => $usuario->id ]);
+        $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
@@ -90,9 +77,9 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->delete($inscripcion->path_admin())
+        $this->actingAs($actividad->creador)
+            ->delete($inscripcion->path_admin())
             ->assertRedirect($actividad->path_admin());
-            //->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 
             'id_actividad' => $actividad->id,
@@ -107,9 +94,6 @@ class InscripcionesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
         $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
@@ -119,7 +103,8 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->delete($inscripcion->path_admin())
+        $this->actingAs(factory('App\Usuario')->create())
+            ->delete($inscripcion->path_admin())
             ->assertStatus(403);
 
         $this->assertDatabaseHas('inscripciones', [ 
@@ -133,12 +118,9 @@ class InscripcionesTest extends TestCase
 
     public function el_creador_puede_editar_una_inscripcion()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
-
-        $actividad = factory('App\Actividad')->create([ 'id_creador' => $usuario->id ]);
+        $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
@@ -146,6 +128,8 @@ class InscripcionesTest extends TestCase
             'id_actividad' => $actividad->id,
             'id_usuario' => $usuario_a_inscribir->id
         ]);
+
+        $this->actingAs($actividad->creador);
 
         $this->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
             ->assertRedirect($actividad->path_admin());
@@ -170,10 +154,7 @@ class InscripcionesTest extends TestCase
 
     public function solo_el_creador_puede_editar_una_inscripcion()
     {
-        $this->withoutExceptionHandling();
-
-        $usuario = factory('App\Usuario')->create();
-        $this->actingAs($usuario);
+        //$this->withoutExceptionHandling();
 
         $actividad = factory('App\Actividad')->create();
 
@@ -184,7 +165,8 @@ class InscripcionesTest extends TestCase
             'id_usuario' => $usuario_a_inscribir->id
         ]);
 
-        $this->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
+        $this->actingAs(factory('App\Usuario')->create())
+            ->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 

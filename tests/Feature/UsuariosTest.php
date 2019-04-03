@@ -17,15 +17,11 @@ class UsuariosTest extends TestCase
     {
         $this->withoutExceptionHandling();
 
-        //DADO un invitado visita la página
-        //CUANDO se registra
         $usuario = factory('App\Usuario')->raw([ 'email' => 'prueba@prueba.com' ]);
 
         $usuario['password_confirmation'] = $usuario['password'];
 
         $this->post('/register', $usuario);
-
-        //ENTONCES aparece el usuario en la base de datos y se puede loguear
 
         $this->assertDatabaseHas('usuarios', [ 'email' => 'prueba@prueba.com' ]);
 
