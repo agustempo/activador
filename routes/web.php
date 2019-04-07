@@ -27,7 +27,7 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::patch('/actividades/{actividad}','admin\ActividadesController@update');
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
-    Route::post('/actividades/{actividad}/inscripcion','admin\InscripcionesController@store');
+    Route::post('/actividades/{actividad}/inscripcion/{usuario}','admin\InscripcionesController@store');
     Route::delete('/inscripcion/{inscripcion}','admin\InscripcionesController@destroy');
     Route::patch('/inscripcion/{inscripcion}','admin\InscripcionesController@update');
 

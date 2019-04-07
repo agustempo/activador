@@ -14,14 +14,14 @@ class InscripcionesTest extends TestCase
 
     public function una_actividad_puede_tener_inscriptos()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $actividad = factory('App\Actividad')->create();
 
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
         $this->actingAs($actividad->creador)
-            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
+            ->post($actividad->path_admin() . "/inscripcion/" . $usuario_a_inscribir->id )
             ->assertRedirect($actividad->path_admin());
 
         $this->get($actividad->path_admin())->assertSee($usuario_a_inscribir->nombre);
@@ -39,8 +39,8 @@ class InscripcionesTest extends TestCase
         $actividad = factory('App\Actividad')->create();
 
         $this->actingAs($actividad->creador)
-            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => '' ])
-            ->assertSessionHasErrors('id_usuario');
+            ->post($actividad->path_admin() . "/inscripcion/")
+            ->assertNotFound();
 
     }
 
@@ -55,7 +55,7 @@ class InscripcionesTest extends TestCase
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
         $this->actingAs(factory('App\Usuario')->create())
-            ->post($actividad->path_admin() . "/inscripcion", [ 'id_usuario' => $usuario_a_inscribir->id ])
+            ->post($actividad->path_admin() . "/inscripcion/" . $usuario_a_inscribir->id )
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 'id_actividad', $actividad->id ]);
@@ -176,7 +176,5 @@ class InscripcionesTest extends TestCase
         ]);
 
     }
-
-
 
 }

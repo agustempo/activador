@@ -6,63 +6,41 @@
 
 @section("content")
 
-	<p><a href="/admin/actividades">{{ __(('admin.atras')) }}</a></p>
-
-	<h1 class="title" >{{ $actividad->nombre }}</h1>
+	<h1 class="title">{{ $actividad->nombre }}</h1>
 	
-	<form method="POST" action="/admin/actividades" >
-		
-		{{ csrf_field() }}
+	<form method="POST" action="" >
 
-		<fieldset disabled>
+		@include("admin.actividades.form", [ 'deshabilitado' => true ])
 
-		<div class="field">
-			<label class="label">{{ __(('actividades.nombre')) }}</label>
-	  		<div class="control">
-				<input class="input" type="text" name="nombre" value="{{ $actividad->nombre }}" ></input>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('actividades.descripcion')) }}</label>
-	  		<div class="control">
-				<textarea class="textarea" >{{ $actividad->descripcion }}</textarea>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('actividades.fecha_inicio')) }}</label>
-	  		<div class="control">
-				<input class="input" type="text" name="fecha_inicio" value="" ></input>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('actividades.fecha_fin')) }}</label>
-	  		<div class="control">
-				<input class="input" type="text" name="fecha_fin" value="" ></input>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('actividades.lugar')) }}</label>
-	  		<div class="control">
-				<input class="input" type="text" name="lugar" value="{{ $actividad->lugar }}" ></input>
-			</div>
-		</div>
-
-		</fieldset>
 	</form>
 
 	<br/>
 
-	<a href="/admin/actividades/{{ $actividad->id }}/edit" class="button is-link">{{ __(('admin.editar')) }}</a>
+	<div class="field is-grouped is-grouped-right" >
+		<p class="control">
+			<a class="button" href="/admin/actividades/{{ $actividad->id }}/edit" > {{ __(('admin.editar')) }}</a>
+		</p>
 
-	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
-		{{ method_field('DELETE') }}
-		{{ csrf_field() }}
-		<input type="submit" class="button is-danger" value="{{ __(('admin.eliminar')) }}" ></input>
-	</form>
+		<p class="control" >
+			<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
+				{{ method_field('DELETE') }}
+				{{ csrf_field() }}
+				<input type="submit" class="button is-danger" value="{{ __(('admin.eliminar')) }}" ></input>
+			</form>
+		</p>
+	</div>
+
+	@if($errors->any())
+	<div class="notification is-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+	@endif
+
+	<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
 
 	<h2>Inscriptos</h2>
 

@@ -29,6 +29,11 @@ class Actividad extends Model
         return $this->belongsTo('App\Usuario','id_creador');
     }
 
+    function auditoria () 
+    {
+        return $this->hasMany('App\Auditoria','id_actividad');
+    }
+
     function getCuandoAttribute () 
     {
         $fecha_i = new \DateTime($this->fecha_inicio);
@@ -53,6 +58,20 @@ class Actividad extends Model
         return $dif->h;
     }
 
+    function getInicioAttribute()
+    {
+        $fecha = new \DateTime($this->fecha_inicio);
+
+        return $fecha->format('Y-m-d');
+    }
+
+    function getFinAttribute()
+    {
+        $fecha = new \DateTime($this->fecha_fin);
+
+        return $fecha->format('Y-m-d');
+    }
+
     function getResumenAttribute ()
     {
         return \Str::words($this->descripcion,10);
@@ -73,9 +92,9 @@ class Actividad extends Model
         return $this->hasMany(Inscripcion::class,'id_actividad');
     }
 
-    public function inscribir($id)
+    public function inscribir($usuario)
     {
-        return $this->inscriptos()->create([ 'id_actividad' => $this->id, 'id_usuario' => $id ]);
+        return $this->inscriptos()->create([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ]);
     }
 
 }

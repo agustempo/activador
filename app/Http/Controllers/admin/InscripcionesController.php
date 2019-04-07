@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Actividad;
+use App\Usuario;
 use App\Inscripcion;
 
 class InscripcionesController extends Controller
@@ -20,14 +21,12 @@ class InscripcionesController extends Controller
         //
     }
 
-    public function store(Actividad $actividad)
+    public function store(Actividad $actividad, Usuario $usuario)
     {
 
         $this->authorize('update', $actividad);
 
-        request()->validate([ 'id_usuario' => 'required']);
-
-        $actividad->inscribir(request('id_usuario'));
+        $actividad->inscribir($usuario);
 
         return redirect($actividad->path_admin());
     }
