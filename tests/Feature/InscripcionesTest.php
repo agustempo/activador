@@ -21,7 +21,7 @@ class InscripcionesTest extends TestCase
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
         $this->actingAs($actividad->creador)
-            ->post($actividad->path_admin() . "/inscripcion/" . $usuario_a_inscribir->id )
+            ->post($actividad->path_admin() . "/inscripciones/" . $usuario_a_inscribir->id )
             ->assertRedirect($actividad->path_admin());
 
         $this->get($actividad->path_admin())->assertSee($usuario_a_inscribir->nombre);
@@ -55,7 +55,7 @@ class InscripcionesTest extends TestCase
         $usuario_a_inscribir = factory('App\Usuario')->create();
 
         $this->actingAs(factory('App\Usuario')->create())
-            ->post($actividad->path_admin() . "/inscripcion/" . $usuario_a_inscribir->id )
+            ->post($actividad->path_admin() . "/inscripciones/" . $usuario_a_inscribir->id )
             ->assertStatus(403);
 
         $this->assertDatabaseMissing('inscripciones', [ 'id_actividad', $actividad->id ]);

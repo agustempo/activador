@@ -27,9 +27,13 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::patch('/actividades/{actividad}','admin\ActividadesController@update');
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
-    Route::post('/actividades/{actividad}/inscripcion/{usuario}','admin\InscripcionesController@store');
-    Route::delete('/inscripcion/{inscripcion}','admin\InscripcionesController@destroy');
-    Route::patch('/inscripcion/{inscripcion}','admin\InscripcionesController@update');
+    //inscripciones
+    Route::post('/actividades/{actividad}/inscripciones/{usuario}','admin\InscripcionesController@store');
+    Route::delete('/inscripciones/{inscripcion}','admin\InscripcionesController@destroy');
+    Route::patch('/inscripciones/{inscripcion}','admin\InscripcionesController@update');
+
+    //invitaciones
+    Route::post('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@store');
 
 
 });

@@ -92,9 +92,19 @@ class Actividad extends Model
         return $this->hasMany(Inscripcion::class,'id_actividad');
     }
 
-    public function inscribir($usuario)
+    public function inscribir(Usuario $usuario)
     {
         return $this->inscriptos()->create([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ]);
+    }
+
+    public function invitar(Usuario $usuario)
+    {
+        return $this->miembros()->attach($usuario);
+    }
+
+    public function miembros()
+    {
+        return $this->belongsToMany(Usuario::class,'actividad_miembros', 'id_actividad', 'id_usuario');
     }
 
 }

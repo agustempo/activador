@@ -33,4 +33,18 @@ class ActividadTest extends TestCase
         $this->assertCount(1, $actividad->inscriptos);
         $this->assertTrue($actividad->inscriptos->contains($inscripcion));
     }
+
+    /** @test **/
+
+    public function puede_invitar_a_un_usuario()
+    {
+
+        $actividad = factory('App\Actividad')->create();
+        $usuario = factory('App\Usuario')->create();
+
+        $inscripcion = $actividad->invitar($usuario);
+
+        $this->assertCount(1, $actividad->miembros);
+        $this->assertTrue($actividad->miembros->contains($usuario));
+    }
 }

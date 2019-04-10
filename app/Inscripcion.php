@@ -21,6 +21,6 @@ class Inscripcion extends Model
 
     public function path_admin()
     {
-    	return "/admin/inscripcion/{$this->id}";
+    	return "/admin/inscripciones/{$this->id}";
     }
 }

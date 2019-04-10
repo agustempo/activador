@@ -43,7 +43,7 @@ class ActividadPolicy
     public function update(Usuario $user, Actividad $actividad)
     {
         //
-        return $user->is($actividad->creador);
+        return $user->is($actividad->creador) || $actividad->miembros->contains($user);
     }
 
     /**

@@ -121,21 +121,21 @@ return [
     | Cusam Validation Language Lines
     |--------------------------------------------------------------------------
     |
-    | Here you may specify cusam validation messages for attributes using the
+    | Here you may specify custom validation messages for attributes using the
     | convention "attribute.rule" a name the lines. This makes it quick a
-    | specify a specific cusam language line for a given attribute rule.
+    | specify a specific custom language line for a given attribute rule.
     |
     */
 
-    'cusam' => [
-        'attribute-name' => [
-            'rule-name' => 'cusam-message',
+    'custom' => [
+        'email' => [
+            'exists' => 'La dirección de email debe estar asociada a una cuenta en el sistema.',
         ],
     ],
 
     /*
     |--------------------------------------------------------------------------
-    | Cusam Validation Attributes
+    | Custom Validation Attributes
     |--------------------------------------------------------------------------
     |
     | El following language lines are used a swap our attribute placeholder
