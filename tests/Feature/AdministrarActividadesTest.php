@@ -80,7 +80,7 @@ class AdministrarActividadesTest extends TestCase
 
     /** @test **/
 
-    public function usuario_solo_ve_sus_actividades_creadas()
+    public function usuario_solo_ve_sus_actividades_creadas_en_el_listado()
     {
         //$this->withoutExceptionHandling();
 
@@ -92,11 +92,14 @@ class AdministrarActividadesTest extends TestCase
 
         $this->actingAs($actividad_mia->creador)->get('/admin/actividades')
             ->assertSee($actividad_mia->nombre);
+
+        $this->actingAs($actividad_mia->creador)->get('/admin/actividades')
+            ->assertDontSee($actividad_de_otro->nombre);
     }
 
     /** @test **/
 
-    public function usuario_ve_proyectos_creados_por_el_solamente()
+    public function usuario_ve_actividad_creada_por_el_solamente()
     {
         ///$this->withoutExceptionHandling();
 

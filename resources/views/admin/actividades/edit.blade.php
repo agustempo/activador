@@ -5,9 +5,6 @@ Editar actividad {{ $actividad->nombre }}
 @endsection('title')
 	
 @section("content")
-	
-	
-	<h1 class="title">{{ __(('admin.editar')) }}: {{ $actividad->nombre }}</h1>
 
 	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
 		

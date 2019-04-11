@@ -5,8 +5,6 @@
 @endsection('title')
 
 @section("content")
-
-	<h1 class="title">{{ $actividad->nombre }}</h1>
 	
 	<form method="POST" action="" >
 
@@ -30,24 +28,6 @@
 		</p>
 	</div>
 
-	@if($errors->any())
-	<div class="notification is-danger">
-		<ul>
-			@foreach ($errors->all() as $error)
-				<li>{{ $error }}</li>
-			@endforeach
-		</ul>
-	</div>
-	@endif
-
 	<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
-
-	<h2>Inscriptos</h2>
-
-	@forelse ($actividad->inscriptos as $inscripto)
-		<li>{{ $inscripto->usuario->nombre }}</li>
-	@empty
-		<li>No hay ningún inscripto</li>
-	@endforelse
 
 @endsection("content")

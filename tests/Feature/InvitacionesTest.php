@@ -11,6 +11,23 @@ class InvitacionesTest extends TestCase
     use RefreshDatabase;
 
     /** @test */
+    public function creador_de_una_actividad_puede_invitar_usuarios()
+    {
+        $this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $maria = factory('App\Usuario')->create();
+
+        $this->actingAs($a->creador)
+            ->post($a->path_admin().'/invitaciones', [ 'email' => $maria->email ])
+            ->assertRedirect($a->path_admin());
+
+        $this->assertTrue($a->miembros->contains($maria));
+
+    }
+
+    /** @test */
     public function solo_el_creador_puede_invitar_usuarios()
     {
         //$this->withoutExceptionHandling();
@@ -40,23 +57,6 @@ class InvitacionesTest extends TestCase
     }
 
     /** @test */
-    public function creador_de_una_actividad_puede_invitar_usuarios()
-    {
-        $this->withoutExceptionHandling();
-
-        $a = factory('App\Actividad')->create();
-
-        $maria = factory('App\Usuario')->create();
-
-        $this->actingAs($a->creador)
-            ->post($a->path_admin().'/invitaciones', [ 'email' => $maria->email ])
-            ->assertRedirect($a->path_admin());
-
-        $this->assertTrue($a->miembros->contains($maria));
-
-    }
-
-    /** @test */
     public function usuario_miembro_puede_editar_una_actividad()
     {
         //$this->withoutExceptionHandling();
@@ -66,8 +66,8 @@ class InvitacionesTest extends TestCase
         $a->invitar($usuario_a_invitar = factory('App\Usuario')->create());
 
         $this->actingAs($usuario_a_invitar)
-            ->post(action('admin\InscripcionesController@store', [ 'actividad' => $a, 'usuario' => $usuario_a_invitar] ))
-            ->assertRedirect($a->path_admin());
+            ->post(action('admin\InscripcionesController@store', [ 'actividad' => $a ]), [ 'id_usuario' => $usuario_a_invitar->id ] )
+            ->assertRedirect($a->path_admin() . '/inscripciones');
 
         $this->assertDatabaseHas('inscripciones',[ 'id_actividad' => $a->id, 'id_usuario' => $usuario_a_invitar->id ]);
 

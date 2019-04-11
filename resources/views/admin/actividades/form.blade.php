@@ -35,3 +35,13 @@
 				<input class="input {{ $errors->has('lugar') ? 'is-danger' : '' }}" type="text" name="lugar" value="{{ $actividad->lugar }}" {{ ($deshabilitado)?"disabled":"" }}></input>
 			</div>
 		</div>
+
+		@if($errors->any())
+		<div class="notification is-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
