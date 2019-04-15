@@ -48,6 +48,23 @@ class AuditoriasTest extends TestCase
 
         $this->assertCount(2, $actividad->auditoria);
 
-        $this->assertEquals('Usuario inscripto', $actividad->auditoria->last()->descripcion);
+        $this->assertEquals('usuario_inscripto', $actividad->auditoria->last()->descripcion);
+    }
+
+    /** @test */
+    public function desinscribir_un_usuario_genera_un_registro()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $usuario = factory('App\Usuario')->create();
+
+        $actividad->inscribir($usuario);
+        $actividad->desinscribir($usuario);
+
+        $this->assertCount(3, $actividad->auditoria);
+
+        $this->assertEquals('usuario_desinscripto', $actividad->auditoria->last()->descripcion);
     }
 }

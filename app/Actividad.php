@@ -97,6 +97,15 @@ class Actividad extends Model
         return $this->inscriptos()->create([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ]);
     }
 
+    public function desinscribir(Usuario $usuario)
+    {
+        return $this
+            ->inscriptos()
+            ->find([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ])
+            ->first()
+            ->delete();
+    }
+
     public function invitar(Usuario $usuario)
     {
         return $this->miembros()->attach($usuario);

@@ -34,6 +34,12 @@
 			</p>
 		</div>
 
+		<ul>
+			@foreach ($actividad->auditoria as $auditoria)
+				<li>{{ $auditoria->descripcion }}</li>
+			@endforeach
+		</ul>
+
 		<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
 
 	</div>

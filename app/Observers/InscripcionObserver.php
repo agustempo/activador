@@ -17,7 +17,7 @@ class InscripcionObserver
     {
         Auditoria::create([
             'id_actividad' => $inscripcion->actividad->id,
-            'descripcion' => 'Usuario inscripto'
+            'descripcion' => 'usuario_inscripto'
         ]);
     }
 
@@ -40,7 +40,10 @@ class InscripcionObserver
      */
     public function deleted(Inscripcion $inscripcion)
     {
-        //
+        Auditoria::create([
+            'id_actividad' => $inscripcion->actividad->id,
+            'descripcion' => 'usuario_desinscripto'
+        ]);
     }
 
     /**
