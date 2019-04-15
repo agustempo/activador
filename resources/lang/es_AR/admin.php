@@ -6,6 +6,7 @@ return [
     'atras' => 'Atrás',
     'editar' => 'Editar',
     'eliminar' => 'Eliminar',
+    'confirmar' => 'Confirmar',
     'crear' => 'Crear',
     'nueva' => 'Nueva',
     'nuevo' => 'Nuevo',

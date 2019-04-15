@@ -60,9 +60,10 @@ class ActividadInvitacionesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Actividad $actividad)
     {
         //
+        return view('admin.actividades.miembros', compact('actividad'));
     }
 
     /**

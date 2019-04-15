@@ -6,7 +6,7 @@ Nueva actividad
 	
 @section("content")
 	
-	<h1 class="title">{{ __(('admin.nueva')) }} {{ __(('actividades.actividad')) }}</h1>
+	<h1 >{{ __(('admin.nueva')) }} {{ __(('actividades.actividad')) }}</h1>
 	
 	<form method="POST" action="/admin/actividades/" >
 

@@ -6,28 +6,35 @@
 
 @section("content")
 	
-	<form method="POST" action="" >
+	<div class="container">
 
-		@include("admin.actividades.form", [ 'deshabilitado' => true ])
+		@include('admin.actividades.menu')
 
-	</form>
+		<h4 class="title is-4">{{ $actividad->nombre }}</h4>
+		
+		<form method="POST" action="" >
 
-	<br/>
+			@include("admin.actividades.form", [ 'deshabilitado' => true ])
 
-	<div class="field is-grouped is-grouped-right" >
-		<p class="control">
-			<a class="button" href="/admin/actividades/{{ $actividad->id }}/edit" > {{ __(('admin.editar')) }}</a>
-		</p>
+		</form>
 
-		<p class="control" >
-			<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
-				{{ method_field('DELETE') }}
-				{{ csrf_field() }}
-				<input type="submit" class="button is-danger" value="{{ __(('admin.eliminar')) }}" ></input>
-			</form>
-		</p>
+		<br/>
+
+		<div class="field is-grouped" >
+			<p class="control">
+				<a class="button" href="/admin/actividades/{{ $actividad->id }}/edit" > {{ __(('admin.editar')) }}</a>
+			</p>
+
+			<p class="control" >
+				<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
+					{{ method_field('DELETE') }}
+					{{ csrf_field() }}
+					<input type="submit" class="button is-danger" value="{{ __(('admin.eliminar')) }}" ></input>
+				</form>
+			</p>
+		</div>
+
+		<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
+
 	</div>
-
-	<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
-
 @endsection("content")

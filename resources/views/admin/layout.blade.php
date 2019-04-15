@@ -5,63 +5,94 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield("title")</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
     <!--<link rel="stylesheet" href="/css/debug.css">-->
-      
-
   </head>
   <body>
 
-  <section class="section">
-    <div class="container">
+    <nav class="navbar" role="navigation" aria-label="main navigation">
+      <div class="navbar-brand">
 
-      <div class="level is-mobile">
+        <a class="navbar-item" href="">
+          <img src="/images/logo.svg" >
+          <span>Activador</span>
+        </a>
 
-        <div class="level-left">
-          <figure class="image is-32x32">
-              <img class="" src="https://bulma.io/images/placeholders/128x128.png">
-          </figure>
-          <div class="level-item">Activador</div>
+        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+          <span aria-hidden="true"></span>
+        </a>
+      </div>
+
+      <div class="navbar-menu">
+        <div class="navbar-start">
+          <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Actividades
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item">
+                Mías
+              </a>
+              <a class="navbar-item">
+                Compartidas conmigo
+              </a>
+              <a class="navbar-item">
+                Donde coordindo
+              </a>
+              <hr class="navbar-divider">
+              <div class="navbar-item">
+                Todas
+              </div>
+            </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Usuarios
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                    Administrar
+                </a>
+              </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Sitio
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                    General
+                </a>
+              </div>
+          </div>
+
         </div>
-         <div class="level-right">
-          <div class="level-item">Usuario
-            <figure class="image is-32x32">
-              <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-            </figure>
+
+        <div class="navbar-end">
+          <div class="navbar-item">
+            Usuario sesión
           </div>
         </div>
-
       </div>
+    </nav>
+    <div class="section">
+        @yield("content")
+    </div> 
+    
 
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container">
-      <div class="columns">
-
-        <div class="column is-one-quarter">
-          @include("admin.menu")
-        </div>
-
-        <div class="column">
-          <h4 class="title is-4">{{ $actividad->nombre }}</h4>
-          @include("admin.actividades.menu")
-          @yield("content")
-        </div>
-
+    <footer class="footer">
+      <div class="content has-text-centered">
+        <p>
+          <strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a>. El código tiene licencia GPL. El contenido tiene licencia CC BY NC SA 4.
+        </p>
       </div>
-    </div>
-  </section>
-
-
-  <footer class="footer">
-    <div class="container">
-
-      Footer
-
-    </div>
-  </footer>
+    </footer>
 
   </body>
 </html>

@@ -8,7 +8,7 @@
 	<div class="content">
 		<p><a href="/admin/actividades/create" class="button is-primary" >{{ __('admin.nueva') }}</a></p>
 
-		<h4 class="title is-4" >{{ __('admin.listado_de') }} {{ __('actividades.actividades') }}</h4>
+		<h4>{{ __('admin.listado_de') }} {{ __('actividades.actividades') }}</h4>
 		<ul>
 		@foreach ($actividades as $actividad)
 

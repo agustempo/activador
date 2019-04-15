@@ -72,5 +72,20 @@ class InvitacionesTest extends TestCase
         $this->assertDatabaseHas('inscripciones',[ 'id_actividad' => $a->id, 'id_usuario' => $usuario_a_invitar->id ]);
 
     }
+
+    /** @test */
+    public function creador_puede_ver_invitaciones_de_una_actividad()
+    {
+        $this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $a->invitar($usuario_a_invitar = factory('App\Usuario')->create());
+
+        $this->actingAs($usuario_a_invitar)
+            ->get(action('admin\ActividadInvitacionesController@show', [ 'actividad' => $a ]))
+            ->assertSee($usuario_a_invitar->nombre);
+
+    }
     
 }

@@ -6,6 +6,10 @@ Editar actividad {{ $actividad->nombre }}
 	
 @section("content")
 
+	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
+	
+	@include("admin.actividades.menu")
+
 	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
 		
 		{{ method_field('PATCH') }}

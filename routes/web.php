@@ -19,6 +19,7 @@ Route::get('/actividades/{actividad}','HomeController@actividad');
 Route::middleware('auth')->prefix('/admin')->group(function (){
 //Route::prefix('/admin')->group(function (){
 
+    Route::get('/',function () { return view('prueba'); });
     Route::get('/actividades','admin\ActividadesController@index');
     Route::get('/actividades/create','admin\ActividadesController@create');
     Route::get('/actividades/{actividad}','admin\ActividadesController@show');
@@ -35,6 +36,7 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
 
     //invitaciones
     Route::post('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@store');
+    Route::get('/actividades/{actividad}/miembros','admin\ActividadInvitacionesController@show');
 
 
 });
