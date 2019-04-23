@@ -9,8 +9,8 @@ $factory->define(App\Actividad::class, function (Faker $faker) {
         'nombre' => $faker->name,
         'descripcion' => $faker->sentence,
         'lugar' => $faker->address,
-        'fecha_inicio' => $faker->dateTime,
-        'fecha_fin' => $faker->dateTime,
+        'inicio' => $faker->dateTime,
+        'fin' => $faker->dateTime,
         'id_creador' => function(){
             return factory(App\Usuario::class)->create()->id;
         }

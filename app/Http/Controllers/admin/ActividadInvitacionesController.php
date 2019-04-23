@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Actividad;
 use App\Usuario;
+use Illuminate\Validation\Rule;
 
 class ActividadInvitacionesController extends Controller
 {
@@ -16,7 +17,6 @@ class ActividadInvitacionesController extends Controller
      */
     public function index()
     {
-        //
     }
 
     /**
@@ -37,20 +37,24 @@ class ActividadInvitacionesController extends Controller
      */
     public function store(Actividad $actividad)
     {
-        //
+
         $this->authorize('update', $actividad);
 
         $validado = request()->validate([
-            'email' => ['required', 'exists:usuarios,email']
-        ]
-        //,[ 'email.exists' => 'La dirección de email debe estar asociada a una cuenta en el sistema.' ]
-        );
+            'id_usuario' => [
+                    'required',
+                    'exists:usuarios,id',
+                    Rule::unique('actividad_miembros')->where(function ($query) use ($actividad) {
+                        return $query->where('id_actividad', $actividad->id);
+                    })
+                ]
+        ]);
 
-        $usuario = Usuario::where([ 'email' => request('email')])->first();
+        $usuario = Usuario::find($validado['id_usuario']);
 
         $actividad->invitar($usuario);
 
-        return redirect($actividad->path_admin());
+        return redirect($actividad->path_admin() . '/invitaciones');
 
     }
 
@@ -62,8 +66,9 @@ class ActividadInvitacionesController extends Controller
      */
     public function show(Actividad $actividad)
     {
-        //
-        return view('admin.actividades.miembros', compact('actividad'));
+        $usuarios = Usuario::all();
+        
+        return view('admin.actividades.miembros', compact('actividad', 'usuarios'));
     }
 
     /**

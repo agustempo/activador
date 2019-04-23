@@ -31,8 +31,8 @@ class ActividadesController extends Controller
         $atributos = $this->validate($request, [
             'nombre' => 'required',
             'descripcion' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_fin' => 'required'
+            'inicio' => 'required',
+            'fin' => 'required'
         ]);
 
         Auth::user()->actividades_creadas()->create($atributos);
@@ -61,8 +61,8 @@ class ActividadesController extends Controller
         $atributos = request()->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
-            'fecha_inicio' => 'required',
-            'fecha_fin' => 'required'
+            'inicio' => 'required',
+            'fin' => 'required'
         ]);
         
         $actividad->update($atributos);
@@ -72,9 +72,13 @@ class ActividadesController extends Controller
 
     public function destroy(Actividad $actividad)
     {
-        
         $actividad->delete();
 
         return redirect('/admin/actividades');
+    }
+
+    public function auditorias(Actividad $actividad)
+    {
+        return view('admin.actividades.auditorias', compact('actividad'));
     }
 }

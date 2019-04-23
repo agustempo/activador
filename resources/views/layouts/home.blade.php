@@ -27,60 +27,25 @@
       </div>
 
       <div class="navbar-menu">
-        <div class="navbar-start">
-          <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              Actividades
-            </a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item" href="/admin/actividades/create" >
-                Crear nueva
-              </a>
-              <a class="navbar-item" href="/admin/actividades" >
-                Mías
-              </a>
-              <a class="navbar-item">
-                Compartidas conmigo
-              </a>
-              <a class="navbar-item">
-                Donde coordindo
-              </a>
-              <hr class="navbar-divider">
-              <div class="navbar-item">
-                Todas
-              </div>
-            </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                Usuarios
-              </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                    Administrar
-                </a>
-              </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                Sitio
-              </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                    General
-                </a>
-              </div>
-          </div>
-
-        </div>
+        <div class="navbar-start"></div>
 
         <div class="navbar-end">
           <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                {{ auth()->user()->nombreCompleto }}
+                
+                <div class="media">
+                  <div class="media-left">
+                    <div class="image is-48x48">
+                      <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
+                    </div>
+                  </div>
+                  <div class="media-content">
+                    <div class="activador_media-content-usuario">
+                      {{ auth()->user()->nombreCompleto }}
+                    </div>
+                  </div>
+                </div>
+
               </a>
               <div class="navbar-dropdown">
                 <a class="navbar-item" href="/login" >

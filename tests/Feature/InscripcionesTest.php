@@ -118,23 +118,24 @@ class InscripcionesTest extends TestCase
 
         $this->actingAs($actividad->creador);
 
-        $this->patch($inscripcion->path_admin(), [ 'confirmar' => true ])
+        $this->patch($inscripcion->path_admin(), [ 'confirma' => true, 'presente' => true ])
             ->assertRedirect($actividad->path_admin() . '/inscripciones');
-            //->assertStatus(403);
 
         $this->assertDatabaseHas('inscripciones', [ 
             'id_actividad' => $actividad->id,
             'id_usuario' => $usuario_a_inscribir->id,
-            'confirmada' => true
+            'confirma' => true,
+            'presente' => true
         ]);
 
-        $this->patch($inscripcion->path_admin(), [ 'confirmar' => false ])
+        $this->patch($inscripcion->path_admin(), [ 'confirma' => false, 'presente' => false ])
             ->assertRedirect($actividad->path_admin() . '/inscripciones');
 
         $this->assertDatabaseHas('inscripciones', [ 
             'id_actividad' => $actividad->id,
             'id_usuario' => $usuario_a_inscribir->id,
-            'confirmada' => false
+            'confirma' => false,
+            'presente' => false
         ]);
 
     }
@@ -159,7 +160,7 @@ class InscripcionesTest extends TestCase
         $this->assertDatabaseMissing('inscripciones', [ 
             'id_actividad' => $actividad->id,
             'id_usuario' => $usuario_a_inscribir->id,
-            'confirmada' => true
+            'confirma' => true
         ]);
 
     }
@@ -195,7 +196,7 @@ class InscripcionesTest extends TestCase
 
         $session = $this->actingAs($a->creador)
             ->post($a->path_admin().'/inscripciones', [ 'id_usuario' => $u->id ])
-            ->assertSessionHasErrors(['id_usuario' => 'El usuario no existe en el sistema.']);
+            ->assertSessionHasErrors();
 
     }
 
@@ -210,11 +211,9 @@ class InscripcionesTest extends TestCase
 
         $a->inscribir($u);
 
-        $session = $this->actingAs($a->creador)->post($a->path_admin().'/inscripciones',[
+        $this->actingAs($a->creador)->post($a->path_admin().'/inscripciones',[
             'id_usuario' => $u->id
-        ]);
-
-        $session->assertSessionHasErrors(['id_usuario' => 'El usuario ya está inscripto en la actividad.']);
+        ])->assertSessionHasErrors();
 
     }
 

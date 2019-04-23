@@ -37,10 +37,6 @@ class InscripcionesController extends Controller
                 'exists:usuarios,id',
                 'unique' => Rule::unique('inscripciones')->where(function ($query) use ($actividad) { return $query->where('id_actividad', $actividad->id); }) ]
                 
-        ],
-        [
-            'unique' => 'El usuario ya está inscripto en la actividad.',
-            'exists' => 'El usuario no existe en el sistema.'
         ]);
 
         $usuario = Usuario::find($atributos['id_usuario']);
@@ -64,8 +60,11 @@ class InscripcionesController extends Controller
     {
         $this->authorize('update', $inscripcion->actividad); 
 
-        if(request()->has('confirmar'))
-            $inscripcion->update(['confirmada' => request('confirmar')==true ]);
+        if(request()->has('confirma')) 
+            $inscripcion->update(['confirma' => request('confirma')==true ]);
+
+        if(request()->has('presente')) 
+            $inscripcion->update(['presente' => request('presente')==true ]);
 
         return redirect($inscripcion->actividad->path_admin() . '/inscripciones');
     }

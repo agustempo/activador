@@ -5,6 +5,7 @@ Editar actividad {{ $actividad->nombre }}
 @endsection('title')
 	
 @section("content")
+<div class="container">
 
 	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
 	
@@ -21,5 +22,5 @@ Editar actividad {{ $actividad->nombre }}
 	</form>
 
 	<p><a href="/admin/actividades">{{ __(('admin.atras')) }}</a></p>
-
+</div>
 @endsection("content")

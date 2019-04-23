@@ -2,26 +2,28 @@
 
 namespace Tests\Feature;
 
-use Tests\TestCase;
-use Illuminate\Foundation\Testing\WithFaker;
+use App\Auditoria;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Foundation\Testing\WithFaker;
+use Tests\TestCase;
 
-class AuditoriasTest extends TestCase
+class GeneraRegistroAuditoriaTest extends TestCase
 {
     use RefreshDatabase;
 
     /** @test */
-    public function crear_una_actividad_genera_un_registro()
+    public function crear_una_actividad()
     {
-        //$this->withoutExceptionHandling();
+        $this->withoutExceptionHandling();
 
         $actividad = factory('App\Actividad')->create();
-
+        
         $this->assertCount(1, $actividad->auditoria);
+        $this->assertNull($actividad->auditoria->last()->objeto);
     }
 
     /** @test */
-    public function modificar_una_actividad_genera_un_registro()
+    public function modificar_una_actividad()
     {
         //$this->withoutExceptionHandling();
 
@@ -30,29 +32,28 @@ class AuditoriasTest extends TestCase
         $actividad->update(['descripcion' => 'Editada']);
 
         $this->assertCount(2, $actividad->auditoria);
-
-        $this->assertEquals('editada', $actividad->auditoria->last()->descripcion);
+        $this->assertNull($actividad->auditoria->last()->objeto);
     }
 
     /** @test */
 
-    public function inscribir_un_usuario_genera_un_registro()
+    public function inscribir_un_usuario()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $actividad = factory('App\Actividad')->create();
 
         $usuario = factory('App\Usuario')->create();
 
-        $actividad->inscribir($usuario);
+        $i = $actividad->inscribir($usuario);
 
         $this->assertCount(2, $actividad->auditoria);
-
-        $this->assertEquals('usuario_inscripto', $actividad->auditoria->last()->descripcion);
+        $this->assertInstanceOf('App\Inscripcion', $actividad->auditoria->last()->objeto);
     }
 
     /** @test */
-    public function desinscribir_un_usuario_genera_un_registro()
+
+    public function desinscribir_un_usuario()
     {
         $this->withoutExceptionHandling();
 
@@ -60,11 +61,118 @@ class AuditoriasTest extends TestCase
 
         $usuario = factory('App\Usuario')->create();
 
-        $actividad->inscribir($usuario);
+        $i = $actividad->inscribir($usuario);
         $actividad->desinscribir($usuario);
 
         $this->assertCount(3, $actividad->auditoria);
-
-        $this->assertEquals('usuario_desinscripto', $actividad->auditoria->last()->descripcion);
+        $this->assertNull($actividad->auditoria->last()->objeto);
     }
+
+    /** @test */
+
+    public function editar_una_inscripcion()
+    {
+        $this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $u = factory('App\Usuario')->create();
+
+        $i = $a->inscribir($u);
+
+        $this->actingAs($a->creador)
+            ->patch(action('admin\InscripcionesController@update',[ 'id_inscripcion' => $i ]), [ 'confirma' => true ])
+            ->assertRedirect($a->path_admin() . '/inscripciones');
+
+        $this->assertCount(3, $a->auditoria);
+        $this->assertInstanceOf('App\Inscripcion', $a->auditoria->last()->objeto);
+    }
+
+    /** @test */
+
+    public function editar_una_actividad_antes_y_despues()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+        $nombre_original = $actividad->nombre;
+
+        $actividad->update([ 'nombre' => 'editada' ]);
+
+        $registro_auditoria = $actividad->auditoria->last();
+
+        $this->assertEquals($registro_auditoria->cambios
+        , [
+            'antes' => [ 'nombre' => $nombre_original ],
+            'despues' => [ 'nombre' => 'editada' ]
+        ]);
+
+    }
+
+    /** @test */
+
+    public function crear_una_actividad_antes_y_despues()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $this->assertNull($actividad->auditoria->last()->cambios);
+
+    }
+
+    /** @test */
+
+    public function inscribir_un_usuario_antes_y_despues()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $actividad->inscribir(factory('App\Usuario')->create());
+
+        $this->assertNull($actividad->auditoria->last()->cambios);
+
+    }
+
+    /** @test */
+
+    public function confirmar_un_usuario_antes_y_despues()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $inscripcion = $actividad->inscribir(factory('App\Usuario')->create());
+
+        $inscripcion->update([ 'confirma' => true ]);
+
+        $registro_auditoria = $actividad->auditoria->last();
+
+        $this->assertEquals($registro_auditoria->cambios
+        , [
+            'antes' => [ 'confirma' => false ],
+            'despues' => [ 'confirma' => true ]
+        ]);
+
+    }
+
+        /** @test */
+
+    public function desinscribir_y_volver_a_inscribir_un_usuario()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $usuario = factory('App\Usuario')->create();
+
+        $i = $actividad->inscribir($usuario);
+        $actividad->desinscribir($usuario);
+        $actividad->inscribir($usuario);
+
+        $this->assertCount(4, $actividad->auditoria);
+        $this->assertInstanceOf('App\Inscripcion', $actividad->auditoria->last()->objeto);
+    }
+
 }

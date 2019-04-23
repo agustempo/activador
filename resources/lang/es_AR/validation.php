@@ -130,7 +130,12 @@ return [
     'custom' => [
         'email' => [
             'exists' => 'La dirección de email debe estar asociada a una cuenta en el sistema.',
+            'unique' => 'La dirección de email ya fue invitada.',
         ],
+        'id_usuario' => [
+            'exists' => 'El usuario seleccionado es inválido',
+            'unique' => 'El usuario ya existe en la base de datos.',
+        ]
     ],
 
     /*

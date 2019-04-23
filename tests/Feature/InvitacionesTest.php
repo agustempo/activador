@@ -13,15 +13,15 @@ class InvitacionesTest extends TestCase
     /** @test */
     public function creador_de_una_actividad_puede_invitar_usuarios()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $a = factory('App\Actividad')->create();
 
         $maria = factory('App\Usuario')->create();
 
         $this->actingAs($a->creador)
-            ->post($a->path_admin().'/invitaciones', [ 'email' => $maria->email ])
-            ->assertRedirect($a->path_admin());
+            ->post($a->path_admin() . '/invitaciones', [ 'id_usuario' => $maria->id ])
+            ->assertRedirect($a->path_admin() . '/invitaciones');
 
         $this->assertTrue($a->miembros->contains($maria));
 
@@ -42,17 +42,17 @@ class InvitacionesTest extends TestCase
     }
 
     /** @test */
-    public function la_direccion_de_email_invitada_debe_tener_una_cuenta_en_el_sistema()
+    public function el_usuario_debe_existir_en_el_sistema()
     {
         //$this->withoutExceptionHandling();
 
         $a = factory('App\Actividad')->create();
 
-        $session = $this->actingAs($a->creador)->post($a->path_admin().'/invitaciones',[
-            'email' => 'noexisto@mail.com'
+        $session = $this->actingAs($a->creador)->post($a->path_admin() . '/invitaciones', [
+            'id_usuario' => -2
         ]);
 
-        $session->assertSessionHasErrors(['email' => 'La dirección de email debe estar asociada a una cuenta en el sistema.']);
+        $session->assertSessionHasErrors('id_usuario');
 
     }
 
@@ -76,7 +76,7 @@ class InvitacionesTest extends TestCase
     /** @test */
     public function creador_puede_ver_invitaciones_de_una_actividad()
     {
-        $this->withoutExceptionHandling();
+        //$this->withoutExceptionHandling();
 
         $a = factory('App\Actividad')->create();
 
@@ -85,6 +85,25 @@ class InvitacionesTest extends TestCase
         $this->actingAs($usuario_a_invitar)
             ->get(action('admin\ActividadInvitacionesController@show', [ 'actividad' => $a ]))
             ->assertSee($usuario_a_invitar->nombre);
+
+    }
+
+    /** @test */
+    public function no_se_puede_invitar_a_un_usuario_mas_de_una_vez()
+    {
+        //$this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $maria = factory('App\Usuario')->create();
+
+        $this->actingAs($a->creador)
+            ->post($a->path_admin() . '/invitaciones', [ 'id_usuario' => $maria->id ])
+            ->assertRedirect($a->path_admin() . '/invitaciones');
+
+        $this->actingAs($a->creador)
+            ->post($a->path_admin() . '/invitaciones', [ 'id_usuario' => $maria->id ])
+            ->assertSessionHasErrors();
 
     }
     

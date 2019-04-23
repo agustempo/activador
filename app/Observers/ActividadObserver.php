@@ -15,10 +15,7 @@ class ActividadObserver
     public function created(Actividad $actividad)
     {
         //
-        \App\Auditoria::create([
-            'id_actividad' => $actividad->id,
-            'descripcion' => 'creada'
-        ]);
+        $actividad->crear_auditoria("actividad_creada");
     }
 
     /**
@@ -30,10 +27,7 @@ class ActividadObserver
     public function updated(Actividad $actividad)
     {
         //
-        \App\Auditoria::create([
-            'id_actividad' => $actividad->id,
-            'descripcion' => 'editada'
-        ]);
+        $actividad->crear_auditoria("actividad_editada");
     }
 
     /**

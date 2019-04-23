@@ -1,3 +1,6 @@
+@extends ('layouts.home')
+
+@section('content')
 <h1 class="title" >{{ __('actividades.actividad') }} {{ $actividad->nombre }}</h1>
 
 <div>
@@ -18,4 +21,12 @@
 
     <p>Quién: {{ $actividad->creador->nombreCompleto }}</p>
 
+    <br>
+
+    <form id="form-inscribirme" method="POST" action="/admin/actividades/{{ $actividad->id }}/inscripciones" >
+        {{ csrf_field() }} 
+    </form>
+    <a onclick="event.preventDefault();document.getElementById('form-inscribirme').submit();" class="button">Inscribirme</a>
+
 </div>
+@endsection('content')

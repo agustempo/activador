@@ -15,10 +15,7 @@ class InscripcionObserver
      */
     public function created(Inscripcion $inscripcion)
     {
-        Auditoria::create([
-            'id_actividad' => $inscripcion->actividad->id,
-            'descripcion' => 'usuario_inscripto'
-        ]);
+        $inscripcion->crear_auditoria("inscripcion_creada");
     }
 
     /**
@@ -29,9 +26,9 @@ class InscripcionObserver
      */
     public function updated(Inscripcion $inscripcion)
     {
-        //
+        $inscripcion->crear_auditoria("inscripcion_editada");
     }
-
+    
     /**
      * Handle the inscripcion "deleted" event.
      *
@@ -40,10 +37,7 @@ class InscripcionObserver
      */
     public function deleted(Inscripcion $inscripcion)
     {
-        Auditoria::create([
-            'id_actividad' => $inscripcion->actividad->id,
-            'descripcion' => 'usuario_desinscripto'
-        ]);
+        $inscripcion->crear_auditoria("inscripcion_eliminada");
     }
 
     /**

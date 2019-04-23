@@ -6,8 +6,17 @@ use Illuminate\Database\Eloquent\Model;
 
 class Inscripcion extends Model
 {
+    use GenerarAuditoria;
+
     protected $guarded = [];
     protected $table = 'inscripciones';
+
+    protected $attributes = [
+        'confirma' => false,
+        'presente' => false
+    ];
+
+    protected static $eventosAuditables = ['created', 'updated', 'deleted'];
 
     public function usuario()
     {
@@ -23,4 +32,5 @@ class Inscripcion extends Model
     {
     	return "/admin/inscripciones/{$this->id}";
     }
+
 }

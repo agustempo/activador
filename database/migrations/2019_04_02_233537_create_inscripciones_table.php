@@ -17,7 +17,8 @@ class CreateInscripcionesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('id_actividad');
             $table->unsignedInteger('id_usuario');
-            $table->boolean('confirmada')->default(false);
+            $table->boolean('confirma')->default(false);
+            $table->boolean('presente')->default(false);
 
             $table->foreign('id_actividad')
                   ->references('id')

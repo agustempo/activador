@@ -22,8 +22,8 @@ class CreateActividadesTable extends Migration
             $table->text('descripcion')->nullable();
 
             //fechas
-            $table->dateTime('fecha_inicio');
-            $table->dateTime('fecha_fin');
+            $table->dateTime('inicio');
+            $table->dateTime('fin');
 
             $table->string('lugar', 255)->nullable();
 

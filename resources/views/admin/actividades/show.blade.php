@@ -8,9 +8,9 @@
 	
 	<div class="container">
 
-		@include('admin.actividades.menu')
-
 		<h4 class="title is-4">{{ $actividad->nombre }}</h4>
+
+		@include('admin.actividades.menu')
 		
 		<form method="POST" action="" >
 
@@ -24,21 +24,14 @@
 			<p class="control">
 				<a class="button" href="/admin/actividades/{{ $actividad->id }}/edit" > {{ __(('admin.editar')) }}</a>
 			</p>
-
-			<p class="control" >
-				<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
+			<form id="form-eliminar" method="POST" action="/admin/actividades/{{ $actividad->id }}" style="display:none" >
 					{{ method_field('DELETE') }}
 					{{ csrf_field() }}
-					<input type="submit" class="button is-danger" value="{{ __(('admin.eliminar')) }}" ></input>
-				</form>
+			</form>
+			<p class="control" >
+				<a class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" > {{ __(('admin.eliminar')) }}</a>
 			</p>
 		</div>
-
-		<ul>
-			@foreach ($actividad->auditoria as $auditoria)
-				<li>{{ $auditoria->descripcion }}</li>
-			@endforeach
-		</ul>
 
 		<p><a href="/admin/actividades" >{{ __(('admin.atras')) }}</a></p>
 

@@ -69,12 +69,12 @@ class AdministrarActividadesTest extends TestCase
         $usuario = factory('App\Usuario')->create();
 
         $actividad = factory('App\Actividad')->raw([
-            'fecha_inicio' => '',
-            'fecha_fin' => ''
+            'inicio' => '',
+            'fin' => ''
         ]);
 
         $this->actingAs($usuario)->post('/admin/actividades',$actividad)
-            ->assertSessionHasErrors(['fecha_inicio', 'fecha_fin']);
+            ->assertSessionHasErrors(['inicio', 'fin']);
     }
 
 
@@ -162,6 +162,26 @@ class AdministrarActividadesTest extends TestCase
             ->assertRedirect('/admin/actividades');
         
         $this->assertDatabaseHas('actividades', ['id_creador' => $usuario->id]);
+
+    }
+
+    /** @test **/
+
+    public function usuario_puede_ver_auditorias()
+    {
+        //$this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $this->actingAs($a->creador)
+            ->get(action('admin\ActividadesController@auditorias', $a))
+            ->assertOk();
+
+        $u = factory('App\Usuario')->create();
+        $a->inscribir($u);
+
+        $this->get(action('admin\ActividadesController@auditorias', $a))
+            ->assertOk();
 
     }
 

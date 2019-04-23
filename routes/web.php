@@ -36,8 +36,10 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
 
     //invitaciones
     Route::post('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@store');
-    Route::get('/actividades/{actividad}/miembros','admin\ActividadInvitacionesController@show');
+    Route::get('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@show');
 
+    //auditoria
+    Route::get('/actividades/{actividad}/auditoria','admin\ActividadesController@auditorias');
 
 });
 

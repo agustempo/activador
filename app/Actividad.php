@@ -7,22 +7,21 @@ use Carbon\Carbon;
 
 class Actividad extends Model
 {
-    //
+    use GenerarAuditoria;
+
     protected $table = 'actividades';
 
     protected $fillable = [
     	'nombre', 
     	'descripcion',
-        'fecha_inicio',
-        'fecha_fin',
+        'inicio',
+        'fin',
         'lugar'
-    	/*'lugar',
-    	'estado',
-    	'visibilidad',
-
-    	'limiteInscripciones',
-    	'mensajeInscripciones'*/
     ];
+
+    protected $dates = [ 'inicio', 'fin' ];
+
+    protected static $eventosAuditables = ['created', 'updated'];
 
     function creador () 
     {
@@ -31,45 +30,59 @@ class Actividad extends Model
 
     function auditoria () 
     {
-        return $this->hasMany('App\Auditoria','id_actividad');
+        return $this
+            ->hasMany('App\Auditoria', 'id_actividad')
+            ->latest();
     }
 
     function getCuandoAttribute () 
     {
-        $fecha_i = new \DateTime($this->fecha_inicio);
+        $fecha_i = new \DateTime($this->inicio);
         return $fecha_i->format("d/m/Y H:i");
     }
 
     function getDuracionEnDiasAttribute () 
     {
-        $fecha = new \DateTime($this->fecha_inicio);
+        $fecha = new \DateTime($this->inicio);
 
-        $dif = $fecha->diff(new \DateTime($this->fecha_fin));
+        $dif = $fecha->diff(new \DateTime($this->fin));
 
         return $dif->days;
     }
 
     function getDuracionEnHorasAttribute () 
     {
-        $fecha = new \DateTime($this->fecha_inicio);
+        $fecha = new \DateTime($this->inicio);
 
-        $dif = $fecha->diff(new \DateTime($this->fecha_fin));
+        $dif = $fecha->diff(new \DateTime($this->fin));
 
         return $dif->h;
     }
 
-    function getInicioAttribute()
+    function getInicioLocalAttribute ()
     {
-        $fecha = new \DateTime($this->fecha_inicio);
-
-        return $fecha->format('Y-m-d');
+        return ($this->inicio)?$this->inicio->format('Y-m-d\TH:i'):null;
     }
 
-    function getFinAttribute()
+    function getFinLocalAttribute ()
     {
-        $fecha = new \DateTime($this->fecha_fin);
+        return ($this->fin)?$this->fin->format('Y-m-d\TH:i'):null;
+    }
 
-        return $fecha->format('Y-m-d');
+    function setInicioAttribute ($valor)
+    {
+        if(is_string($valor))
+            if (preg_match('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', $valor))
+                $valor = new Carbon(preg_replace('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', '$1-$2-$3 $4:$5:00', $valor));
+        $this->attributes['inicio'] = $valor;
+    }
+
+    function setFinAttribute ($valor)
+    {
+        if(is_string($valor))
+            if (preg_match('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', $valor))
+                $valor = new Carbon(preg_replace('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', '$1-$2-$3 $4:$5:00', $valor));
+        $this->attributes['fin'] = $valor;
     }
 
     function getResumenAttribute ()
