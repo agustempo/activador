@@ -30,6 +30,7 @@ trait GenerarAuditoria {
     public function crear_auditoria($descripcion)
     {
         $cambios = null;
+
         if($this->wasChanged()) {
             $cambios = [
                 'antes' => array_except(array_diff_assoc($this->anterior, $this->getAttributes()), 'updated_at'),

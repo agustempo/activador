@@ -34,6 +34,10 @@ class ActividadesController extends Controller
             'inicio' => 'required',
             'fin' => 'required'
         ]);
+        
+        //si fechas en formato datetime-local
+        $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
+        $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
 
         Auth::user()->actividades_creadas()->create($atributos);
 

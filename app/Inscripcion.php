@@ -33,4 +33,9 @@ class Inscripcion extends Model
     	return "/admin/inscripciones/{$this->id}";
     }
 
+    public function path_publico()
+    {
+        return "/inscripciones/{$this->id}";
+    }
+
 }

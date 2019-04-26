@@ -1,10 +1,11 @@
-@extends('admin.layout')
+@extends('layouts.home')
 
 @section('title')
 {{ __('admin.listado_de') }} {{ __('actividades.actividades') }}
 @endsection('title')
 
 @section('content')
+	<br>
 	<div class="content">
 		<p><a href="/admin/actividades/create" class="button is-primary" >{{ __('admin.nueva') }}</a></p>
 

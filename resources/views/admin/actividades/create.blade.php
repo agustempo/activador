@@ -1,12 +1,13 @@
-@extends("admin.layout")
+@extends("layouts.home")
 
 @section('title')
 Nueva actividad
 @endsection('title')
 	
 @section("content")
+	<br>
 	
-	<h1 >{{ __(('admin.nueva')) }} {{ __(('actividades.actividad')) }}</h1>
+	<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('actividades.actividad')) }}</h1>
 	
 	<form method="POST" action="/admin/actividades/" >
 
@@ -16,6 +17,6 @@ Nueva actividad
 		
 	</form>
 
-	<p><a href="/admin/actividades">{{ __(('admin.atras')) }}</a></p>
+	<br>
 
 @endsection("content")

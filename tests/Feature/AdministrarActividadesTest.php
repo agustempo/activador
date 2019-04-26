@@ -77,6 +77,24 @@ class AdministrarActividadesTest extends TestCase
             ->assertSessionHasErrors(['inicio', 'fin']);
     }
 
+    /** @test **/
+
+    public function actividad_requiere_fechas_datetimelocal()
+    {
+        $this->withoutExceptionHandling();
+        
+        $usuario = factory('App\Usuario')->create();
+
+        $actividad = factory('App\Actividad')->raw([
+            'inicio' => '2013-12-26T16:34',
+            'fin' => '2013-12-26T16:34'
+        ]);
+
+        $this->actingAs($usuario)
+            ->post('/admin/actividades',$actividad)
+            ->assertRedirect();
+    }
+
 
     /** @test **/
 
@@ -145,20 +163,20 @@ class AdministrarActividadesTest extends TestCase
     {
         //$this->withoutExceptionHandling();
 
-        $actividad = factory('App\Actividad')->raw();
+        $actividad = factory('App\Actividad')->make();
 
-        $this->post('/admin/actividades',$actividad)
+        $this->post('/admin/actividades',$actividad->toArray())
             ->assertRedirect('/login');
-        $this->assertDatabaseMissing('actividades',$actividad);
+        $this->assertDatabaseMissing('actividades',$actividad->toArray());
 
         $usuario = factory('App\Usuario')->create();
         $this->actingAs($usuario);
 
-        $actividad_mia = factory('App\Actividad')->raw([
+        $actividad_mia = factory('App\Actividad')->make([
             'id_creador' => $usuario->id
         ]);
 
-        $this->post('/admin/actividades', $actividad_mia)
+        $this->post('/admin/actividades', $actividad_mia->toArray())
             ->assertRedirect('/admin/actividades');
         
         $this->assertDatabaseHas('actividades', ['id_creador' => $usuario->id]);

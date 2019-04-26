@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function actividades()
     {
-        $actividades = Actividad::get();
+        $actividades = Actividad::all();
 
         return view('actividades', compact('actividades'));
     }

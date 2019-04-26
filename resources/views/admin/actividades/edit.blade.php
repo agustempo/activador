@@ -21,6 +21,5 @@ Editar actividad {{ $actividad->nombre }}
 
 	</form>
 
-	<p><a href="/admin/actividades">{{ __(('admin.atras')) }}</a></p>
 </div>
 @endsection("content")

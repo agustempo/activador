@@ -11,15 +11,23 @@
 |
 */
 
+//Navegación pública
 Route::get('/','HomeController@actividades');
 Route::get('/actividades','HomeController@actividades');
 Route::get('/actividades/{actividad}','HomeController@actividad');
 
+//Navegación para usuarios autenticados
+Route::middleware('auth')->group(function (){
+    //inscripciones
+    Route::get('/inscripciones','InscripcionesController@index');
+    Route::post('/actividades/{actividad}/inscripciones','InscripcionesController@store');
+    Route::delete('/inscripciones/{inscripcion}','InscripcionesController@destroy');
+});
+
 //Panel de administracion
 Route::middleware('auth')->prefix('/admin')->group(function (){
-//Route::prefix('/admin')->group(function (){
 
-    Route::get('/',function () { return view('prueba'); });
+    Route::get('/','admin\ActividadesController@index');
     Route::get('/actividades','admin\ActividadesController@index');
     Route::get('/actividades/create','admin\ActividadesController@create');
     Route::get('/actividades/{actividad}','admin\ActividadesController@show');

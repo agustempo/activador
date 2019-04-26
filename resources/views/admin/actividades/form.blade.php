@@ -18,14 +18,24 @@
 		<div class="field">
 			<label class="label">{{ __(('actividades.inicio')) }}</label>
 	  		<div class="control">
-				<input class="input {{ $errors->has('inicio') ? 'is-danger' : '' }}" type="datetime-local" name="inicio" value="{{ ($actividad->inicioLocal)?$actividad->inicioLocal:old('inicio')}}" {{ ($deshabilitado)?"disabled":"" }}></input>
+				<input 
+					class="input {{ $errors->has('inicio') ? 'is-danger' : '' }}" 
+					type="datetime-local" 
+					name="inicio" 
+					value="{{ ($actividad->inicio)?$actividad->finDatetimeLocal:old('inicio')}}" 
+					{{ ($deshabilitado)?"disabled":"" }}></input>
 			</div>
 		</div>
 
 		<div class="field">
 			<label class="label">{{ __(('actividades.fin')) }}</label>
 	  		<div class="control">
-				<input class="input {{ $errors->has('fin') ? 'is-danger' : '' }}" type="datetime-local" name="fin" value="{{ ($actividad->fin)?$actividad->finLocal:old('fin')}}" {{ ($deshabilitado)?"disabled":"" }}></input>
+				<input 
+					class="input {{ $errors->has('fin') ? 'is-danger' : '' }}" 
+					type="datetime-local" 
+					name="fin" 
+					value="{{ ($actividad->fin)?$actividad->finDatetimeLocal:old('fin')}}" 
+					{{ ($deshabilitado)?"disabled":"" }}></input>
 			</div>
 		</div>
 

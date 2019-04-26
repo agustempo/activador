@@ -1,12 +1,10 @@
-@extends("admin.layout")
+@extends("layouts.home")
 	
 @section('title')
 {{ $actividad->nombre }}
 @endsection('title')
 
 @section("content")
-<div class="container">
-
 	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
 	
 	@include("admin.actividades.menu")
@@ -33,7 +31,7 @@
 
 		<br/>
 
-		@if($errors->any())
+		@if(session('mensajes'))
 			<div class="notification is-danger">
 				<ul>
 					@foreach ($errors->all() as $error)
@@ -97,6 +95,4 @@
 			</tbody>
 		</table>
 	</div>
-</div>
-
 @endsection("content")

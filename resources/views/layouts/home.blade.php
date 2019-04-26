@@ -7,66 +7,129 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
     <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
-    <!--<link rel="stylesheet" href="/css/debug.css">-->
   </head>
-  <body>
+  <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
-    <nav class="navbar" role="navigation" aria-label="main navigation">
-      <div class="navbar-brand">
+    @section("navbar")
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+      <div class="container">
+        <div class="navbar-brand">
 
-        <a class="navbar-item" href="/">
-          <img src="/images/logo.svg" >
-          <span>Activador</span>
-        </a>
+          <a class="navbar-item" href="/">
+            <div class="image is-48x48"  >
+              <img style="min-height: 48px" src="https://bulma.io/images/placeholders/256x256.png">
+            </div>
+            <span style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
+          </a>
 
-        <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-          <span aria-hidden="true"></span>
-        </a>
-      </div>
+          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+            <span aria-hidden="true"></span>
+          </a>
+        </div>
 
-      <div class="navbar-menu">
-        <div class="navbar-start"></div>
+        <div class="navbar-menu">
+          <div class="navbar-start">
 
-        <div class="navbar-end">
+            @section('navbar_menu')
+            <div class="navbar-item has-dropdown is-hoverable">
+            <a class="navbar-link">
+              Actividades
+            </a>
+
+            <div class="navbar-dropdown">
+              <a class="navbar-item" href="/admin/actividades/create" >
+                Crear nueva
+              </a>
+              <a class="navbar-item" href="/admin/actividades" >
+                Mías
+              </a>
+              <a class="navbar-item">
+                Compartidas conmigo
+              </a>
+              <a class="navbar-item">
+                Donde coordindo
+              </a>
+              <hr class="navbar-divider">
+              <div class="navbar-item">
+                Todas
+              </div>
+            </div>
+          </div>
+
           <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                
-                <div class="media">
-                  <div class="media-left">
-                    <div class="image is-48x48">
-                      <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
-                    </div>
-                  </div>
-                  <div class="media-content">
-                    <div class="activador_media-content-usuario">
-                      {{ auth()->user()->nombreCompleto }}
-                    </div>
-                  </div>
-                </div>
-
+                Usuarios
               </a>
               <div class="navbar-dropdown">
-                <a class="navbar-item" href="/login" >
-                    {{ __(('admin.login')) }}
-                </a>
-                <a class="navbar-item" href="/logout" 
-                  onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
-                    <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>
-                    {{ __(('admin.logout')) }}
+                <a class="navbar-item">
+                    Administrar
                 </a>
               </div>
+          </div>
+
+          <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link">
+                Sitio
+              </a>
+              <div class="navbar-dropdown">
+                <a class="navbar-item">
+                    General
+                </a>
+              </div>
+          </div>
+          @show
+
+          </div>
+
+          <div class="navbar-end">
+            @auth
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  <div style="display: flex; align-items: center">
+                    <div style="padding-right: .75em">
+                      <div class="image is-48x48">
+                        <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
+                      </div>
+                    </div>
+                    <div class="">
+                      <div class="activador_media-content-usuario">
+                        {{ auth()->user()->nombreCompleto }}
+                      </div>
+                    </div>
+                  </div>
+
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="/login" >
+                      {{ __(('admin.login')) }}
+                  </a>
+                  <a class="navbar-item" href="/logout" 
+                    onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
+                      <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>
+                      {{ __(('admin.logout')) }}
+                  </a>
+                  <a class="navbar-item" href="/admin" >
+                      {{ __(('admin.admin')) }}
+                  </a>
+                </div>
+            </div>
+            @endauth
+            @guest
+            <div class="navbar-item"><a href="/login">{{ __('frontend.ingresar') }}</a></div>
+            @endguest
           </div>
         </div>
       </div>
     </nav>
-    <div class="section">
-        @yield("content")
-    </div> 
-    
+    @show
 
-    <footer class="footer">
+    <div class="container" style="flex-grow: 1;">
+    @yield("content")
+    </div>
+
+    <footer class="footer is-light">
       <div class="content has-text-centered">
         <p>
           <strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a>. El código tiene licencia GPL. El contenido tiene licencia CC BY NC SA 4.

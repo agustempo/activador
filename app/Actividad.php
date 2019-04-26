@@ -35,6 +35,16 @@ class Actividad extends Model
             ->latest();
     }
 
+    public function getInicioDatetimeLocalAttribute()
+    {
+        return $this->inicio->format('Y-m-d\TH:i');
+    }
+
+    public function getFinDatetimeLocalAttribute()
+    {
+        return $this->fin->format('Y-m-d\TH:i');
+    }
+
     function getCuandoAttribute () 
     {
         $fecha_i = new \DateTime($this->inicio);
@@ -57,32 +67,6 @@ class Actividad extends Model
         $dif = $fecha->diff(new \DateTime($this->fin));
 
         return $dif->h;
-    }
-
-    function getInicioLocalAttribute ()
-    {
-        return ($this->inicio)?$this->inicio->format('Y-m-d\TH:i'):null;
-    }
-
-    function getFinLocalAttribute ()
-    {
-        return ($this->fin)?$this->fin->format('Y-m-d\TH:i'):null;
-    }
-
-    function setInicioAttribute ($valor)
-    {
-        if(is_string($valor))
-            if (preg_match('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', $valor))
-                $valor = new Carbon(preg_replace('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', '$1-$2-$3 $4:$5:00', $valor));
-        $this->attributes['inicio'] = $valor;
-    }
-
-    function setFinAttribute ($valor)
-    {
-        if(is_string($valor))
-            if (preg_match('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', $valor))
-                $valor = new Carbon(preg_replace('/(\d\d\d\d)-(\d\d)-(\d\d)T(\d\d):(\d\d)/', '$1-$2-$3 $4:$5:00', $valor));
-        $this->attributes['fin'] = $valor;
     }
 
     function getResumenAttribute ()
@@ -122,6 +106,13 @@ class Actividad extends Model
     public function invitar(Usuario $usuario)
     {
         return $this->miembros()->attach($usuario);
+    }
+
+    public function esta_inscripto(Usuario $usuario)
+    {
+        if($this->inscriptos()->where([ 'id_usuario' => $usuario->id ])->count())
+            return true;
+        return false;
     }
 
     public function miembros()

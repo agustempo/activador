@@ -10,12 +10,10 @@ return [
     'estado' => 'Estado',
     'visibilidad' => 'Visibilidad',
     'tipo' => 'Tipo',
-    'fecha_inicio' => 'Fecha inicio',
-    'fecha_fin' => 'Fecha fin',
+    'inicio' => 'Inicio',
+    'fin' => 'Fin',
     'limite_inscripciones' => 'Límite inscripciones',
     'mensaje_inscripciones' => 'Mensaje inscripciones',
     'dias' => 'días',
     'horas' => 'horas'
-
-
 ];

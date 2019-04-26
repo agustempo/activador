@@ -217,4 +217,96 @@ class InscripcionesTest extends TestCase
 
     }
 
+    /** @test */
+
+    public function un_usuario_publico_se_puede_inscribir_en_actividad()
+    {
+        $this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $u = factory('App\Usuario')->create();
+
+        $this->actingAs($u)
+            ->post($a->path_publico().'/inscripciones')
+            ->assertRedirect($a->path_publico());
+
+    }
+
+    /** @test */
+
+    public function un_usuario_publico_no_se_puede_inscribir_dos_veces_en_actividad()
+    {
+        //$this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $u = factory('App\Usuario')->create();
+
+        $a->inscribir($u);
+
+        $this->actingAs($u)
+            ->post($a->path_publico().'/inscripciones')
+            ->assertSessionHasErrors();
+
+    }
+
+    /** @test */
+
+    public function un_usuario_publico_se_puede_desinscribir_de_una_actividad()
+    {
+        $this->withoutExceptionHandling();
+
+        $a = factory('App\Actividad')->create();
+
+        $u = factory('App\Usuario')->create();
+
+        $i = $a->inscribir($u);
+
+        $this->actingAs($u)
+            ->delete($i->path_publico())
+            ->assertRedirect('/inscripciones');
+
+    }
+
+    /** @test */
+
+    public function un_usuario_publico_puede_ver_sus_inscripciones()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad_una = factory('App\Actividad')->create();
+        $actividad_otra = factory('App\Actividad')->create();
+
+        $u = factory('App\Usuario')->create();
+
+        $actividad_una->inscribir($u);
+        $actividad_otra->inscribir($u);
+
+        $this->actingAs($u)
+            ->get('/inscripciones')
+            ->assertSee($actividad_una->nombre)
+            ->assertSee($actividad_otra->nombre);
+
+    }
+
+    /** @test */
+    
+    public function un_usuario_publico_no_puede_desincribir_a_otros()
+    {
+        //->withoutExceptionHandling();
+
+        $actividad = factory('App\Actividad')->create();
+
+        $jose = factory('App\Usuario')->create();
+        $mario = factory('App\Usuario')->create();
+
+        $de_jose = $actividad->inscribir($jose);
+        $de_mario = $actividad->inscribir($mario);
+
+        $this->actingAs($jose)
+            ->delete($de_mario->path_publico())
+            ->assertForbidden();
+    }
+
 }
