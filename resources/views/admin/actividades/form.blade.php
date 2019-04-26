@@ -42,7 +42,12 @@
 		<div class="field">
 			<label class="label">{{ __(('actividades.lugar')) }}</label>
 	  		<div class="control">
-				<input class="input {{ $errors->has('lugar') ? 'is-danger' : '' }}" type="text" name="lugar" value="{{ ($actividad->lugar)?$actividad->lugar:old('lugar')}}" {{ ($deshabilitado)?"disabled":"" }}></input>
+				<input 
+				class="input {{ $errors->has('lugar') ? 'is-danger' : '' }}" 
+				type="text" 
+				name="lugar" 
+				value="{{ ($actividad->lugar)?$actividad->lugar:old('lugar')}}" 
+				{{ ($deshabilitado)?"disabled":"" }}></input>
 			</div>
 		</div>
 

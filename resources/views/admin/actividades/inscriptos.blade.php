@@ -5,6 +5,7 @@
 @endsection('title')
 
 @section("content")
+<div class="section">
 	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
 	
 	@include("admin.actividades.menu")
@@ -95,4 +96,5 @@
 			</tbody>
 		</table>
 	</div>
+</div>
 @endsection("content")

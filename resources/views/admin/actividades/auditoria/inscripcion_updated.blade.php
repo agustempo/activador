@@ -1,11 +1,13 @@
-<span>{{ $auditoria->usuario->nombre }}</span> 
-<span>{{__(('admin.edito_incripcion'))}}</span> 
+<span><b>{{ $auditoria->usuario->nombreCompleto }}</b></span>
+<span>{{__(('admin.edito_inscripcion'))}}</span> 
 <span>
+	{
 	@foreach ($auditoria->cambios['antes'] as $atributo => $valor)
-	    {{ $atributo }}: {{ $valor }}
+	    <b>{{ $atributo }}</b>: {{ $valor }}
 	@endforeach
 	@foreach ($auditoria->cambios['despues'] as $atributo => $valor)
-	    {{ $atributo }}: {{ $valor }}
+	    <b>{{ $atributo }}</b>: {{ $valor }}
 	@endforeach
-</span> 
-<span>{{ $auditoria->updated_at->diffForHumans() }}</span>
+	}
+</span>  
+<span class="has-text-grey-light" >{{ $auditoria->updated_at->diffForHumans() }}</span>

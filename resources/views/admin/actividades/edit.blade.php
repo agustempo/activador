@@ -1,11 +1,11 @@
-@extends("admin.layout")
+@extends("layouts.home")
 
 @section('title')
 Editar actividad {{ $actividad->nombre }}
 @endsection('title')
 	
 @section("content")
-<div class="container">
+<div class="section">
 
 	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
 	

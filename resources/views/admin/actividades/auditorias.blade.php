@@ -1,12 +1,11 @@
-@extends("admin.layout")
+@extends("layouts.home")
 	
 @section('title')
 {{ $actividad->nombre }}
 @endsection('title')
 
 @section("content")
-
-<div class="container">
+<div class="section">
 
 	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
 
@@ -20,4 +19,5 @@
 		@endforeach
 	</ul>
 </div>
+
 @endsection("content")

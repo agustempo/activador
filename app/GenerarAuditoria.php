@@ -49,7 +49,7 @@ trait GenerarAuditoria {
     public function adivinarUsuario ()
     {
         if (!Auth::id()) 
-            return ($this->actividad)?$this->actividad->id:$this->id;
+            return ($this->actividad)?$this->actividad->creador->id:$this->creador->id;
         return Auth::id();
     }
 

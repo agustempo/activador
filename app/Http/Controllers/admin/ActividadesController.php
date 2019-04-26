@@ -32,7 +32,8 @@ class ActividadesController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'inicio' => 'required',
-            'fin' => 'required'
+            'fin' => 'required',
+            'lugar' => ''
         ]);
         
         //si fechas en formato datetime-local
@@ -66,8 +67,13 @@ class ActividadesController extends Controller
             'nombre' => 'required',
             'descripcion' => 'required',
             'inicio' => 'required',
-            'fin' => 'required'
+            'fin' => 'required',
+            'lugar' => ''
         ]);
+
+        //si fechas en formato datetime-local
+        $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
+        $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
         
         $actividad->update($atributos);
 

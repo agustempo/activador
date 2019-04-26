@@ -11,7 +11,7 @@
   <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
     @section("navbar")
-    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
 
@@ -19,10 +19,10 @@
             <div class="image is-48x48"  >
               <img style="min-height: 48px" src="https://bulma.io/images/placeholders/256x256.png">
             </div>
-            <span style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
+            <span class="is-size-5" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
           </a>
 
-          <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
+          <a role="button" class="navbar-burger burger" style="height: initial" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
@@ -32,6 +32,7 @@
         <div class="navbar-menu">
           <div class="navbar-start">
 
+            @auth
             @section('navbar_menu')
             <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
@@ -80,6 +81,7 @@
               </div>
           </div>
           @show
+          @endauth
 
           </div>
 
@@ -103,21 +105,21 @@
                 </a>
                 <div class="navbar-dropdown">
                   <a class="navbar-item" href="/login" >
-                      {{ __(('admin.login')) }}
+                      {{ __(('frontend.login')) }}
                   </a>
                   <a class="navbar-item" href="/logout" 
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
                       <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>
-                      {{ __(('admin.logout')) }}
+                      {{ __(('frontend.logout')) }}
                   </a>
                   <a class="navbar-item" href="/admin" >
-                      {{ __(('admin.admin')) }}
+                      {{ __(('frontend.perfil')) }}
                   </a>
                 </div>
             </div>
             @endauth
             @guest
-            <div class="navbar-item"><a href="/login">{{ __('frontend.ingresar') }}</a></div>
+            <div class="navbar-item"><a href="/login" class="button is-outlined" >{{ __('frontend.ingresar') }}</a></div>
             @endguest
           </div>
         </div>

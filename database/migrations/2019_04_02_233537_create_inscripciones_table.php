@@ -22,11 +22,13 @@ class CreateInscripcionesTable extends Migration
 
             $table->foreign('id_actividad')
                   ->references('id')
-                  ->on('actividades');
+                  ->on('actividades')
+                  ->onDelete('cascade');
 
             $table->foreign('id_usuario')
                   ->references('id')
-                  ->on('usuarios');
+                  ->on('usuarios')
+                  ->onDelete('cascade');
 
             $table->timestamps();
         });

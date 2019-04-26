@@ -11,5 +11,12 @@ return [
     'nueva' => 'Nueva',
     'nuevo' => 'Nuevo',
     'listado_de' => 'Listado de ',
+    'creo_actividad' => 'creó la actividad',
+    'edito_actividad' => 'editó la actividad',
+    'creo_inscripcion' => 'inscribió a',
+    'edito_inscripcion' => 'editó la inscripción de ',
+    'elimino_inscripcion' => 'desinscribió a',
+    'inscribir' => 'Inscribir',
+    'invitar' => 'Invitar',
 
 ];

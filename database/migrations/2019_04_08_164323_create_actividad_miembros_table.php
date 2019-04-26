@@ -19,7 +19,15 @@ class CreateActividadMiembrosTable extends Migration
             $table->unsignedInteger('id_usuario');
             $table->timestamps();
 
-            $table->index(['id_actividad', 'id_usuario']);
+            $table->foreign('id_actividad')
+                  ->references('id')
+                  ->on('actividades')
+                  ->onDelete('cascade');
+
+            $table->foreign('id_usuario')
+                  ->references('id')
+                  ->on('usuarios')
+                  ->onDelete('cascade');
         });
     }
 

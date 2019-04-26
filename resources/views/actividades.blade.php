@@ -53,7 +53,7 @@
 
                 <footer class="card-footer">
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
-                        <a class="card-footer-item">{{ __('frontend.inscripto')}}</a>
+                        <a href="/actividades/{{ $actividad->id }}" class="card-footer-item">{{ __('frontend.inscripto')}}</a>
                     @else
                         <a href="/actividades/{{ $actividad->id }}" class="card-footer-item">{{ __('frontend.inscribirme')}}</a>
                     @endif

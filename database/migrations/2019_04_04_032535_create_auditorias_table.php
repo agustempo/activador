@@ -24,6 +24,8 @@ class CreateAuditoriasTable extends Migration
             $table->unsignedInteger('id_objeto')->nullable();
             $table->string('tipo_objeto')->nullable();
 
+            $table->timestamps();
+
             $table->foreign('id_actividad')
                 ->references('id')
                 ->on('actividades')
@@ -34,7 +36,6 @@ class CreateAuditoriasTable extends Migration
                 ->on('usuarios')
                 ->onDelete('cascade');
 
-            $table->timestamps();
         });
     }
 

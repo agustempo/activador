@@ -15,11 +15,12 @@ class GeneraRegistroAuditoriaTest extends TestCase
     public function crear_una_actividad()
     {
         $this->withoutExceptionHandling();
-
+        factory('App\Usuario')->create();
         $actividad = factory('App\Actividad')->create();
         
         $this->assertCount(1, $actividad->auditoria);
         $this->assertNull($actividad->auditoria->last()->objeto);
+        $this->assertTrue($actividad->creador->is($actividad->auditoria->last()->usuario));
     }
 
     /** @test */

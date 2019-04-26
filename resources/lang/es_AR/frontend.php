@@ -6,5 +6,8 @@ return [
     'ingresar' => 'INGRESAR',
     'inscribirme' => 'Inscribirme',
     'inscripto' => 'Inscripto!',
+    'login' => 'Ingresar',
+    'logout' => 'Cerrar Sesión',
+    'perfil' => 'Mi Perfil',
 
 ];

@@ -5,7 +5,7 @@ Nueva actividad
 @endsection('title')
 	
 @section("content")
-	<br>
+<div class="section">
 	
 	<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('actividades.actividad')) }}</h1>
 	
@@ -16,7 +16,6 @@ Nueva actividad
 		<input type="submit" class="button is-link" value="{{ __(('admin.nueva')) }}" ></input>
 		
 	</form>
-
-	<br>
+</div>
 
 @endsection("content")

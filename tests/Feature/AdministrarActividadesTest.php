@@ -79,7 +79,7 @@ class AdministrarActividadesTest extends TestCase
 
     /** @test **/
 
-    public function actividad_requiere_fechas_datetimelocal()
+    public function crear_actividad_requiere_fechas_datetimelocal()
     {
         $this->withoutExceptionHandling();
         
@@ -92,6 +92,24 @@ class AdministrarActividadesTest extends TestCase
 
         $this->actingAs($usuario)
             ->post('/admin/actividades',$actividad)
+            ->assertRedirect();
+    }
+
+    /** @test **/
+
+    public function editar_actividad_requiere_fechas_datetimelocal()
+    {
+        $this->withoutExceptionHandling();
+
+        $actividad_creada = factory('App\Actividad')->create();
+
+        $actividad_editada = factory('App\Actividad')->raw([
+            'inicio' => '2013-12-26T16:34',
+            'fin' => '2013-12-26T16:34'
+        ]);
+
+        $this->actingAs($actividad_creada->creador)
+            ->patch($actividad_creada->path_admin(), $actividad_editada)
             ->assertRedirect();
     }
 
@@ -197,10 +215,25 @@ class AdministrarActividadesTest extends TestCase
 
         $u = factory('App\Usuario')->create();
         $a->inscribir($u);
+        $a->invitar($u);
 
         $this->get(action('admin\ActividadesController@auditorias', $a))
             ->assertOk();
 
+    }
+
+    /** @test */
+    
+    public function solo_creador_o_colaborador_puede_eliminar_actividad()
+    {
+        $this->withoutExceptionHandling();
+    
+        $actividad = factory('App\Actividad')->create();
+        $actividad->inscribir(factory('App\Usuario')->create());
+
+        $this->actingAs($actividad->creador)
+            ->delete($actividad->path_admin())
+            ->assertRedirect();
     }
 
 }
