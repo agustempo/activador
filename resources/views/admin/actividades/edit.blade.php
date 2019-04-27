@@ -1,25 +1,15 @@
-@extends("layouts.home")
+@extends("admin.actividades.actividad")
 
-@section('title')
-Editar actividad {{ $actividad->nombre }}
-@endsection('title')
+@section("contenido-actividad")
+
+<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
 	
-@section("content")
-<div class="section">
+	{{ method_field('PATCH') }}
 
-	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
-	
-	@include("admin.actividades.menu")
+	@include("admin.actividades.form", [ 'deshabilitado' => false ])
 
-	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
-		
-		{{ method_field('PATCH') }}
+	<input type="submit" class="button is-link" value="{{ __(('admin.editar')) }}" ></input>
 
-		@include("admin.actividades.form", [ 'deshabilitado' => false ])
+</form>
 
-		<input type="submit" class="button is-link" value="{{ __(('admin.editar')) }}" ></input>
-
-	</form>
-
-</div>
-@endsection("content")
+@endsection("contenido-actividad")

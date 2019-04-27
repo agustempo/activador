@@ -5,9 +5,9 @@
 @endsection('title')
 
 @section('content')
-	<br>
+<div class="section">
 	<div class="content">
-		<p><a href="/admin/actividades/create" class="button is-primary" >{{ __('admin.nueva') }}</a></p>
+		<p><a href="/admin/actividades/create" class="button is-link" >{{ __('admin.nueva') }}</a></p>
 
 		<h4>{{ __('admin.listado_de') }} {{ __('actividades.actividades') }}</h4>
 		<ul>
@@ -18,4 +18,5 @@
 		@endforeach
 		</ul>
 	</div>
+</div>
 @endsection('content')

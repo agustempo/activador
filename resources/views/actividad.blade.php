@@ -7,20 +7,18 @@
     
     <div class="columns" style="flex-direction: column">
         <div class="column">
-            <div class="level">
-                <div class="level-right">
-                    <p class="level-item">
-                        <i class="icon fas fa-calendar-alt"></i> {{ $actividad->cuando }} 
+            <div class="level" style="justify-content: initial;">
+                <div class="level-right" style="margin-right: .5em" >
+                    <i class="icon fas fa-calendar-alt" style="margin-right: .5em;"></i> {{ $actividad->cuando }} 
 
-                        (@if($actividad->duracionEnDias>0) 
-                            {{ $actividad->duracionEnDias }} {{__('actividades.dias')}}
-                        @else
-                            {{ $actividad->duracionEnHoras }} {{__('actividades.horas')}}
-                        @endif)
-                    </p>
+                    (@if($actividad->duracionEnDias>0) 
+                        {{ $actividad->duracionEnDias }} {{__('actividades.dias')}}
+                    @else
+                        {{ $actividad->duracionEnHoras }} {{__('actividades.horas')}}
+                    @endif)
                 </div>
-                <div class="level-left">
-                    <p class="level-item"><i class="icon fas fa-map-marker-alt"></i> {{ $actividad->lugar }}</p>
+                <div class="level-left" >
+                    <i class="icon fas fa-map-marker-alt" style="margin-right: .5em;"></i> {{ $actividad->lugar }}
                 </div>
             </div>
         </div>
@@ -40,11 +38,18 @@
     </p>
 </div>
 <div class="section">
-    <form id="form-inscribirme" method="POST" action="/actividades/{{ $actividad->id }}/inscripciones" >
-        {{ csrf_field() }}
-    </form>
-    <a onclick="event.preventDefault();document.getElementById('form-inscribirme').submit();" 
-        class="button is-link">Inscribirme</a>
+    <div class="buttons is-right">
+        <div class="button">{{ __('frontend.compartir') }}</div>
+        @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
+            <a class="button is-link is-outlined">{{ __('frontend.inscripto') }}</a>
+        @else
+            <form id="form-inscribirme" method="POST" action="/actividades/{{ $actividad->id }}/inscripciones" >
+            {{ csrf_field() }}
+            </form>
+            <a onclick="event.preventDefault();document.getElementById('form-inscribirme').submit();" 
+            class="button is-link">{{ __('frontend.inscribirme') }}</a>
+        @endif
+    </div>
 
     @if($errors->any())
         <div class="notification is-danger">

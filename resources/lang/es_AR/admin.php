@@ -7,6 +7,7 @@ return [
     'editar' => 'Editar',
     'eliminar' => 'Eliminar',
     'confirmar' => 'Confirmar',
+    'presente' => 'Presente',
     'crear' => 'Crear',
     'nueva' => 'Nueva',
     'nuevo' => 'Nuevo',
@@ -18,5 +19,6 @@ return [
     'elimino_inscripcion' => 'desinscribió a',
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
+    'seleccionar_usuario' => 'Seleccionar usuario',
 
 ];

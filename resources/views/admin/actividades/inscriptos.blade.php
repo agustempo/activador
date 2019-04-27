@@ -1,14 +1,6 @@
-@extends("layouts.home")
-	
-@section('title')
-{{ $actividad->nombre }}
-@endsection('title')
+@extends("admin.actividades.actividad")
 
-@section("content")
-<div class="section">
-	<h4 class="title is-4">{{ $actividad->nombre }}</h4>
-	
-	@include("admin.actividades.menu")
+@section("contenido-actividad")
 
 	<form method="POST" action="/admin/actividades/{{ $actividad->id }}/inscripciones" >
 		
@@ -52,34 +44,34 @@
 						<td>
 						<div class="buttons is-right are-small">
 
-							<form id="form-presente" method="POST" action="{{ $inscripto->path_admin() }}" >
+							<form id="form-presente-{{$inscripto->id}}" method="POST" action="{{ $inscripto->path_admin() }}" >
 								{{ method_field('PATCH') }}
 								{{ csrf_field() }}
 								<input type="hidden" name="presente" value="{{  $inscripto->presente === 1 ? 0 : 1 }}" ></input>
-									<a href="javascript:{}" class="button" onclick="document.getElementById('form-presente').submit()" >
-										<span class="is-hidden-touch" >{{  $inscripto->presente === 1 ? __(('admin.ausente')):__(('admin.presente')) }}</span>
+									<a href="javascript:{}" class="button" onclick="document.getElementById('form-presente-{{$inscripto->id}}').submit()" >
+										<span class="is-hidden-touch" >{{  __(('admin.presente')) }}</span>
 										<span class="icon" >
 											<i class="fas {{  $inscripto->presente === 1 ? __(('fa-toggle-on')):__(('fa-toggle-off')) }}" ></i>
 										</span>
 									</a>
 							</form>
 							
-							<form id="form-confirma" method="POST" action="{{ $inscripto->path_admin() }}" >
+							<form id="form-confirma-{{$inscripto->id}}" method="POST" action="{{ $inscripto->path_admin() }}" >
 								{{ method_field('PATCH') }}
 								{{ csrf_field() }}
 								<input type="hidden" name="confirma" value="{{  $inscripto->confirma === 1 ? 0 : 1 }}" ></input>
-									<a href="javascript:{}" class="button" onclick="document.getElementById('form-confirma').submit()" >
-										<span class="is-hidden-touch" >{{  $inscripto->confirma === 1 ? __(('admin.desconfirmar')):__(('admin.confirmar')) }}</span>
+									<a href="javascript:{}" class="button" onclick="document.getElementById('form-confirma-{{$inscripto->id}}').submit()" >
+										<span class="is-hidden-touch" >{{  __(('admin.confirmar')) }}</span>
 										<span class="icon" >
 											<i class="fas {{  $inscripto->confirma === 1 ? __(('fa-toggle-on')):__(('fa-toggle-off')) }}" ></i>
 										</span>
 									</a>
 							</form>
 
-							<form id="form-eliminar" method="POST" action="{{ $inscripto->path_admin() }}" >
+							<form id="form-eliminar-{{$inscripto->id}}" method="POST" action="{{ $inscripto->path_admin() }}" >
 								{{ method_field('DELETE') }}
 								{{ csrf_field() }}
-								<a href="javascript:{}" class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" >
+								<a href="javascript:{}" class="button is-danger" onclick="document.getElementById('form-eliminar-{{$inscripto->id}}').submit()" >
 									<span class="is-hidden-touch" >{{ __(('admin.eliminar')) }}</span>
 									<span class="icon" >
 										<i class="fas fa-trash" ></i>
@@ -96,5 +88,4 @@
 			</tbody>
 		</table>
 	</div>
-</div>
-@endsection("content")
+@endsection("contenido-actividad")
