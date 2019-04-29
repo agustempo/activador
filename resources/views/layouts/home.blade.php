@@ -104,10 +104,16 @@
 
                 </a>
                 <div class="navbar-dropdown">
+                  @guest
                   <a class="navbar-item" href="/login" >
                       {{ __(('frontend.login')) }}
                   </a>
-                  <a class="navbar-item" href="/admin" >
+                  @endguest
+                  @auth
+                  <a class="navbar-item" href="/inscripciones" >
+                      {{ __(('frontend.mis_inscripciones')) }}
+                  </a>
+                  <a class="navbar-item" href="" >
                       {{ __(('frontend.perfil')) }}
                   </a>
                   <hr class="navbar-divider">
@@ -116,6 +122,7 @@
                       <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>
                       {{ __(('frontend.logout')) }}
                   </a>
+                  @endauth
                 </div>
             </div>
             @endauth
