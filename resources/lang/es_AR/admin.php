@@ -17,6 +17,7 @@ return [
     'creo_inscripcion' => 'inscribió a',
     'edito_inscripcion' => 'editó la inscripción de ',
     'elimino_inscripcion' => 'desinscribió a',
+    'se_inscribio' => 'se inscribió',
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
     'seleccionar_usuario' => 'Seleccionar usuario',

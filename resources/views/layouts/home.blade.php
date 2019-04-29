@@ -107,13 +107,14 @@
                   <a class="navbar-item" href="/login" >
                       {{ __(('frontend.login')) }}
                   </a>
+                  <a class="navbar-item" href="/admin" >
+                      {{ __(('frontend.perfil')) }}
+                  </a>
+                  <hr class="navbar-divider">
                   <a class="navbar-item" href="/logout" 
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
                       <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>
                       {{ __(('frontend.logout')) }}
-                  </a>
-                  <a class="navbar-item" href="/admin" >
-                      {{ __(('frontend.perfil')) }}
                   </a>
                 </div>
             </div>

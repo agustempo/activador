@@ -20,9 +20,9 @@
                 </header>
                 <div class="card-content">
                     <div class="content">
-                        <div>
+                        <span class="tag is-info" >
                             #Tipo
-                        </div>
+                        </span>
                         <div>
                             <span class="icon">
                                 <i class="fas fa-calendar-minus" ></i><time datetime="2016-1-1"></time>
