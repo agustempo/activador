@@ -63,7 +63,11 @@ class EvaluacionesController extends Controller
      */
     public function show(Actividad $actividad)
     {
-        return view('evaluaciones', compact('actividad'));
+        $evaluacion = $actividad
+            ->evaluaciones()
+            ->where([ 'id_usuario' => auth()->user()->id ])
+            ->first();
+        return view('evaluaciones', compact('actividad', 'evaluacion'));
     }
 
     /**

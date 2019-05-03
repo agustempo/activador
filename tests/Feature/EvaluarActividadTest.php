@@ -113,7 +113,7 @@ class EvaluarActividadTest extends TestCase
 
     }
 
-
+    /** @test */
     public function inscripto_no_puede_ver_evaluaciones_de_otros_en_actividad()
     {
         $this->withoutExceptionHandling();
@@ -203,6 +203,7 @@ class EvaluarActividadTest extends TestCase
         $this->assertDatabaseMissing('evaluaciones', $evaluacion->toArray());
     }
 
+    /** @test */
     public function evaluador_no_puede_eliminar_evaluaciones_de_otros()
     {
         //$this->withoutExceptionHandling();
@@ -212,6 +213,7 @@ class EvaluarActividadTest extends TestCase
         $mat = factory('App\Usuario')->create();
 
         $actividad->inscribir($tim);
+        $actividad->inscribir($mat);
 
         $evaluacion = factory('App\Evaluacion')->create([
             'id_actividad' => $actividad->id,
@@ -219,7 +221,7 @@ class EvaluarActividadTest extends TestCase
         ]);
 
         $this->actingAs($mat)
-            ->delete(action('EvaluacionesController@destroy', $evaluacion))
+            ->delete(action('EvaluacionesController@destroy', [$actividad, $evaluacion] ))
             ->assertForbidden();
 
         $this->assertDatabaseHas('evaluaciones', $evaluacion->toArray());

@@ -16,9 +16,9 @@
                 <p>{{ __('frontend.evaluar_bajada') }}</p>
             </div>
 
-            <form id="form-evaluar" method="POST" action="/actividades/{{ $actividad->id }}/evaluaciones/{{ optional($actividad->evaluaciones->last())->id }}">
+            <form id="form-evaluar" method="POST" action="/actividades/{{ $actividad->id }}/evaluaciones/{{ optional($evaluacion)->id }}">
                 @csrf
-                @if ($actividad->evaluaciones()->exists())
+                @if ($evaluacion)
                    {{ method_field('PATCH') }}
                 @endif
                 <div class="field">
@@ -28,7 +28,7 @@
                           <select name="puntaje">
                             <option value="" disabled selected >{{ __(('frontend.placeholder_puntaje')) }}</option>
                             @for ($i = 1; $i <= 10; $i++)
-                                @if(old('puntaje') == $i or optional($actividad->evaluaciones->first())->puntaje == $i)
+                                @if(old('puntaje') == $i or optional($evaluacion)->puntaje == $i)
                                     <option value="{{$i}}" selected >{{$i}}</option>
                                 @else
                                     <option value="{{$i}}">{{$i}}</option>
@@ -50,7 +50,7 @@
                             class="textarea" 
                             name="comentario" 
                             placeholder="{{ __(('frontend.placeholder_comentario')) }}"
-                            >{{ old('comentario', optional($actividad->evaluaciones->first())->comentario) }}</textarea>
+                            >{{ old('comentario', optional($evaluacion)->comentario) }}</textarea>
                     </div>
                     <p class="help">{{ __(('frontend.ayuda_comentario')) }}</p>
                 </div>
@@ -70,7 +70,7 @@
             </form>
 
             @if ($actividad->evaluaciones()->exists())
-            <form method="POST" action="/actividades/{{ $actividad->id }}/evaluaciones/{{ optional($actividad->evaluaciones)->last()->id }}">
+            <form method="POST" action="/actividades/{{ $actividad->id }}/evaluaciones/{{ optional($evaluacion)->id }}">
                 @csrf
                 @if ($actividad->evaluaciones()->exists())
                    {{ method_field('DELETE') }}
