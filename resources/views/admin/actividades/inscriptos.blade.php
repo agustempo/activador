@@ -83,7 +83,7 @@
 						</td>
 					</tr>
 				@empty
-					<span>No hay ningún inscripto</span>
+					<tr><td>No hay ningún inscripto</td></tr>
 				@endforelse
 			</tbody>
 		</table>

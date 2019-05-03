@@ -16,9 +16,9 @@ class DesinscripcionRealizada extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($inscripcion)
     {
-        //
+        $this->inscripcion = $inscripcion;
     }
 
     /**
@@ -29,7 +29,7 @@ class DesinscripcionRealizada extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +55,8 @@ class DesinscripcionRealizada extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'id' => $this->inscripcion->actividad->id,
+            'nombre' => $this->inscripcion->actividad->nombre
         ];
     }
 }

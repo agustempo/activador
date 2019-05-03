@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Actividad;
 use App\Inscripcion;
+use App\Notifications\DesinscripcionRealizada;
+use App\Notifications\InscripcionRealizada;
 use App\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -49,7 +51,8 @@ class InscripcionesController extends Controller
                 'id_usuario' => Rule::unique('inscripciones')->where(function ($query) use ($actividad) { return $query->where('id_actividad', $actividad->id); })
             ])->validate();
 
-        $actividad->inscribir(auth()->user());
+        $inscripcion = $actividad->inscribir(auth()->user());
+        $inscripcion->usuario->notify(new InscripcionRealizada($inscripcion));
 
         return redirect($actividad->path_publico())
             ->with('mensaje','te_inscribiste');
@@ -102,6 +105,7 @@ class InscripcionesController extends Controller
             return abort('403');
 
         $inscripcion->delete();
+        $inscripcion->usuario->notify(new DesinscripcionRealizada($inscripcion));
 
         return redirect('/inscripciones');
     }

@@ -40,4 +40,9 @@ class HomeController extends Controller
 
         return view('actividad', compact('actividad'));
     }
+
+    public function notificaciones()
+    {
+        return view('notificaciones');
+    }
 }

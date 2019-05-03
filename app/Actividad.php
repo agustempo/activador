@@ -2,8 +2,9 @@
 
 namespace App;
 
-use Illuminate\Database\Eloquent\Model;
+use App\Notifications\UsuarioInscripto;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Model;
 
 class Actividad extends Model
 {
@@ -43,6 +44,11 @@ class Actividad extends Model
     public function getFinDatetimeLocalAttribute()
     {
         return $this->fin->format('Y-m-d\TH:i');
+    }
+
+    public function getNombreAttribute($value)
+    {
+        return ucfirst($value);
     }
 
     function getCuandoAttribute () 
@@ -91,7 +97,9 @@ class Actividad extends Model
 
     public function inscribir(Usuario $usuario)
     {
-        return $this->inscriptos()->create([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ]);
+        return $this
+            ->inscriptos()
+            ->create([ 'id_actividad' => $this->id, 'id_usuario' => $usuario->id ]);
     }
 
     public function desinscribir(Usuario $usuario)
@@ -118,6 +126,11 @@ class Actividad extends Model
     public function miembros()
     {
         return $this->belongsToMany(Usuario::class,'actividad_miembros', 'id_actividad', 'id_usuario');
+    }
+
+    public function evaluaciones()
+    {
+        return $this->hasMany(Evaluacion::class, 'id_actividad');
     }
 
 }

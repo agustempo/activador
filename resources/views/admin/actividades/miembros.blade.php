@@ -39,7 +39,7 @@
 				{{ $miembro->nombre }}
 			</li>
 		@empty
-			<li>No hay ningún miembro</li>
+			<li>{{ __(('admin.no_hay_miembros')) }}</li>
 		@endforelse
 	</ul>
 </div>

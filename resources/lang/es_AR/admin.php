@@ -21,5 +21,7 @@ return [
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
     'seleccionar_usuario' => 'Seleccionar usuario',
+    'no_hay_evaluaciones' => 'No hay ningúna evaluación',
+    'no_hay_miembros' => 'No hay ningún invitado',
 
 ];

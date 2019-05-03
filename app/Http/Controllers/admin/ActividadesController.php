@@ -3,9 +3,11 @@
 namespace App\Http\Controllers\admin;
 
 use App\Actividad;
+use App\Http\Controllers\Controller;
+use App\Notifications\ActividadEliminada;
+use App\Notifications\ActividadModificada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use App\Http\Controllers\Controller;
 
 
 class ActividadesController extends Controller
@@ -77,11 +79,24 @@ class ActividadesController extends Controller
         
         $actividad->update($atributos);
 
+        //notificar inscriptos
+        foreach ($actividad->inscriptos as $inscripto)
+        {
+            $inscripto->usuario->notify(new ActividadModificada($actividad));
+        }
+
         return redirect($actividad->path_admin());
     }
 
     public function destroy(Actividad $actividad)
     {
+
+        //notificar inscriptos
+        foreach ($actividad->inscriptos as $inscripto)
+        {
+            $inscripto->usuario->notify(new ActividadEliminada($actividad));
+        }
+
         $actividad->delete();
 
         return redirect('/admin/actividades');

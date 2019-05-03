@@ -11,7 +11,7 @@
 |
 */
 
-//Navegación pública
+//Navegación invitados
 Route::get('/','HomeController@actividades');
 Route::get('/actividades','HomeController@actividades');
 Route::get('/actividades/{actividad}','HomeController@actividad');
@@ -22,11 +22,22 @@ Route::middleware('auth')->group(function (){
     Route::get('/inscripciones','InscripcionesController@index');
     Route::post('/actividades/{actividad}/inscripciones','InscripcionesController@store');
     Route::delete('/inscripciones/{inscripcion}','InscripcionesController@destroy');
+
+    //notificaciones
+    Route::get('/notificaciones','HomeController@notificaciones');
+
+    //evaluaciones
+    Route::get('/evaluaciones','EvaluacionesController@index');
+    Route::get('/actividades/{actividad}/evaluaciones','EvaluacionesController@show');
+    Route::post('/actividades/{actividad}/evaluaciones','EvaluacionesController@store');
+    Route::patch('/actividades/{actividad}/evaluaciones/{evaluacion}','EvaluacionesController@update');
+    Route::delete('/actividades/{actividad}/evaluaciones/{evaluacion}','EvaluacionesController@destroy');
 });
 
-//Panel de administracion
+//Navegación para administrar
 Route::middleware('auth')->prefix('/admin')->group(function (){
 
+    //actividades
     Route::get('/','admin\ActividadesController@index');
     Route::get('/actividades','admin\ActividadesController@index');
     Route::get('/actividades/create','admin\ActividadesController@create');
@@ -45,6 +56,9 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     //invitaciones
     Route::post('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@store');
     Route::get('/actividades/{actividad}/invitaciones','admin\ActividadInvitacionesController@show');
+
+    //evaluaciones
+    Route::get('/actividades/{actividad}/evaluaciones','admin\EvaluacionesController@show');
 
     //auditoria
     Route::get('/actividades/{actividad}/auditoria','admin\ActividadesController@auditorias');

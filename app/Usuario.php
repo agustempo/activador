@@ -46,4 +46,9 @@ class Usuario extends Authenticatable
     {
         return $this->hasMany(Actividad::class,'id_creador');
     }
+
+    public function evaluaciones()
+    {
+        return $this->hasMany(Evaluacion::class,'id_usuario');
+    }
 }

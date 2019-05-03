@@ -32,7 +32,7 @@ class UsuariosTest extends TestCase
             'password' => $usuario['password']
         ]);
 
-        $response->assertRedirect('/home');
+        $response->assertRedirect('/actividades');
     }
 
 

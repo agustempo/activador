@@ -8,20 +8,13 @@
 <div class="section content">
 	<h3 class="title is-4">{{ __('frontend.mis_notificaciones') }}</h3>
 	<ul>
-	@foreach (auth()->user()->notifications as $notificacion)
-		<li><a href=""> {{ $notificacion->id }}</a>
-			<form 
-				id="form-marcar-leida" 
-				method="POST" 
-				action="/notificaciones/{{ $notificacion->id }}"
-				style="display:none" >
-		        {{ csrf_field() }}
-		        {{ method_field('post') }}
-		    </form>
-		    <a onclick="event.preventDefault();document.getElementById('form-marcar-leida').submit();" 
-		    class="button is-info">{{ __('frontend.marcar_como_leida') }}</a>
-	   	</li>
-	@endforeach
+	@forelse (auth()->user()->notifications as $notificacion)
+	<li>
+		@include ("notificaciones." . class_basename($notificacion->type))
+   	</li>
+   	@empty
+   		<li>{{ __('frontend.no_hay_notificacion') }}</li>
+	@endforelse
 	</ul>
 </div>
 @endsection('content')

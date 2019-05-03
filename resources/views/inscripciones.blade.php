@@ -6,9 +6,9 @@
  
 @section('content')
 <div class="section content">
-	<h3 class="is-title is-3">{{ __('frontend.mis_inscripciones') }}</h3>
+	<h3 class="title is-4">{{ __('frontend.mis_inscripciones') }}</h3>
 	<ul>
-	@foreach ($inscripciones as $inscripcion)
+	@forelse ($inscripciones as $inscripcion)
 		<li><a href="/actividades/{{ $inscripcion->actividad->id }}"> {{ $inscripcion->actividad->nombre }}</a>
 			<form 
 				id="form-desinscribirme" 
@@ -20,8 +20,11 @@
 		    </form>
 		    <a onclick="event.preventDefault();document.getElementById('form-desinscribirme').submit();" 
 		    class="button is-danger">{{ __('frontend.desinscribirme') }}</a>
+		    <a href="{{ $inscripcion->actividad->path_publico() . '/evaluaciones' }}" class="button is-info">{{ __('frontend.evaluar') }}</a>
 	   	</li>
-	@endforeach
+	   	@empty 
+	   	<li>{{ __('frontend.no_hay_inscripciones') }}</li>
+	@endforelse
 	</ul>
 </div>
 @endsection('content')

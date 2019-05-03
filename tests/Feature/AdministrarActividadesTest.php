@@ -19,11 +19,20 @@ class AdministrarActividadesTest extends TestCase
 
         $actividad = factory('App\Actividad')->create();
 
-        $this->get('/admin/actividades',$actividad->toArray())->assertRedirect('/login');
-        $this->get($actividad->path_admin(),$actividad->toArray())->assertRedirect('/login');
-        $this->patch($actividad->path_admin(),$actividad->toArray())->assertRedirect('/login');
-        $this->delete($actividad->path_admin(),$actividad->toArray())->assertRedirect('/login');
-        $this->post('/admin/actividades',$actividad->toArray())->assertRedirect('/login');
+        $this->get('/admin/actividades',$actividad->toArray())
+            ->assertRedirect('/login');
+
+        $this->get($actividad->path_admin(),$actividad->toArray())
+        ->assertRedirect('/login');
+
+        $this->patch($actividad->path_admin(),$actividad->toArray())
+            ->assertRedirect('/login');
+
+        $this->delete($actividad->path_admin(),$actividad->toArray())
+            ->assertRedirect('/login');
+
+        $this->post('/admin/actividades',$actividad->toArray())
+            ->assertRedirect('/login');
 
     }
 
@@ -185,6 +194,7 @@ class AdministrarActividadesTest extends TestCase
 
         $this->post('/admin/actividades',$actividad->toArray())
             ->assertRedirect('/login');
+        
         $this->assertDatabaseMissing('actividades',$actividad->toArray());
 
         $usuario = factory('App\Usuario')->create();

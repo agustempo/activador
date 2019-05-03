@@ -7,7 +7,7 @@ use Illuminate\Notifications\Notification;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 
-class UsuarioInscripto extends Notification
+class ActividadModificada extends Notification
 {
     use Queueable;
 
@@ -16,9 +16,9 @@ class UsuarioInscripto extends Notification
      *
      * @return void
      */
-    public function __construct()
+    public function __construct($actividad)
     {
-        //
+        $this->actividad = $actividad;
     }
 
     /**
@@ -29,7 +29,7 @@ class UsuarioInscripto extends Notification
      */
     public function via($notifiable)
     {
-        return ['mail'];
+        return ['database'];
     }
 
     /**
@@ -55,7 +55,8 @@ class UsuarioInscripto extends Notification
     public function toArray($notifiable)
     {
         return [
-            //
+            'id' => $this->actividad->id,
+            'nombre' => $this->actividad->nombre
         ];
     }
 }

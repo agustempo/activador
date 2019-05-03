@@ -49,9 +49,6 @@
               <a class="navbar-item">
                 Compartidas conmigo
               </a>
-              <a class="navbar-item">
-                Donde coordindo
-              </a>
               <hr class="navbar-divider">
               <div class="navbar-item">
                 Todas
@@ -110,6 +107,9 @@
                   </a>
                   @endguest
                   @auth
+                  <a class="navbar-item" href="/notificaciones" >
+                      {{ __(('frontend.mis_notificaciones')) }}
+                  </a>
                   <a class="navbar-item" href="/inscripciones" >
                       {{ __(('frontend.mis_inscripciones')) }}
                   </a>
