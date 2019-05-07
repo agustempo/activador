@@ -1,0 +1,1 @@
+{{ __('prueba.prueba_idioma') }}

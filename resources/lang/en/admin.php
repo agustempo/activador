@@ -14,25 +14,25 @@ return [
     'listado_de' => 'Listado de ',
 
     //actividades
-    'actividad' => 'Actividad',
-    'actividades' => 'Actividades',
-    'inscribir' => 'Inscribir',
-    'invitar' => 'Invitar',
+    'actividad' => 'Activity',
+    'actividades' => 'Activities',
+    'inscribir' => 'Enroll',
+    'invitar' => 'Invite',
     'seleccionar_usuario' => 'Seleccionar usuario',
     'no_hay_evaluaciones' => 'No hay ningúna evaluación',
     'no_hay_miembros' => 'No hay ningún invitado',
-    'actividades_mias' => 'Mías',
-    'actividades_invitado' => 'Compartidas conmigo',
-    'actividades_todas' => 'Todas',
+    'actividades_mias' => 'Created by me',
+    'actividades_invitado' => 'Shared with me',
+    'actividades_todas' => 'All',
 
     //Menú actividad
     'general' => 'General',
-    'inscripciones' => 'Enrolled',
-    'evaluaciones' => 'Feedback',
-    'invitaciones' => 'Collaborators',
-    'auditoria' => 'Logs',
-    'puntos' => 'Meeting point',
-    'grupos' => 'Groups',
+    'inscripciones' => 'Inscriptos',
+    'evaluaciones' => 'Evaluaciones',
+    'invitaciones' => 'Accesos',
+    'auditoria' => 'Auditoría',
+    'puntos' => 'Puntos',
+    'grupos' => 'Grupos',
 
     //formulario actividad
     'nombre' => 'Nombre',
@@ -57,10 +57,10 @@ return [
     'se_inscribio' => 'se inscribió',
 
     //Usuarios
-    'usuarios' => 'Usuarios',
-    'administrar_usuarios' => 'Administrar usuarios',
+    'usuarios' => 'Users',
+    'administrar_usuarios' => 'Manage users',
 
     //Sitio
-    'sitio' => 'Sitio',
+    'sitio' => 'Site',
 
 ];

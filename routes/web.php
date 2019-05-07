@@ -15,6 +15,14 @@
 Route::get('/','HomeController@actividades');
 Route::get('/actividades','HomeController@actividades');
 Route::get('/actividades/{actividad}','HomeController@actividad');
+Route::get('/idioma/prueba', function () {
+    return view('idioma_prueba');
+});
+Route::get('/idioma/{locale}', function ($locale) {
+    session(['locale' => $locale ]);
+    return redirect()->back();
+});
+
 
 //Navegación para usuarios autenticados
 Route::middleware('auth')->group(function (){

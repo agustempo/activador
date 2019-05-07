@@ -36,40 +36,40 @@
             @section('navbar_menu')
             <div class="navbar-item has-dropdown is-hoverable">
             <a class="navbar-link">
-              Actividades
+              {{ __('admin.actividades') }}
             </a>
 
             <div class="navbar-dropdown">
               <a class="navbar-item" href="/admin/actividades/create" >
-                Crear nueva
+                {{ __('admin.nueva') }}
               </a>
               <a class="navbar-item" href="/admin/actividades" >
-                Mías
+                {{ __('admin.actividades_mias') }}
               </a>
               <a class="navbar-item">
-                Compartidas conmigo
+                {{ __('admin.actividades_invitado') }}
               </a>
               <hr class="navbar-divider">
               <div class="navbar-item">
-                Todas
+                {{ __('admin.actividades_todas') }}
               </div>
             </div>
           </div>
 
           <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                Usuarios
+                {{ __('admin.usuarios') }}
               </a>
               <div class="navbar-dropdown">
                 <a class="navbar-item">
-                    Administrar
+                  {{ __('admin.administrar_usuarios') }}
                 </a>
               </div>
           </div>
 
           <div class="navbar-item has-dropdown is-hoverable">
               <a class="navbar-link">
-                Sitio
+                {{ __('admin.sitio') }}
               </a>
               <div class="navbar-dropdown">
                 <a class="navbar-item">
@@ -83,6 +83,14 @@
           </div>
 
           <div class="navbar-end">
+            <div class="navbar-item has-dropdown is-hoverable">
+              <a class="navbar-link" href="/idioma/es_AR">{{ config('app.locale') }}</a>
+              <div class="navbar-dropdown">
+              @foreach (config('app.locales') as $locale)
+                  <a class="navbar-item" href="/idioma/{{$locale}}">{{$locale}}</a>
+              @endforeach 
+              </div>
+            </div>
             @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">

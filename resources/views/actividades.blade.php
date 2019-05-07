@@ -3,7 +3,7 @@
 @section('content')
 <section class="hero is-light">
     <div class="hero-body">
-        <h1 class="title" >Explorá las actividades</h1>
+        <h1 class="title" >{{ __('frontend.explora_actividades') }}</h1>
     </div>
 </section>
 
@@ -55,7 +55,7 @@
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
                         <a href="/actividades/{{ $actividad->id }}" class="card-footer-item">{{ __('frontend.inscripto')}}</a>
                     @else
-                        <a href="/actividades/{{ $actividad->id }}" class="card-footer-item">{{ __('frontend.inscribirme')}}</a>
+                        <a href="/actividades/{{ $actividad->id }}" class="card-footer-item">{{ __('frontend.ver')}}</a>
                     @endif
                 </footer>
                 

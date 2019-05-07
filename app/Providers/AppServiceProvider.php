@@ -3,10 +3,6 @@
 namespace App\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use App\Actividad;
-use App\Inscripcion;
-use App\Observers\ActividadObserver;
-use App\Observers\InscripcionObserver;
 
 class AppServiceProvider extends ServiceProvider
 {

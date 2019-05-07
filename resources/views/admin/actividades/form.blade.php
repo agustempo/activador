@@ -2,13 +2,13 @@
 		{{ csrf_field() }}
 
 		<div class="field">
-			<label class="label">Nombre</label>
+			<label class="label">{{ __(('admin.nombre')) }}</label>
 	  		<div class="control">
 				<input class="input {{ $errors->has('nombre') ? 'is-danger' : '' }}" type="text" name="nombre" value="{{ ($actividad->nombre)?$actividad->nombre:old('nombre')}}"  {{ ($deshabilitado)?"disabled":"" }}></input>
 			</div>
 		</div>
 		<div class="field">
-			<label class="label">Descripción</label>
+			<label class="label">{{ __(('admin.descripcion')) }}</label>
 	  		<div class="control">
 				<textarea 
 					class="textarea {{ $errors->has('descripcion') ? 'is-danger' : '' }}" 
@@ -16,7 +16,7 @@
 			</div>
 		</div>
 		<div class="field">
-			<label class="label">{{ __(('actividades.inicio')) }}</label>
+			<label class="label">{{ __(('admin.inicio')) }}</label>
 	  		<div class="control">
 				<input 
 					class="input {{ $errors->has('inicio') ? 'is-danger' : '' }}" 
@@ -28,7 +28,7 @@
 		</div>
 
 		<div class="field">
-			<label class="label">{{ __(('actividades.fin')) }}</label>
+			<label class="label">{{ __(('admin.fin')) }}</label>
 	  		<div class="control">
 				<input 
 					class="input {{ $errors->has('fin') ? 'is-danger' : '' }}" 
@@ -40,7 +40,7 @@
 		</div>
 
 		<div class="field">
-			<label class="label">{{ __(('actividades.lugar')) }}</label>
+			<label class="label">{{ __(('admin.lugar')) }}</label>
 	  		<div class="control">
 				<input 
 				class="input {{ $errors->has('lugar') ? 'is-danger' : '' }}" 

@@ -6,6 +6,9 @@ return [
     'ingresar' => 'INGRESAR',
     'login' => 'Ingresar',
     'logout' => 'Cerrar Sesión',
+
+    //navegación principal
+    'explora_actividades' => 'Explorá las actividades',
     
     //navegación de usuario
     'perfil' => 'Mi Perfil',
@@ -13,7 +16,7 @@ return [
     'mis_notificaciones' => 'Mis notificaciones',
     'no_hay_inscripciones' => 'No hay ninguna inscripción',
     'no_hay_notificaciones' => 'No hay ninguna notificación',
-    'no_hay_notificaciones' => 'No hay ninguna notificación',
+    'no_hay_invitaciones' => 'No hay ninguna invitación',
 
     //inscribirse
     'inscribirme' => 'Inscribirme',
@@ -24,6 +27,7 @@ return [
     'compartir' => 'Compartir',
     'editar' => 'Editar',
     'eliminar' => 'Eliminar',
+    'ver' => 'Ver más',
 
     //evaluar
     'evaluar' => 'Evaluar',
