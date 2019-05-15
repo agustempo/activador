@@ -21,18 +21,19 @@ return [
     'seleccionar_usuario' => 'Seleccionar usuario',
     'no_hay_evaluaciones' => 'No hay ningúna evaluación',
     'no_hay_miembros' => 'No hay ningún invitado',
+    'no_hay_inscriptos' => 'No hay ningún inscripto',
     'actividades_mias' => 'Mías',
     'actividades_invitado' => 'Compartidas conmigo',
     'actividades_todas' => 'Todas',
 
     //Menú actividad
     'general' => 'General',
-    'inscripciones' => 'Enrolled',
-    'evaluaciones' => 'Feedback',
-    'invitaciones' => 'Collaborators',
-    'auditoria' => 'Logs',
-    'puntos' => 'Meeting point',
-    'grupos' => 'Groups',
+    'inscripciones' => 'Inscriptos',
+    'evaluaciones' => 'Evaluaciones',
+    'invitaciones' => 'Accesos',
+    'auditoria' => 'Auditoría',
+    'puntos' => 'Puntos',
+    'grupos' => 'Grupos',
 
     //formulario actividad
     'nombre' => 'Nombre',
@@ -45,8 +46,6 @@ return [
     'fin' => 'Fin',
     'limite_inscripciones' => 'Límite inscripciones',
     'mensaje_inscripciones' => 'Mensaje inscripciones',
-    'dias' => 'días',
-    'horas' => 'horas',
 
     //auditorías
     'creo_actividad' => 'creó la actividad',

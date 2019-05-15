@@ -47,6 +47,11 @@ class Usuario extends Authenticatable
         return $this->hasMany(Actividad::class,'id_creador');
     }
 
+    public function actividades_miembro()
+    {
+        return $this->belongsToMany('App\Actividad', 'actividad_miembros', 'id_usuario', 'id_actividad');
+    }
+
     public function evaluaciones()
     {
         return $this->hasMany(Evaluacion::class,'id_usuario');

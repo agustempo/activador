@@ -16,7 +16,26 @@ class ActividadesController extends Controller
     public function index()
     {
 
-        $actividades = auth()->user()->actividades_creadas()->get();
+        $actividades_mias = auth()->user()->actividades_creadas;
+        $actividades_invitado = auth()->user()->actividades_miembro;
+
+        $actividades = $actividades_mias->merge($actividades_invitado);
+
+        return view('admin.actividades.index', compact('actividades'));
+    }
+
+    public function indexInvitado()
+    {
+
+        $actividades = auth()->user()->actividades_miembro;
+
+        return view('admin.actividades.index', compact('actividades'));
+    }
+
+    public function indexCreadas()
+    {
+
+        $actividades = auth()->user()->actividades_creadas;
 
         return view('admin.actividades.index', compact('actividades'));
     }

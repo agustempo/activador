@@ -1,0 +1,16 @@
+Feature: Genera auditoria en una actividad
+	Como sistema (WHO)
+	Para dejar registro cuando alguien modifica una actividad (WHY)
+	Puede genarar auditorias (WHAT)
+
+	Scenario: crear actividad genera auditoria
+	Scenario: editar actividad genera auditoria
+
+	Scenario: invitar miembro a una actividad genera auditoria
+
+	Scenario: inscribir un usuario genera auditoria
+	Scenario: marcar como presente una inscripción genera auditoria
+	Scenario: marcar como confirmada una inscripción genera auditoria
+	Scenario: eliminar una inscripción genera auditoria
+
+	Scenario: evaluar una actividad genera auditoria?

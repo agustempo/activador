@@ -16,7 +16,7 @@ return [
     'mis_notificaciones' => 'My notifications',
     'no_hay_inscripciones' => 'There are no subscriptions yet',
     'no_hay_notificaciones' => 'There are no notifications yet',
-    'no_hay_notificaciones' => 'There are no invitations yet',
+    'no_hay_invitaciones' => 'There are no invitations yet',
 
     //inscribirse
     'inscribirme' => 'Subscribe',

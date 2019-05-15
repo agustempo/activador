@@ -83,7 +83,7 @@
 						</td>
 					</tr>
 				@empty
-					<tr><td>No hay ningún inscripto</td></tr>
+					<tr><td>{{ __(('admin.no_hay_inscriptos')) }}</td></tr>
 				@endforelse
 			</tbody>
 		</table>

@@ -18,7 +18,7 @@ class RecibeNotificacionesTest extends TestCase
 
     /** @test */
     
-    public function un_usuario_publico_recibe_notificacion_al_inscribirse()
+    public function usuario_recibe_notificacion_al_inscribirse()
     {
         $this->withoutExceptionHandling();
     
@@ -35,7 +35,7 @@ class RecibeNotificacionesTest extends TestCase
 
     /** @test */
     
-    public function un_usuario_publico_recibe_notificacion_al_desinscribirse()
+    public function usuario_recibe_notificacion_al_desinscribirse()
     {
         $this->withoutExceptionHandling();
     

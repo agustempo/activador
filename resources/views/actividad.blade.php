@@ -3,7 +3,7 @@
 @section('content')
 <div class="section">
     
-    <h1 class="title" >{{ __('actividades.actividad') }} {{ $actividad->nombre }}</h1>
+    <h1 class="title" >{{ $actividad->nombre }}</h1>
     
     <div class="columns" style="flex-direction: column">
         <div class="column">
@@ -11,11 +11,7 @@
                 <div class="level-right" style="margin-right: .5em" >
                     <i class="icon fas fa-calendar-alt" style="margin-right: .5em;"></i> {{ $actividad->cuando }} 
 
-                    (@if($actividad->duracionEnDias>0) 
-                        {{ $actividad->duracionEnDias }} {{__('actividades.dias')}}
-                    @else
-                        {{ $actividad->duracionEnHoras }} {{__('actividades.horas')}}
-                    @endif)
+                    ({{ $actividad->duracion }})
                 </div>
                 <div class="level-left" >
                     <i class="icon fas fa-map-marker-alt" style="margin-right: .5em;"></i> {{ $actividad->lugar }}

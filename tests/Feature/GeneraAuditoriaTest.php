@@ -7,7 +7,7 @@ use Illuminate\Foundation\Testing\RefreshDatabase;
 use Illuminate\Foundation\Testing\WithFaker;
 use Tests\TestCase;
 
-class GeneraRegistroAuditoriaTest extends TestCase
+class GeneraAuditoriaTest extends TestCase
 {
     use RefreshDatabase;
 
@@ -54,7 +54,7 @@ class GeneraRegistroAuditoriaTest extends TestCase
 
     /** @test */
 
-    public function desinscribir_un_usuario()
+    public function eliminar_una_inscripcion()
     {
         $this->withoutExceptionHandling();
 
@@ -158,7 +158,7 @@ class GeneraRegistroAuditoriaTest extends TestCase
 
     }
 
-        /** @test */
+    /** @test */
 
     public function desinscribir_y_volver_a_inscribir_un_usuario()
     {

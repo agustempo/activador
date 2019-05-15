@@ -43,16 +43,16 @@
               <a class="navbar-item" href="/admin/actividades/create" >
                 {{ __('admin.nueva') }}
               </a>
+              <hr class="navbar-divider">
               <a class="navbar-item" href="/admin/actividades" >
+                {{ __('admin.actividades_todas') }}
+              </a>
+              <a class="navbar-item" href="/admin/actividades_creadas" >
                 {{ __('admin.actividades_mias') }}
               </a>
-              <a class="navbar-item">
+              <a class="navbar-item" href="/admin/actividades_invitado" >
                 {{ __('admin.actividades_invitado') }}
               </a>
-              <hr class="navbar-divider">
-              <div class="navbar-item">
-                {{ __('admin.actividades_todas') }}
-              </div>
             </div>
           </div>
 
@@ -83,8 +83,8 @@
           </div>
 
           <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link" href="/idioma/es_AR">{{ config('app.locale') }}</a>
+            <div class="navbar-item has-dropdown is-hoverable" dusk="selector-idioma" >
+              <a class="navbar-link is-arrowless" href="/idioma/es_AR">{{ config('app.locale') }}</a>
               <div class="navbar-dropdown">
               @foreach (config('app.locales') as $locale)
                   <a class="navbar-item" href="/idioma/{{$locale}}">{{$locale}}</a>

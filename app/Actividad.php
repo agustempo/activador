@@ -46,6 +46,16 @@ class Actividad extends Model
         return $this->fin->format('Y-m-d\TH:i');
     }
 
+    public function getInicioISOAttribute()
+    {
+        return $this->inicio->isoFormat("DD MM 00YYYY HH:mm");
+    }
+
+    public function getFinISOAttribute()
+    {
+        return $this->fin->isoFormat("DD MM 00YYYY HH:mm");
+    }
+
     public function getNombreAttribute($value)
     {
         return ucfirst($value);
@@ -53,26 +63,15 @@ class Actividad extends Model
 
     function getCuandoAttribute () 
     {
-        $fecha_i = new \DateTime($this->inicio);
-        return $fecha_i->format("d/m/Y H:i");
+        if ($this->inicio->diffInHours($this->fin) < 24)
+            return $this->inicio->isoFormat("DD MMMM YYYY HH:mm") . " - " . $this->fin->isoFormat("HH:mm");
+        else
+            return $this->inicio->isoFormat("DD MMMM YYYY HH:mm") . " - " . $this->fin->isoFormat("DD MMMM YYYY HH:mm");
     }
 
-    function getDuracionEnDiasAttribute () 
+    function getDuracionAttribute () 
     {
-        $fecha = new \DateTime($this->inicio);
-
-        $dif = $fecha->diff(new \DateTime($this->fin));
-
-        return $dif->days;
-    }
-
-    function getDuracionEnHorasAttribute () 
-    {
-        $fecha = new \DateTime($this->inicio);
-
-        $dif = $fecha->diff(new \DateTime($this->fin));
-
-        return $dif->h;
+        return $this->inicio->diffForHumans($this->fin, $this->inicio::DIFF_ABSOLUTE);
     }
 
     function getResumenAttribute ()

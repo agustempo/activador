@@ -13,7 +13,7 @@
 		@include ("notificaciones." . class_basename($notificacion->type))
    	</li>
    	@empty
-   		<li>{{ __('frontend.no_hay_notificacion') }}</li>
+   		<li>{{ __('frontend.no_hay_notificaciones') }}</li>
 	@endforelse
 	</ul>
 </div>

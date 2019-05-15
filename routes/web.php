@@ -55,6 +55,9 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::patch('/actividades/{actividad}','admin\ActividadesController@update');
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
+    Route::get('/actividades_invitado','admin\ActividadesController@indexInvitado');
+    Route::get('/actividades_creadas','admin\ActividadesController@indexCreadas');
+
     //inscripciones
     Route::get('/actividades/{actividad}/inscripciones','admin\InscripcionesController@index');
     Route::post('/actividades/{actividad}/inscripciones','admin\InscripcionesController@store');

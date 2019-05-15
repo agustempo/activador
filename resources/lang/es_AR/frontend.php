@@ -11,12 +11,12 @@ return [
     'explora_actividades' => 'Explorá las actividades',
     
     //navegación de usuario
-    'perfil' => 'Mi Perfil',
+    'perfil' => 'Mi perfil',
     'mis_inscripciones' => 'Mis inscripciones',
     'mis_notificaciones' => 'Mis notificaciones',
-    'no_hay_inscripciones' => 'No hay ninguna inscripción',
-    'no_hay_notificaciones' => 'No hay ninguna notificación',
-    'no_hay_invitaciones' => 'No hay ninguna invitación',
+    'no_hay_inscripciones' => 'Todavía no hay inscripciones',
+    'no_hay_notificaciones' => 'Todavía no hay notificaciones',
+    'no_hay_invitaciones' => 'Todavía no hay invitados',
 
     //inscribirse
     'inscribirme' => 'Inscribirme',
@@ -25,6 +25,7 @@ return [
 
     //utilitarios
     'compartir' => 'Compartir',
+    'crear' => 'Crear',
     'editar' => 'Editar',
     'eliminar' => 'Eliminar',
     'ver' => 'Ver más',

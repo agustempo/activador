@@ -1,7 +1,7 @@
 @extends('layouts.home')
 
 @section('title')
-{{ __('admin.listado_de') }} {{ __('actividades.actividades') }}
+{{ __('admin.listado_de') }} {{ __('admin.actividades') }}
 @endsection('title')
 
 @section('content')
@@ -9,7 +9,7 @@
 	<div class="content">
 		<p><a href="/admin/actividades/create" class="button is-link" >{{ __('admin.nueva') }}</a></p>
 
-		<h4>{{ __('admin.listado_de') }} {{ __('actividades.actividades') }}</h4>
+		<h4>{{ __('admin.listado_de') }} {{ __('admin.actividades') }}</h4>
 		<ul>
 		@foreach ($actividades as $actividad)
 
