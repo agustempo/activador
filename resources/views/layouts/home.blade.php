@@ -147,7 +147,7 @@
     @yield("content")
     </div>
 
-    <footer class="footer is-light">
+    <footer class="footer has-background-grey-light">
       <div class="content has-text-centered">
         <p>
           <strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a>. El código tiene licencia GPL. El contenido tiene licencia CC BY NC SA 4.

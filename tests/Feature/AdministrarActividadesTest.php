@@ -73,20 +73,19 @@ class AdministrarActividadesTest extends TestCase
         //$this->withoutExceptionHandling();
         
         $usuario = factory('App\Usuario')->create();
+        
         $this->actingAs($usuario);
 
         $actividad_mia = factory('App\Actividad')->create([
             'id_creador' => $usuario->id
         ]);
-        $actividad_de_otro = factory('App\Actividad')->create();
 
         $actividad_mia->descripcion = 'Modificada';
-        $actividad_de_otro->descripcion = 'Modificada';
 
         $this->patch($actividad_mia->path_admin(),$actividad_mia->toArray())
             ->assertRedirect($actividad_mia->path_admin());
 
-        $this->assertDatabaseHas('actividades',$actividad_mia->toArray());
+        $this->assertDatabaseHas('actividades',[ 'id' => $actividad_mia->id, 'descripcion' => 'Modificada' ]);
 
     }
 

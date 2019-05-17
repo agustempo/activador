@@ -22,6 +22,7 @@ return [
     'inscribirme' => 'Inscribirme',
     'desinscribirme' => 'Desinscribirme',
     'inscripto' => '¡Estás inscripto!',
+    'descripcion' => 'Descripción',
 
     //utilitarios
     'compartir' => 'Compartir',
