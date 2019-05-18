@@ -1,8 +1,8 @@
 @extends ('layouts.home')
 
 @section('content')
-<section class="hero is-light">
-    <div class="hero-body">
+<section class="hero is-light" style="height: 212px">
+    <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">
         <h1 class="title" >{{ __('frontend.explora_actividades') }}</h1>
     </div>
 </section>

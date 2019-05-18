@@ -78,7 +78,7 @@
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                 <div style="margin: 1rem 0;"><h3 class="title is-3">{{ $actividad->nombre }}</h3></div>
                 <div class="buttons is-right">
-                    <a class="button is-link is-inverted is-medium"><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
+                    <a class="button is-primary is-inverted is-medium"><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
                         <a class="button is-link is-outlined is-medium">{{ __('frontend.inscripto') }}</a>
                     @else
@@ -86,7 +86,7 @@
                         {{ csrf_field() }}
                         </form>
                         <a onclick="event.preventDefault();document.getElementById('form-inscribirme').submit();" 
-                        class="button is-link is-medium has-text-weight-semibold">{{ __('frontend.inscribirme') }}</a>
+                        class="button is-primary is-medium has-text-weight-semibold">{{ __('frontend.inscribirme') }}</a>
                     @endif
                 </div>
             </div>
