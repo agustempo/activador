@@ -18,5 +18,6 @@ return [
     'sent' => 'Enviamos el link de reinicio de contraseña!',
     'token' => 'Este token para reinicio de contraseña es inválido.',
     'user' => "No podemos encontrar un usuario con esa dirección de e-mail.",
+    'send_password_reset_link' => "Enviar link", 
 
 ];

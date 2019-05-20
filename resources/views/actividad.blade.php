@@ -16,9 +16,7 @@
             <div class="notification is-success">{{__('frontend.'.session('mensaje'))}}</div>
             @endif
                 
-            <h1 class="title" >{{ $actividad->nombre }}</h1>
-
-            <div><span class="tag is-info" >#Tipo</span></div>
+            <!-- <h1 class="title" >{{ $actividad->nombre }}</h1> -->
 
         </div>
 
@@ -72,21 +70,25 @@
         <div class="column is-10 is-offset-1">
                 <h3 class="title is-5"><i class="icon fas fa-map-marker-alt"></i> Dónde</h3> 
                 <div>{{ $actividad->lugar }}</div>
+        </div>        
+
+        <div class="column is-10 is-offset-1">
+            <div><span class="tag is-info" >#Tipo</span> <span class="tag is-warning" >#TipoMásLargo</span></div>
         </div>
 
-        <div class="column" style="border-top: solid 1px #cecece; margin: 1rem 0;">
+        <div class="column" style="border-top: solid 1px #cecece; margin: 1rem 0; position: sticky; bottom: 0; background-color: white">
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
-                <div style="margin: 1rem 0;"><h3 class="title is-3">{{ $actividad->nombre }}</h3></div>
+                <div style="margin: 1rem 0;"><h3 class="title is-5">{{ $actividad->nombre }}</h3></div>
                 <div class="buttons is-right">
-                    <a class="button is-primary is-inverted is-medium"><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
+                    <a class="button is-primary is-inverted "><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
-                        <a class="button is-link is-outlined is-medium">{{ __('frontend.inscripto') }}</a>
+                        <a class="button is-link is-outlined ">{{ __('frontend.inscripto') }}</a>
                     @else
                         <form id="form-inscribirme" method="POST" action="/actividades/{{ $actividad->id }}/inscripciones" style="display: hidden;">
                         {{ csrf_field() }}
                         </form>
                         <a onclick="event.preventDefault();document.getElementById('form-inscribirme').submit();" 
-                        class="button is-primary is-medium has-text-weight-semibold">{{ __('frontend.inscribirme') }}</a>
+                        class="button is-primary  has-text-weight-semibold">{{ __('frontend.inscribirme') }}</a>
                     @endif
                 </div>
             </div>
