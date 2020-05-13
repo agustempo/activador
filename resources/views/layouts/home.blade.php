@@ -61,7 +61,7 @@
                 {{ __('admin.usuarios') }}
               </a>
               <div class="navbar-dropdown">
-                <a class="navbar-item">
+                <a class="navbar-item" href="/admin/usuarios">
                   {{ __('admin.administrar_usuarios') }}
                 </a>
               </div>

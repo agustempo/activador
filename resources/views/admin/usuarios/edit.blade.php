@@ -1,0 +1,22 @@
+@extends ('layouts.home')
+
+
+@section('title')
+{{ __('admin.detalle_de') }} {{ __('admin.usuarios') }}
+@endsection('title')
+
+@section('content')
+
+
+<div class="section">
+	<div class="content">
+
+		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" >
+			{{ method_field('PATCH') }}
+			@include("admin.usuarios.form", [ 'deshabilitado' => false ])
+			<input type="submit" class="button is-link" value="{{ __(('admin.guardar')) }}" ></input>
+		</form>
+	</div>
+</div>
+
+@endsection("content")

@@ -5,6 +5,7 @@ return [
     //formularios utilitarios
     'atras' => 'Atrás',
     'editar' => 'Editar',
+    'guardar' => 'Guardar',
     'eliminar' => 'Eliminar',
     'confirmar' => 'Confirmar',
     'presente' => 'Presente',
@@ -12,6 +13,7 @@ return [
     'nueva' => 'Nueva',
     'nuevo' => 'Nuevo',
     'listado_de' => 'Listado de ',
+    'detalle_de' => 'Detalle de ',
 
     //actividades
     'actividad' => 'Actividad',

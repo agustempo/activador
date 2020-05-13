@@ -58,6 +58,18 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::get('/actividades_invitado','admin\ActividadesController@indexInvitado');
     Route::get('/actividades_creadas','admin\ActividadesController@indexCreadas');
 
+    // usuarios
+    Route::get('/usuarios','admin\UsuariosController@index');
+    Route::get('/usuarios/create','admin\UsuariosController@create');
+    Route::post('/usuarios','admin\UsuariosController@store');
+    Route::get('/usuarios/{usuario}','admin\UsuariosController@show');
+    Route::get('/usuarios/{usuario}/edit','admin\UsuariosController@edit');
+    Route::patch('/usuarios/{usuario}','admin\UsuariosController@update');
+    Route::delete('/usuarios/{usuario}','admin\UsuariosController@destroy');
+    
+
+
+
     //inscripciones
     Route::get('/actividades/{actividad}/inscripciones','admin\InscripcionesController@index');
     Route::post('/actividades/{actividad}/inscripciones','admin\InscripcionesController@store');
