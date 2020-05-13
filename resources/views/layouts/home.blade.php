@@ -4,14 +4,14 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield("title")</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+    <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   </head>
   <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
     @section("navbar")
-    <nav class="navbar is-link" role="navigation" aria-label="main navigation">
+    <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
       <div class="container">
         <div class="navbar-brand">
 
@@ -19,7 +19,7 @@
             <div class="image is-48x48"  >
               <img style="min-height: 48px" src="https://bulma.io/images/placeholders/256x256.png">
             </div>
-            <span class="is-size-5" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
+            <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
           </a>
 
           <a role="button" class="navbar-burger burger" style="height: initial" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -101,7 +101,7 @@
                       </div>
                     </div>
                     <div class="">
-                      <div class="activador_media-content-usuario">
+                      <div class="activador_media-content-usuario has-text-weight-semibold">
                         {{ auth()->user()->nombreCompleto }}
                       </div>
                     </div>
@@ -135,7 +135,9 @@
             </div>
             @endauth
             @guest
-            <div class="navbar-item"><a href="/login" class="button is-outlined" >{{ __('frontend.ingresar') }}</a></div>
+            <div class="navbar-item">
+              <a href="/login" class="button is-inverted has-text-weight-semibold has-text-primary" >{{ __('frontend.ingresar') }}</a>
+            </div>
             @endguest
           </div>
         </div>
@@ -147,11 +149,15 @@
     @yield("content")
     </div>
 
-    <footer class="footer is-light">
-      <div class="content has-text-centered">
+    <footer class="footer has-background-grey-lighter">
+      <div class="has-text-centered">
+        <p><strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a></p>
         <p>
-          <strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a>. El código tiene licencia GPL. El contenido tiene licencia CC BY NC SA 4.
+          <span class="icon is-medium"><i class="fab fa-lg fa-twitter-square"></i></span>
+          <span class="icon is-medium"><i class="fab fa-lg fa-facebook"></i></span>
+          <span class="icon is-medium"><i class="fab fa-lg fa-instagram"></i></span>
         </p>
+        <p>Accedé al código en <a href="https://github.com/wmarcos/activador"><i class="fab fa-github-alt"></i> Github</a></p>
       </div>
     </footer>
 

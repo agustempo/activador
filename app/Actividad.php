@@ -61,12 +61,17 @@ class Actividad extends Model
         return ucfirst($value);
     }
 
-    function getCuandoAttribute () 
+    function getFechasAttribute () 
     {
         if ($this->inicio->diffInHours($this->fin) < 24)
-            return $this->inicio->isoFormat("DD MMMM YYYY HH:mm") . " - " . $this->fin->isoFormat("HH:mm");
+            return $this->inicio->isoFormat("D MMM YYYY HH:mm") . " - " . $this->fin->isoFormat("HH:mm");
         else
-            return $this->inicio->isoFormat("DD MMMM YYYY HH:mm") . " - " . $this->fin->isoFormat("DD MMMM YYYY HH:mm");
+            return $this->inicio->isoFormat("D MMM YYYY HH:mm") . " - " . $this->fin->isoFormat("D MMM YYYY HH:mm");
+    }
+
+    function getCuandoAttribute () 
+    {
+        return $this->inicio->isoFormat("D MMM YYYY HH:mm");
     }
 
     function getDuracionAttribute () 

@@ -8,7 +8,7 @@
 
 	@include("admin.actividades.form", [ 'deshabilitado' => false ])
 
-	<input type="submit" class="button is-link" value="{{ __(('admin.editar')) }}" ></input>
+	<input type="submit" class="button is-primary" value="{{ __(('admin.editar')) }}" ></input>
 
 </form>
 

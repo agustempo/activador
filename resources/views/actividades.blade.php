@@ -1,8 +1,8 @@
 @extends ('layouts.home')
 
 @section('content')
-<section class="hero is-light">
-    <div class="hero-body">
+<section class="hero is-light" style="height: 212px">
+    <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">
         <h1 class="title" >{{ __('frontend.explora_actividades') }}</h1>
     </div>
 </section>
@@ -13,17 +13,17 @@
         <div class="column is-one-quarter">
             
             <div class="card">
+
                 <header class="card-header">
                     <div class="card-header-title">
                         <p class="title is-4">{{ $actividad->nombre }}</p>
                     </div>
                 </header>
+
                 <div class="card-content">
                     <div class="content">
-                        <span class="tag is-info" >
-                            #Tipo
-                        </span>
-                        <div>
+                        <span class="tag is-info" >#Tipo</span>
+                        <div style="margin: .75rem 0">
                             <span class="icon">
                                 <i class="fas fa-calendar-minus" ></i><time datetime="2016-1-1"></time>
                             </span>
@@ -36,9 +36,9 @@
                             <span>{{ $actividad->lugar }}</span>
                         </div>
 
-                        <div class="media">
+                        <div class="media" style="align-items: center; margin: .75rem 0;">
                           <div class="media-left">
-                            <div class="image is-24x24">
+                            <div class="image is-48x48">
                               <img class="is-rounded" src="https://bulma.io/images/placeholders/96x96.png" alt="Placeholder image">
                             </div>
                           </div>
