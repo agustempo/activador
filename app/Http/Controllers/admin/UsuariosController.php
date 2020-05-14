@@ -8,6 +8,7 @@ use App\Notifications\ActividadEliminada;
 use App\Notifications\ActividadModificada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 
 class UsuariosController extends Controller
@@ -34,13 +35,11 @@ class UsuariosController extends Controller
             'nombre' => 'required',
             'apellido' => 'required',
             'password' => 'required',
-            'email_verified_at' => 'required',
             'email' => 'required',
         ]);
-        
-        //si fechas en formato datetime-local
-        $atributos['email_verified_at'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['email_verified_at']);
 
+
+        $atributos['password'] = Hash::make($request->password);
         usuario::create($atributos);
 
         return redirect('/admin/usuarios');
@@ -64,12 +63,13 @@ class UsuariosController extends Controller
             'apellido' => 'required',
             'password' => 'required',
             'email' => 'required',
-            'email_verified_at' => ''
         ]);
 
         //si fechas en formato datetime-local
-        $atributos['email_verified_at'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['email_verified_at']);
+        $atributos['password'] = Hash::make($atributos['password']);
         
+        $usuario->update($atributos);
+
         return redirect()->to('admin/usuarios/'.$usuario->id); 
     }
 

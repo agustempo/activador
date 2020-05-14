@@ -17,26 +17,7 @@
 					name="apellido" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->apellido)?$usuario->apellido:old('apellido')}}"></input>
 			</div>
 		</div>
-		<div class="field">
-			<label class="label">{{ __(('admin.password')) }}</label>
-	  		<div class="control">
-				<input 
-					class="input {{ $errors->has('password') ? 'is-danger' : '' }}" 
-					name="password" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->password)?$usuario->password:old('password')}}"></input>
-			</div>
-		</div>
-		<div class="field">
-			<label class="label">{{ __(('admin.email_verified_at')) }}</label>
-	  		<div class="control">
-				<input 
-					class="input {{ $errors->has('email_verified_at') ? 'is-danger' : '' }}" 
-					type="datetime-local" 
-					name="email_verified_at" 
-					value="{{ ($usuario->email_verified_at)?$usuario->finDatetimeLocal:old('email_verified_at')}}" 
-					{{ ($deshabilitado)?"disabled":"" }}></input>
-			</div>
-		</div>
-
+		
 		<div class="field">
 			<label class="label">{{ __(('admin.email')) }}</label>
 	  		<div class="control">
@@ -46,6 +27,16 @@
 				name="email" 
 				value="{{ ($usuario->email)?$usuario->email:old('email')}}" 
 				{{ ($deshabilitado)?"disabled":"" }}></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.password')) }}</label>
+	  		<div class="control">
+				<input 
+					type="password" 
+					class="input {{ $errors->has('password') ? 'is-danger' : '' }}" 
+					name="password" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->password)?$usuario->password:old('password')}}"></input>
 			</div>
 		</div>
 
