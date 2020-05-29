@@ -58,8 +58,24 @@ return [
     'se_inscribio' => 'se inscribió',
 
     //Usuarios
-    'usuarios' => 'Usuarios',
-    'administrar_usuarios' => 'Administrar usuarios',
+    'usuarios' => 'Alumnis',
+    'usuario' => 'Alumni',
+    'administrar_usuarios' => 'Ver Todxs',
+
+    //formulario Usuarios
+    'apellido' => 'Apellido',
+    'telefono' => 'Telefono',
+    'email' => 'Email',
+    'cohorte' => 'Cohorte',
+    'region' => 'Región',
+    'carrera' => 'Carrera',
+    'lugar_trabajo' => 'Lugar de Trabajo',
+    'rol_trabajo' => 'Rol de trabajo',
+    'trayectoria' => 'Trayectoria',
+    'reseña' => 'Reseña',
+
+    
+
 
     //Sitio
     'sitio' => 'Sitio',

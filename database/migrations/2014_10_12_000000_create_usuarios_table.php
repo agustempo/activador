@@ -18,6 +18,14 @@ class CreateUsuariosTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('email')->unique();
+            $table->string('telefono')->nullable();
+            $table->string('cohorte')->nullable();
+            $table->string('región')->nullable();
+            $table->string('carrera')->nullable();
+            $table->string('lugar_trabajo')->nullable();
+            $table->string('rol_trabajo')->nullable();
+            $table->string('trayectoria')->nullable();
+            $table->text('reseña')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
             $table->rememberToken();

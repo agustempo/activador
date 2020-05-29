@@ -34,51 +34,24 @@
 
             @auth
             @section('navbar_menu')
+
             <div class="navbar-item has-dropdown is-hoverable">
-            <a class="navbar-link">
-              {{ __('admin.actividades') }}
-            </a>
-
-            <div class="navbar-dropdown">
-              <a class="navbar-item" href="/admin/actividades/create" >
-                {{ __('admin.nueva') }}
-              </a>
-              <hr class="navbar-divider">
-              <a class="navbar-item" href="/admin/actividades" >
-                {{ __('admin.actividades_todas') }}
-              </a>
-              <a class="navbar-item" href="/admin/actividades_creadas" >
-                {{ __('admin.actividades_mias') }}
-              </a>
-              <a class="navbar-item" href="/admin/actividades_invitado" >
-                {{ __('admin.actividades_invitado') }}
-              </a>
+                <a class="navbar-link">
+                  {{ __('admin.usuarios') }}
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="/admin/usuarios">
+                    {{ __('admin.administrar_usuarios') }}
+                  </a>
+                  <a class="navbar-item" href="/admin/usuarios/create">
+                    {{ __('admin.nuevo') }}
+                  </a>
+                </div>
             </div>
-          </div>
 
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                {{ __('admin.usuarios') }}
-              </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item" href="/admin/usuarios">
-                  {{ __('admin.administrar_usuarios') }}
-                </a>
-              </div>
-          </div>
-
-          <div class="navbar-item has-dropdown is-hoverable">
-              <a class="navbar-link">
-                {{ __('admin.sitio') }}
-              </a>
-              <div class="navbar-dropdown">
-                <a class="navbar-item">
-                    General
-                </a>
-              </div>
-          </div>
-          @show
-          @endauth
+            
+            @show
+            @endauth
 
           </div>
 
@@ -151,13 +124,13 @@
 
     <footer class="footer has-background-grey-lighter">
       <div class="has-text-centered">
-        <p><strong>Activador</strong> by <a href="http://www.techo.org">TECHO</a></p>
+        <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org">Enseña por Argentina</a></p>
         <p>
           <span class="icon is-medium"><i class="fab fa-lg fa-twitter-square"></i></span>
           <span class="icon is-medium"><i class="fab fa-lg fa-facebook"></i></span>
           <span class="icon is-medium"><i class="fab fa-lg fa-instagram"></i></span>
         </p>
-        <p>Accedé al código en <a href="https://github.com/wmarcos/activador"><i class="fab fa-github-alt"></i> Github</a></p>
+        <p>Accedé al código en <a href="https://github.com/agustempo/activador"><i class="fab fa-github-alt"></i> Github</a></p>
       </div>
     </footer>
 

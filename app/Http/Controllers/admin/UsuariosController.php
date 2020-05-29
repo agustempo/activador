@@ -34,8 +34,15 @@ class UsuariosController extends Controller
         $atributos = $this->validate($request, [
             'nombre' => 'required',
             'apellido' => 'required',
-            'password' => 'required',
+            'telefono' => 'nullable',
             'email' => 'required',
+            'cohorte' => 'required',
+            'región' => 'required',
+            'carrera' => 'nullable',
+            'lugar_trabajo' => 'nullable',
+            'rol_trabajo' => 'nullable',
+            'trayectoria' => 'required',
+            'reseña' => 'nullable',
         ]);
 
 
@@ -61,12 +68,19 @@ class UsuariosController extends Controller
         $atributos = request()->validate([
             'nombre' => 'required',
             'apellido' => 'required',
-            'password' => 'required',
+            'telefono' => 'nullable',
             'email' => 'required',
+            'cohorte' => 'required',
+            'región' => 'required',
+            'carrera' => 'nullable',
+            'lugar_trabajo' => 'nullable',
+            'rol_trabajo' => 'nullable',
+            'trayectoria' => 'required',
+            'reseña' => 'nullable',
         ]);
 
         //si fechas en formato datetime-local
-        $atributos['password'] = Hash::make($atributos['password']);
+        // $atributos['password'] = Hash::make($atributos['password']);
         
         $usuario->update($atributos);
 
@@ -80,4 +94,5 @@ class UsuariosController extends Controller
 
         return redirect('/admin/usuarios');
     }
+
 }
