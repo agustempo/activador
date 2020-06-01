@@ -124,7 +124,7 @@
 
     <footer class="footer has-background-grey-lighter">
       <div class="has-text-centered">
-        <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org">Enseña por Argentina</a></p>
+        <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org"> Enseña por Argentina</a></p>
         <p>
           <span class="icon is-medium"><i class="fab fa-lg fa-twitter-square"></i></span>
           <span class="icon is-medium"><i class="fab fa-lg fa-facebook"></i></span>
