@@ -98,7 +98,7 @@
   					<option value="Sector Privado" {{ (($usuario->trayectoria)?$usuario->trayectoria:old('trayectoria')) == "Sector Privado" ? 'selected' : '' }}>Sector Privado</option>
   					<option value="Docencia" {{ (($usuario->trayectoria)?$usuario->trayectoria:old('trayectoria')) == "Docencia" ? 'selected' : '' }}>Docencia</option>
   					<option value="Liderazgo Educativo" {{ (($usuario->trayectoria)?$usuario->trayectoria:old('trayectoria')) == "Liderazgo Educativo" ? 'selected' : '' }}>Liderazgo Educativo</option>
-  					<option value="Investigación Educativa" {{ (($usuario->trayectoria)?$usuario->trayectoria:old('trayectoria')) == "Investigación Educativa" ? 'selected' : '' }}>Investigación Educativa</option>
+  					<option value="Política Pública" {{ (($usuario->trayectoria)?$usuario->trayectoria:old('trayectoria')) == "Política Pública" ? 'selected' : '' }}>Política Pública</option>
 				</select>
 			</div>
 		</div>

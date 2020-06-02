@@ -8,7 +8,7 @@ return [
     'logout' => 'Cerrar Sesión',
 
     //navegación principal
-    'explora_actividades' => 'Explorá las actividades',
+    'explora_actividades' => 'Sistema Alumni',
     
     //navegación de usuario
     'perfil' => 'Mi perfil',
@@ -19,7 +19,8 @@ return [
     'no_hay_invitaciones' => 'Todavía no hay invitados',
 
     //inscribirse
-    'inscribirme' => 'Inscribirme',
+    'inscribirme' => 'In
+    scribirme',
     'desinscribirme' => 'Desinscribirme',
     'inscripto' => '¡Estás inscripto!',
     'descripcion' => 'Descripción',

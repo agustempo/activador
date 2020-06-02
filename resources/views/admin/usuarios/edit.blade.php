@@ -9,12 +9,14 @@
 
 
 <div class="section">
+
 	<div class="content">
 
 		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" >
 			{{ method_field('PATCH') }}
 			@include("admin.usuarios.form", [ 'deshabilitado' => false ])
 			<input type="submit" class="button is-link" value="{{ __(('admin.guardar')) }}" ></input>
+			<a class="button" href="/admin/usuarios/{{ $usuario->id }}" > {{ __(('admin.atras')) }}</a>
 		</form>
 	</div>
 </div>

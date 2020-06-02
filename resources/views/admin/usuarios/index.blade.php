@@ -16,7 +16,7 @@
 		    <tr>
 		      <th>Nombre</th>
 		      <th>Apellido</th>
-		      <th><abbr title="Cohorte">Cohorte</abbr></th>
+		      <th><abbr title="Año Egreso">Cohorte</abbr></th>
 		      <th>Región</th>
 		      <th>Trayectoria</th>
 		    </tr>

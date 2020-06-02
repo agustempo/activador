@@ -18,6 +18,9 @@
 
 		<div class="field is-grouped" >
 			<p class="control">
+				<a class="button" href="/admin/usuarios/" > {{ __(('admin.atras')) }}</a>
+			</p>
+			<p class="control">
 				<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
 			</p>
 			<form id="form-eliminar" method="POST" action="/admin/usuarios/{{ $usuario->id }}" style="display:none" >

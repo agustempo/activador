@@ -46,7 +46,7 @@ class UsuariosController extends Controller
         ]);
 
 
-        $atributos['password'] = Hash::make($request->password);
+        // $atributos['password'] = Hash::make($request->password);
         usuario::create($atributos);
 
         return redirect('/admin/usuarios');
