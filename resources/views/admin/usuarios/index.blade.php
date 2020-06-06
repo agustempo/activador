@@ -11,29 +11,15 @@
 		<h3>{{ __('admin.listado_de') }} {{ __('admin.usuarios') }}</h3>
 		<p><a href="/admin/usuarios/create" class="button is-link" >{{ __('admin.nuevo') }}</a></p>
 
-		<table class="table">
-		  <thead>
-		    <tr>
-		      <th>Nombre</th>
-		      <th>Apellido</th>
-		      <th><abbr title="Año Egreso">Cohorte</abbr></th>
-		      <th>Región</th>
-		      <th>Trayectoria</th>
-		    </tr>
-		  </thead>
-		  <tbody>
-		  		@foreach ($usuarios as $usuario)
-
-					<tr>
-						<td><a href="/admin/usuarios/{{ $usuario->id }}">{{ $usuario->nombre }}</a></td>
-						<td>{{ $usuario->apellido }}</td>
-						<td>{{ $usuario->cohorte }}</td>
-						<td>{{ $usuario->región }}</td>
-						<td>{{ $usuario->trayectoria }}</td>
-					</tr>
-				@endforeach
-		  </tbody>
-		</table>
+		<div class="flex-center position-ref full-height" id="app">
+			<data-table
+				fetch-url="{{ route('usuarios.table') }}"
+				:columns="['id', 'nombre', 'apellido', 'cohorte' , 'región', 'trayectoria']"
+				:view-url="'/admin/usuarios/'"
+			></data-table>
+		</div>
 	</div>
+</div>
+<script src="{{ asset('js/app.js') }}"></script>
 </div>
 @endsection('content')

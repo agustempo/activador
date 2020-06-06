@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers\admin;
 
-use App\usuario;
+use App\Usuario;
 use App\Http\Controllers\Controller;
 use App\Notifications\ActividadEliminada;
 use App\Notifications\ActividadModificada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Resources\UsuarioResource;
 
 
 class UsuariosController extends Controller
 {
+
 
     public function index()
     {
@@ -95,4 +97,11 @@ class UsuariosController extends Controller
         return redirect('/admin/usuarios');
     }
 
+    public function indexdos(Request $request)
+    {
+        $query = Usuario::orderBy($request->column, $request->order);
+        $usuarios = $query->paginate($request->per_page);
+
+        return UsuarioResource::collection($usuarios);
+    }
 }

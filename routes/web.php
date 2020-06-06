@@ -60,6 +60,7 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
 
     // usuarios
     Route::get('/usuarios','admin\UsuariosController@index');
+    Route::get('usuarios/data-table', 'admin\UsuariosController@indexdos')->name('usuarios.table');
     Route::get('/usuarios/create','admin\UsuariosController@create');
     Route::post('/usuarios','admin\UsuariosController@store');
     Route::get('/usuarios/{usuario}','admin\UsuariosController@show');
