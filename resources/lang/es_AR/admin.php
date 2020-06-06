@@ -62,6 +62,9 @@ return [
     'usuario' => 'Alumni',
     'administrar_usuarios' => 'Ver Todxs',
 
+    //menu Usuario
+    'CV' => 'CV',
+
     //formulario Usuarios
     'apellido' => 'Apellido',
     'telefono' => 'Telefono',

@@ -28,6 +28,7 @@ class CreateUsuariosTable extends Migration
             $table->text('reseña')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->string('cv')->nullable();
             $table->rememberToken();
             $table->timestamps();
             $table->softDeletes();

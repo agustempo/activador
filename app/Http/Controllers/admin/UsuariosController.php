@@ -104,4 +104,21 @@ class UsuariosController extends Controller
 
         return UsuarioResource::collection($usuarios);
     }
+
+    public function cv(usuario $usuario)
+    {
+        return view('admin.usuarios.cv', compact('usuario'));
+    }
+
+    public function cv_store(Request $request, usuario $usuario)
+    {
+        request()->validate([
+            'cv' => 'required|file|mimes:pdf'
+        ]);
+        
+        $request->cv->store('cv');
+        $usuario->update(['cv' => $request->cv->hashName()]);
+
+        return redirect('/admin/usuarios/'.$usuario->id.'/cv');
+    }
 }

@@ -112,7 +112,7 @@ return [
     'string' => 'El :attribute debe ser una cadena de texto.',
     'timezone' => 'El :attribute debe ser una zona válida.',
     'unique' => 'El :attribute ya fue seleccionado.',
-    'uploaded' => 'El :attribute falló en subir.',
+    'uploaded' => 'El :attribute no se pudo subir.',
     'url' => 'El formato de :attribute es inválido.',
     'uuid' => 'El :attribute debe ser un UUID válido.',
 

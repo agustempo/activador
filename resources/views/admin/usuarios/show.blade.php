@@ -8,8 +8,11 @@
 @section('content')
 
 
+
+
 <div class="section">
 	<div class="content">
+		@include("admin.usuarios.menu")
 		<form method="POST" action="" >
 			@include("admin.usuarios.form", [ 'deshabilitado' => true ])
 		</form>

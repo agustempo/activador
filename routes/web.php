@@ -67,6 +67,10 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::get('/usuarios/{usuario}/edit','admin\UsuariosController@edit');
     Route::patch('/usuarios/{usuario}','admin\UsuariosController@update');
     Route::delete('/usuarios/{usuario}','admin\UsuariosController@destroy');
+
+    Route::get('/usuarios/{usuario}/cv','admin\UsuariosController@CV');
+    Route::post('/usuarios/{usuario}/cv','admin\UsuariosController@cv_store')->name('CV.store');
+
     
 
 

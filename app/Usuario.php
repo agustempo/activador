@@ -20,7 +20,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'nombre', 'apellido', 'email', 'telefono', 'cohorte',
         'región', 'carrera', 'lugar_trabajo', 'rol_trabajo',
-        'trayectoria', 'reseña'
+        'trayectoria', 'reseña', 'cv'
     ];
 
     /**
@@ -59,5 +59,9 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     public function evaluaciones()
     {
         return $this->hasMany(Evaluacion::class,'id_usuario');
+    }
+    public function path_admin()
+    {
+        return '/admin/usuarios/' . $this->id;
     }
 }
