@@ -55,12 +55,15 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::patch('/actividades/{actividad}','admin\ActividadesController@update');
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
+    Route::get('ajax/actividades', 'admin\ActividadesController@indexJson')->name('actividades.table');
+
+
     Route::get('/actividades_invitado','admin\ActividadesController@indexInvitado');
     Route::get('/actividades_creadas','admin\ActividadesController@indexCreadas');
 
     // usuarios
     Route::get('/usuarios','admin\UsuariosController@index');
-    Route::get('usuarios/data-table', 'admin\UsuariosController@indexdos')->name('usuarios.table');
+    Route::get('usuarios/data-table', 'admin\UsuariosController@indexJson')->name('usuarios.table');
     Route::get('/usuarios/create','admin\UsuariosController@create');
     Route::post('/usuarios','admin\UsuariosController@store');
     Route::get('/usuarios/{usuario}','admin\UsuariosController@show');

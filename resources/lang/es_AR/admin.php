@@ -16,8 +16,10 @@ return [
     'detalle_de' => 'Detalle de ',
 
     //actividades
-    'actividad' => 'Actividad',
-    'actividades' => 'Actividades',
+    'actividad' => 'Postulación',
+    'administrar_actividad' => 'Ver Todas',
+
+    'actividades' => 'Postulaciones',
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
     'seleccionar_usuario' => 'Seleccionar usuario',
@@ -39,6 +41,7 @@ return [
 
     //formulario actividad
     'nombre' => 'Nombre',
+    'organizacion' => 'Organización',
     'descripcion' => 'Descripción',
     'lugar' => 'Lugar',
     'estado' => 'Estado',
@@ -50,15 +53,15 @@ return [
     'mensaje_inscripciones' => 'Mensaje inscripciones',
 
     //auditorías
-    'creo_actividad' => 'creó la actividad',
-    'edito_actividad' => 'editó la actividad',
+    'creo_actividad' => 'creó la postulación',
+    'edito_actividad' => 'editó la postulación',
     'creo_inscripcion' => 'inscribió a',
-    'edito_inscripcion' => 'editó la inscripción de ',
+    'edito_inscripcion' => 'editó la postulación de ',
     'elimino_inscripcion' => 'desinscribió a',
-    'se_inscribio' => 'se inscribió',
+    'se_inscribio' => 'se postuló',
 
     //Usuarios
-    'usuarios' => 'Alumnis',
+    'usuarios' => 'Alumni',
     'usuario' => 'Alumni',
     'administrar_usuarios' => 'Ver Todxs',
 
@@ -75,7 +78,7 @@ return [
     'lugar_trabajo' => 'Lugar de Trabajo',
     'rol_trabajo' => 'Rol de trabajo',
     'trayectoria' => 'Trayectoria',
-    'reseña' => 'Reseña',
+    'reseña' => 'Perfil',
 
     
 

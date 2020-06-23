@@ -8,6 +8,8 @@ use App\Notifications\ActividadEliminada;
 use App\Notifications\ActividadModificada;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Resources\ActividadResource;
+
 
 
 class ActividadesController extends Controller
@@ -22,6 +24,14 @@ class ActividadesController extends Controller
         $actividades = $actividades_mias->merge($actividades_invitado);
 
         return view('admin.actividades.index', compact('actividades'));
+    }
+
+    public function indexJson(Request $request)
+    {
+        $query = Actividad::orderBy($request->column, $request->order);
+        $actividades = $query->paginate($request->per_page);
+
+        return ActividadResource::collection($actividades);
     }
 
     public function indexInvitado()
@@ -52,6 +62,7 @@ class ActividadesController extends Controller
         $atributos = $this->validate($request, [
             'nombre' => 'required',
             'descripcion' => 'required',
+            'organizacion' => 'required',
             'inicio' => 'required',
             'fin' => 'required',
             'lugar' => ''
@@ -87,6 +98,7 @@ class ActividadesController extends Controller
         $atributos = request()->validate([
             'nombre' => 'required',
             'descripcion' => 'required',
+            'organizacion' => 'required',
             'inicio' => 'required',
             'fin' => 'required',
             'lugar' => ''

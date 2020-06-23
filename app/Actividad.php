@@ -14,7 +14,8 @@ class Actividad extends Model
 
     protected $fillable = [
     	'nombre', 
-    	'descripcion',
+        'descripcion',
+    	'organizacion',
         'inicio',
         'fin',
         'lugar'

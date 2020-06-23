@@ -16,7 +16,7 @@
         </thead>
         <tbody>
         <tr class="" v-if="tableData.length === 0">
-          <td class="lead text-center" :colspan="columns.length + 1">No data found.</td>
+          <td class="lead text-center" :colspan="columns.length + 1">No hay registros.</td>
         </tr>
         <tr v-for="(data, key1) in tableData" :key="data.id" v-on:click="clickList(data.id)" class="m-datatable__row clickable-row" v-else>
           <td v-for="(value, key) in data">{{ value }}</td>

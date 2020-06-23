@@ -97,7 +97,7 @@ class UsuariosController extends Controller
         return redirect('/admin/usuarios');
     }
 
-    public function indexdos(Request $request)
+    public function indexJson(Request $request)
     {
         $query = Usuario::orderBy($request->column, $request->order);
         $usuarios = $query->paginate($request->per_page);

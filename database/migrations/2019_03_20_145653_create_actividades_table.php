@@ -21,6 +21,9 @@ class CreateActividadesTable extends Migration
             $table->string('nombre', 255);
             $table->text('descripcion')->nullable();
 
+            $table->text('organizacion')->nullable();
+
+
             //fechas
             $table->dateTime('inicio');
             $table->dateTime('fin');

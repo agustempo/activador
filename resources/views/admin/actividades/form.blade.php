@@ -8,6 +8,14 @@
 			</div>
 		</div>
 		<div class="field">
+			<label class="label">{{ __(('admin.organizacion')) }}</label>
+	  		<div class="control">
+				<textarea 
+					class="textarea {{ $errors->has('organizacion') ? 'is-danger' : '' }}" 
+					name="organizacion" {{ ($deshabilitado)?"disabled":"" }}>{{ ($actividad->organizacion)?$actividad->organizacion:old('organizacion')}}</textarea>
+			</div>
+		</div>
+		<div class="field">
 			<label class="label">{{ __(('admin.descripcion')) }}</label>
 	  		<div class="control">
 				<textarea 

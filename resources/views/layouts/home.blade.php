@@ -48,6 +48,19 @@
                   </a>
                 </div>
             </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  {{ __('admin.actividades') }}
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="/admin/actividades">
+                    {{ __('admin.administrar_actividad') }}
+                  </a>
+                  <a class="navbar-item" href="/admin/actividades/create">
+                    {{ __('admin.nueva') }}
+                  </a>
+                </div>
+            </div>
 
             
             @show
@@ -120,6 +133,8 @@
 
     <div class="container" style="flex-grow: 1;">
     @yield("content")
+
+    <script src="{{ asset('js/app.js') }}"></script>
     </div>
 
     <footer class="footer has-background-grey-lighter">
