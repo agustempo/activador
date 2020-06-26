@@ -16,6 +16,7 @@
 				fetch-url="{{ route('usuarios.table') }}"
 				:columns="['id', 'nombre', 'apellido', 'cohorte' , 'región', 'trayectoria']"
 				:view-url="'/admin/usuarios/'"
+				:filtro="true"
 			></data-table>
 		</div>
 	</div>

@@ -1,6 +1,11 @@
 <template>
   <div class="data-table">
     <div class="main-table">
+      <div v-if="filtro"> 
+        Buscar Por: 
+        <input type="input" v-model="parametros" ></input>
+        <button type="button" class="btn btn-success"  @click="fetchData()"> filtrar </button>
+      </div>
       <table class="table is-hoverable">
         <thead>
         <tr>
@@ -50,6 +55,7 @@ export default {
     fetchUrl: { type: String, required: true },
     columns: { type: Array, required: true },
     viewUrl: { type: String, required: true },
+    filtro: { type: Boolean, required: false },
   },
   data() {
     return {
@@ -62,7 +68,8 @@ export default {
       currentPage: 1,
       perPage: 50,
       sortedColumn: this.columns[0],
-      order: 'asc'
+      order: 'asc',
+      parametros: '',
     }
   },
   watch: {
@@ -107,7 +114,7 @@ export default {
   },
   methods: {
     fetchData() {
-      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}`
       axios.get(dataFetchUrl)
         .then(({ data }) => {
           this.pagination = data
