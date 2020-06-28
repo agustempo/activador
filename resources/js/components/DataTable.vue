@@ -2,9 +2,8 @@
   <div class="data-table">
     <div class="main-table">
       <div v-if="filtro"> 
-        Buscar Por: 
-        <input type="input" v-model="parametros" ></input>
-        <button type="button" class="btn btn-success"  @click="fetchData()"> filtrar </button>
+        <input class="input" type="input" v-model="parametros"  @change="fetchData()" placeholder="Filtrar"></input>
+        <br>
       </div>
       <table class="table is-hoverable">
         <thead>
@@ -32,16 +31,16 @@
     <nav v-if="pagination && tableData.length > 0">
       <ul class="pagination">
         <li class="page-item" :class="{'disabled' : currentPage === 1}">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Anterior</a>
+          <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)"><</a>
         </li>
         <li v-for="page in pagesNumber" class="page-item"
             :class="{'active': page == pagination.meta.current_page}">
           <a href="javascript:void(0)" @click.prevent="changePage(page)" class="page-link">{{ page }}</a>
         </li>
         <li class="page-item" :class="{'disabled': currentPage === pagination.meta.last_page }">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Siguiente</a>
+          <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">></a>
         </li>
-        <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }} registros.</i></span>
+        <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }}</i></span>
       </ul>
     </nav>
   </div>
