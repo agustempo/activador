@@ -100,6 +100,13 @@ class UsuariosController extends Controller
     public function indexJson(Request $request)
     {
         $query = Usuario::orderBy($request->column, $request->order);
+
+        if ($request->filtro) {
+            $palabras = explode(' ',$request->filtro);
+            foreach ($palabras as $palabra)
+                $query->whereRaw("concat(nombre, ' ', apellido, ' ', email, ' ', región, ' ', carrera, ' ', trayectoria) like '%". $palabra ."%' ");
+        }
+
         $usuarios = $query->paginate($request->per_page);
 
         return UsuarioResource::collection($usuarios);
