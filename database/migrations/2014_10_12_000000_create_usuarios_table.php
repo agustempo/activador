@@ -27,7 +27,7 @@ class CreateUsuariosTable extends Migration
             $table->string('trayectoria')->nullable();
             $table->text('reseña')->nullable();
             $table->timestamp('email_verified_at')->nullable();
-            $table->string('password');
+            $table->string('password')->nullable();
             $table->string('cv')->nullable();
             $table->rememberToken();
             $table->timestamps();
