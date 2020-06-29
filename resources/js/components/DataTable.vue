@@ -3,7 +3,7 @@
     <div class="main-table">
       <div v-if="filtro"> 
         <input class="input" type="input" v-model="parametros"  @change="fetchData()" placeholder="Filtrar"></input>
-        <br>
+        
       </div>
       <table class="table is-hoverable">
         <thead>
@@ -37,8 +37,8 @@
       <ul class="pagination-list">
         
         <li v-for="page in pagesNumber"
-            :class="{'active': page == pagination.meta.current_page}">
-          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="pagination-link">{{ page }}</a>
+            :class="{'is-current': page == pagination.meta.current_page}">
+          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="pagination-link {'is-current': page == pagination.meta.current_page}">{{ page }}</a>
         </li>
         
         <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }}</i></span>

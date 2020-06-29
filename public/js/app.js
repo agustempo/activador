@@ -2458,9 +2458,7 @@ var render = function() {
                   _vm.parametros = $event.target.value
                 }
               }
-            }),
-            _vm._v(" "),
-            _c("br")
+            })
           ])
         : _vm._e(),
       _vm._v(" "),
@@ -2585,14 +2583,15 @@ var render = function() {
                     "li",
                     {
                       class: {
-                        active: page == _vm.pagination.meta.current_page
+                        "is-current": page == _vm.pagination.meta.current_page
                       }
                     },
                     [
                       _c(
                         "a",
                         {
-                          staticClass: "pagination-link",
+                          staticClass:
+                            "pagination-link {'is-current': page == pagination.meta.current_page}",
                           attrs: { href: "javascript:void(0)" },
                           on: {
                             click: function($event) {

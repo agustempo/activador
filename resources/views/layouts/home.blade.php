@@ -19,7 +19,7 @@
             <div class="image is-48x48"  >
               <img style="min-height: 48px" src="/images/logo_nav.png">
             </div>
-            <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
+            <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" ></span>
           </a>
 
           <a role="button" class="navbar-burger burger" style="height: initial" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
