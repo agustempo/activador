@@ -1,7 +1,7 @@
 @extends("layouts.home")
 
 @section('title')
-Nueva actividad
+{{ __(('admin.nueva')) }} {{ __(('admin.actividad')) }}
 @endsection('title')
 	
 @section("content")

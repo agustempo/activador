@@ -29,7 +29,7 @@ return [
     'actividades_mias' => 'Mías',
     'actividades_invitado' => 'Compartidas conmigo',
     'actividades_todas' => 'Todas',
-
+    'titulo_app' => 'Soy Alumni - ExA',
     //Menú actividad
     'general' => 'General',
     'inscripciones' => 'Inscriptos',

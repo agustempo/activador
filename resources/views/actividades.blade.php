@@ -1,5 +1,9 @@
 @extends ('layouts.home')
 
+@section('title')
+{{ __('admin.titulo_app') }}
+@endsection('title')
+
 @section('content')
 <section class="hero is-light" style="height: 212px">
     <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">

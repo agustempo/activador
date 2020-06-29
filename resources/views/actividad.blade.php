@@ -1,5 +1,7 @@
 @extends ('layouts.home')
-
+@section('title')
+ {{ $actividad->nombre }} - {{__('admin.titulo_app') }}
+@endsection('title')
 @section('content')
 <section class="hero is-light" style="height: 212px">
     <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">
@@ -16,7 +18,7 @@
             <div class="notification is-success">{{__('frontend.'.session('mensaje'))}}</div>
             @endif
                 
-            <!-- <h1 class="title" >{{ $actividad->nombre }}</h1> -->
+            <h1 class="title" >{{ $actividad->nombre }}</h1>
 
         </div>
 
