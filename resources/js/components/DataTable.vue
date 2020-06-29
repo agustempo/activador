@@ -28,21 +28,23 @@
         </tbody>
       </table>
     </div>
-    <nav v-if="pagination && tableData.length > 0">
-      <ul class="pagination">
-        <li class="page-item" :class="{'disabled' : currentPage === 1}">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)"><</a>
-        </li>
-        <li v-for="page in pagesNumber" class="page-item"
+    <nav v-if="pagination && tableData.length > 0" class="pagination is-right" role="navigation" aria-label="pagination">
+
+      <a class="pagination-previous" href="#" @click.prevent="changePage(currentPage - 1)"><</a>
+      <a class="pagination-next" href="#" @click.prevent="changePage(currentPage + 1)">></a>
+
+
+      <ul class="pagination-list">
+        
+        <li v-for="page in pagesNumber"
             :class="{'active': page == pagination.meta.current_page}">
-          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="page-link">{{ page }}</a>
+          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="pagination-link">{{ page }}</a>
         </li>
-        <li class="page-item" :class="{'disabled': currentPage === pagination.meta.last_page }">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">></a>
-        </li>
+        
         <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }}</i></span>
       </ul>
     </nav>
+
   </div>
 </template>
 

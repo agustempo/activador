@@ -3,7 +3,7 @@
 @section('content')
 <section class="hero is-light" style="height: 212px">
     <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">
-        <h1 class="title" >¡Sumate!</h1>
+        <h1 class="title" >{{__('frontend.titulo_visor_actividades')}}</h1>
     </div>
 </section>
 
@@ -37,21 +37,7 @@
                     <div class="image is-96x96" style="margin: .75rem 0 .75rem 0">
                         <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
                     </div>
-                    <p class="is-6">{{ $actividad->creador->nombre }}</p>
-                </div>
-
-                <div class="" style="display: flex; flex-direction: column; width: fit-content;align-items: center;  margin-right: 1rem">
-                    <div class="image is-96x96" style="margin: .75rem 0 .75rem 0">
-                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                    </div>
-                    <p class="is-6">{{ $actividad->creador->nombre }}</p>
-                </div>
-
-                <div class="" style="display: flex; flex-direction: column; width: fit-content;align-items: center;  margin-right: 1rem">
-                    <div class="image is-96x96" style="margin: .75rem 0 .75rem 0">
-                        <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                    </div>
-                    <p class="is-6">{{ $actividad->creador->nombre }}</p>
+                    <p class="is-6">{{ $actividad->organizacion }}</p>
                 </div>
 
             </div>
@@ -73,7 +59,7 @@
         </div>        
 
         <div class="column is-10 is-offset-1">
-            <div><span class="tag is-info" >#Tipo</span> <span class="tag is-warning" >#TipoMásLargo</span></div>
+            <div><span class="tag is-info" >#Pasantia</span><!--  <span class="tag is-warning" >#TipoMásLargo</span> --></div>
         </div>
 
         <div class="column" style="border-top: solid 1px #cecece; margin: 1rem 0; position: sticky; bottom: 0; background-color: white">

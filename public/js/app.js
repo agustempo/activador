@@ -1769,6 +1769,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -2537,102 +2539,90 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.pagination && _vm.tableData.length > 0
-      ? _c("nav", [
-          _c(
-            "ul",
-            { staticClass: "pagination" },
-            [
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: { disabled: _vm.currentPage === 1 }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.changePage(_vm.currentPage - 1)
-                        }
-                      }
-                    },
-                    [_vm._v("<")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.pagesNumber, function(page) {
-                return _c(
-                  "li",
-                  {
-                    staticClass: "page-item",
-                    class: { active: page == _vm.pagination.meta.current_page }
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        attrs: { href: "javascript:void(0)" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.changePage(page)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(page))]
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: {
-                    disabled: _vm.currentPage === _vm.pagination.meta.last_page
+      ? _c(
+          "nav",
+          {
+            staticClass: "pagination is-right",
+            attrs: { role: "navigation", "aria-label": "pagination" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "pagination-previous",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.changePage(_vm.currentPage - 1)
                   }
-                },
-                [
-                  _c(
-                    "a",
+                }
+              },
+              [_vm._v("<")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "pagination-next",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.changePage(_vm.currentPage + 1)
+                  }
+                }
+              },
+              [_vm._v(">")]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "pagination-list" },
+              [
+                _vm._l(_vm.pagesNumber, function(page) {
+                  return _c(
+                    "li",
                     {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.changePage(_vm.currentPage + 1)
-                        }
+                      class: {
+                        active: page == _vm.pagination.meta.current_page
                       }
                     },
-                    [_vm._v(">")]
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "pagination-link",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.changePage(page)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(page))]
+                      )
+                    ]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { staticStyle: { "margin-top": "8px" } }, [
-                _vm._v("   "),
-                _c("i", [
-                  _vm._v(
-                    "Mostrando " +
-                      _vm._s(_vm.pagination.data.length) +
-                      " de " +
-                      _vm._s(_vm.pagination.meta.total)
-                  )
+                }),
+                _vm._v(" "),
+                _c("span", { staticStyle: { "margin-top": "8px" } }, [
+                  _vm._v("   "),
+                  _c("i", [
+                    _vm._v(
+                      "Mostrando " +
+                        _vm._s(_vm.pagination.data.length) +
+                        " de " +
+                        _vm._s(_vm.pagination.meta.total)
+                    )
+                  ])
                 ])
-              ])
-            ],
-            2
-          )
-        ])
+              ],
+              2
+            )
+          ]
+        )
       : _vm._e()
   ])
 }

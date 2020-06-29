@@ -21,12 +21,12 @@ class UsuarioResource extends JsonResource
     public function toArray($request)
     {
         return [
-            'id' => $this->id,
             'nombre'       => $this->nombre,
             'apellido'      => $this->apellido,
             'cohorte'    => $this->cohorte,
             'región' => $this->región,
             'trayectoria'    => $this->trayectoria,
+            'carrera'    => $this->carrera,
         ];
     }
 }

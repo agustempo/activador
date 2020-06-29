@@ -17,7 +17,7 @@
 
           <a class="navbar-item" href="/">
             <div class="image is-48x48"  >
-              <img style="min-height: 48px" src="https://bulma.io/images/placeholders/256x256.png">
+              <img style="min-height: 48px" src="/images/logo_nav.png">
             </div>
             <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
           </a>
