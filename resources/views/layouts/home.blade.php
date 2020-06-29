@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield("title")</title>
+    <link rel="shortcut icon" type="image/ico" href="/images/fav.png" />
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
