@@ -16,7 +16,7 @@
 		<div class="flex-center position-ref full-height" id="app">
 			<data-table
 				fetch-url="{{ route('usuarios.table') }}"
-				:columns="['nombre', 'apellido', 'cohorte' , 'región', 'trayectoria', 'carrera']"
+				:columns="['id', 'nombre', 'apellido', 'cohorte' , 'región', 'trayectoria', 'carrera']"
 				:view-url="'/admin/usuarios/'"
 				:filtro="true"
 			></data-table>
