@@ -69,7 +69,7 @@
           </div>
 
           <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable" dusk="selector-idioma" >
+         <!--    <div class="navbar-item has-dropdown is-hoverable" dusk="selector-idioma" >
               <a class="navbar-link is-arrowless" href="/idioma/es_AR">{{ config('app.locale') }}</a>
               <div class="navbar-dropdown">
               @foreach (config('app.locales') as $locale)
@@ -77,14 +77,14 @@
               @endforeach 
               </div>
             </div>
-            @auth
+       -->      @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                   <div style="display: flex; align-items: center">
                     <div style="padding-right: .75em">
-                      <div class="image is-48x48">
+                    <!--   <div class="image is-48x48">
                         <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
-                      </div>
+                      </div> -->
                     </div>
                     <div class="">
                       <div class="activador_media-content-usuario has-text-weight-semibold">
@@ -135,8 +135,11 @@
     @yield("content")
 
     <script src="{{ asset('js/app.js') }}"></script>
+
     </div>
 
+    @yield('extra_js')
+    
     <footer class="footer has-background-grey-lighter">
       <div class="has-text-centered">
         <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org"> Enseña por Argentina</a></p>

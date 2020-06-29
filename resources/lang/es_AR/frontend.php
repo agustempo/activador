@@ -2,7 +2,7 @@
 
 return [
 	//iniciar sesión
-    'te_inscribiste' => '¡Te inscribiste a la actividad!',
+    'te_inscribiste' => '¡Te postulaste!',
     'ingresar' => 'INGRESAR',
     'login' => 'Ingresar',
     'logout' => 'Cerrar Sesión',

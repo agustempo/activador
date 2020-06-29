@@ -34,9 +34,9 @@
             <div style="display: flex; align-items: baseline; flex-wrap: wrap;">
 
                 <div class="" style="display: flex; flex-direction: column; width: fit-content;align-items: center; margin-right: 1rem">
-                    <div class="image is-96x96" style="margin: .75rem 0 .75rem 0">
+                   <!--  <div class="image is-96x96" style="margin: .75rem 0 .75rem 0">
                         <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
-                    </div>
+                    </div> -->
                     <p class="is-6">{{ $actividad->organizacion }}</p>
                 </div>
 
@@ -66,7 +66,7 @@
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">
                 <div style="margin: 1rem 0;"><h3 class="title is-5">{{ $actividad->nombre }}</h3></div>
                 <div class="buttons is-right">
-                    <a class="button is-primary is-inverted "><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
+                    <a class="button is-primary is-inverted " onclick="copiarUrl()"><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
                         <a class="button is-link is-outlined ">{{ __('frontend.inscripto') }}</a>
                     @else
@@ -96,3 +96,22 @@
     </div>
 </div>
 @endsection('content')
+
+@section('extra_js')
+<script type="text/javascript">
+
+function copiarUrl() {
+  /* Get the text field */
+  var copyText = window.location.href;
+
+
+  /* Copy the text inside the text field */
+  document.execCommand("copy");
+
+  /* Alert the copied text */
+  alert("Se copió la url de la postulación, gracias por compartir!");
+}
+
+</script>
+
+@endsection('extra_js')
