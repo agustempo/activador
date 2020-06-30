@@ -8,6 +8,15 @@
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTN99P6CZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5VTN99P6CZ');
+    </script>
   </head>
   <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
