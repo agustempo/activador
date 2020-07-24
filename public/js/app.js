@@ -1765,6 +1765,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1779,6 +1785,10 @@ __webpack_require__.r(__webpack_exports__);
     viewUrl: {
       type: String,
       required: true
+    },
+    filtro: {
+      type: Boolean,
+      required: false
     }
   },
   data: function data() {
@@ -1795,7 +1805,8 @@ __webpack_require__.r(__webpack_exports__);
       currentPage: 1,
       perPage: 50,
       sortedColumn: this.columns[0],
-      order: 'asc'
+      order: 'asc',
+      parametros: ''
     };
   },
   watch: {
@@ -1850,7 +1861,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      var dataFetchUrl = "".concat(this.url, "?page=").concat(this.currentPage, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage);
+      var dataFetchUrl = "".concat(this.url, "?page=").concat(this.currentPage, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage, "&filtro=").concat(this.parametros);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(dataFetchUrl).then(function (_ref) {
         var data = _ref.data;
         _this.pagination = data;
@@ -2422,6 +2433,35 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", { staticClass: "data-table" }, [
     _c("div", { staticClass: "main-table" }, [
+      _vm.filtro
+        ? _c("div", [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.parametros,
+                  expression: "parametros"
+                }
+              ],
+              staticClass: "input",
+              attrs: { type: "input", placeholder: "Filtrar" },
+              domProps: { value: _vm.parametros },
+              on: {
+                change: function($event) {
+                  return _vm.fetchData()
+                },
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.parametros = $event.target.value
+                }
+              }
+            })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("table", { staticClass: "table is-hoverable" }, [
         _c("thead", [
           _c(
@@ -2469,7 +2509,7 @@ var render = function() {
                       staticClass: "lead text-center",
                       attrs: { colspan: _vm.columns.length + 1 }
                     },
-                    [_vm._v("No data found.")]
+                    [_vm._v("No hay registros.")]
                   )
                 ])
               : _vm._l(_vm.tableData, function(data, key1) {
@@ -2497,103 +2537,91 @@ var render = function() {
     ]),
     _vm._v(" "),
     _vm.pagination && _vm.tableData.length > 0
-      ? _c("nav", [
-          _c(
-            "ul",
-            { staticClass: "pagination" },
-            [
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: { disabled: _vm.currentPage === 1 }
-                },
-                [
-                  _c(
-                    "a",
-                    {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.changePage(_vm.currentPage - 1)
-                        }
-                      }
-                    },
-                    [_vm._v("Anterior")]
-                  )
-                ]
-              ),
-              _vm._v(" "),
-              _vm._l(_vm.pagesNumber, function(page) {
-                return _c(
-                  "li",
-                  {
-                    staticClass: "page-item",
-                    class: { active: page == _vm.pagination.meta.current_page }
-                  },
-                  [
-                    _c(
-                      "a",
-                      {
-                        staticClass: "page-link",
-                        attrs: { href: "javascript:void(0)" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            return _vm.changePage(page)
-                          }
-                        }
-                      },
-                      [_vm._v(_vm._s(page))]
-                    )
-                  ]
-                )
-              }),
-              _vm._v(" "),
-              _c(
-                "li",
-                {
-                  staticClass: "page-item",
-                  class: {
-                    disabled: _vm.currentPage === _vm.pagination.meta.last_page
+      ? _c(
+          "nav",
+          {
+            staticClass: "pagination is-right",
+            attrs: { role: "navigation", "aria-label": "pagination" }
+          },
+          [
+            _c(
+              "a",
+              {
+                staticClass: "pagination-previous",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.changePage(_vm.currentPage - 1)
                   }
-                },
-                [
-                  _c(
-                    "a",
+                }
+              },
+              [_vm._v("<")]
+            ),
+            _vm._v(" "),
+            _c(
+              "a",
+              {
+                staticClass: "pagination-next",
+                attrs: { href: "#" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.changePage(_vm.currentPage + 1)
+                  }
+                }
+              },
+              [_vm._v(">")]
+            ),
+            _vm._v(" "),
+            _c(
+              "ul",
+              { staticClass: "pagination-list" },
+              [
+                _vm._l(_vm.pagesNumber, function(page) {
+                  return _c(
+                    "li",
                     {
-                      staticClass: "page-link",
-                      attrs: { href: "#" },
-                      on: {
-                        click: function($event) {
-                          $event.preventDefault()
-                          return _vm.changePage(_vm.currentPage + 1)
-                        }
+                      class: {
+                        "is-current": page == _vm.pagination.meta.current_page
                       }
                     },
-                    [_vm._v("Siguiente")]
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass:
+                            "pagination-link {'is-current': page == pagination.meta.current_page}",
+                          attrs: { href: "javascript:void(0)" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.changePage(page)
+                            }
+                          }
+                        },
+                        [_vm._v(_vm._s(page))]
+                      )
+                    ]
                   )
-                ]
-              ),
-              _vm._v(" "),
-              _c("span", { staticStyle: { "margin-top": "8px" } }, [
-                _vm._v("   "),
-                _c("i", [
-                  _vm._v(
-                    "Mostrando " +
-                      _vm._s(_vm.pagination.data.length) +
-                      " de " +
-                      _vm._s(_vm.pagination.meta.total) +
-                      " registros."
-                  )
+                }),
+                _vm._v(" "),
+                _c("span", { staticStyle: { "margin-top": "8px" } }, [
+                  _vm._v("   "),
+                  _c("i", [
+                    _vm._v(
+                      "Mostrando " +
+                        _vm._s(_vm.pagination.data.length) +
+                        " de " +
+                        _vm._s(_vm.pagination.meta.total)
+                    )
+                  ])
                 ])
-              ])
-            ],
-            2
-          )
-        ])
+              ],
+              2
+            )
+          ]
+        )
       : _vm._e()
   ])
 }

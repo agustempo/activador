@@ -4,9 +4,19 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>@yield("title")</title>
+    <link rel="shortcut icon" type="image/ico" href="/images/fav.png" />
     <link rel="stylesheet" href="/css/app.css">
     <link rel="stylesheet" href="/css/activador.css">
     <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5VTN99P6CZ"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-5VTN99P6CZ');
+    </script>
   </head>
   <body style="display: flex; flex-direction: column; min-height: 100vh;">
 
@@ -17,9 +27,9 @@
 
           <a class="navbar-item" href="/">
             <div class="image is-48x48"  >
-              <img style="min-height: 48px" src="https://bulma.io/images/placeholders/256x256.png">
+              <img style="min-height: 48px" src="/images/logo_nav.png">
             </div>
-            <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" >{{ env('APP_NAME') }}</span>
+            <span class="is-size-5 has-text-weight-semibold" style="padding-left: .75em" ></span>
           </a>
 
           <a role="button" class="navbar-burger burger" style="height: initial" aria-label="menu" aria-expanded="false" data-target="navbarBasicExample">
@@ -69,7 +79,7 @@
           </div>
 
           <div class="navbar-end">
-            <div class="navbar-item has-dropdown is-hoverable" dusk="selector-idioma" >
+         <!--    <div class="navbar-item has-dropdown is-hoverable" dusk="selector-idioma" >
               <a class="navbar-link is-arrowless" href="/idioma/es_AR">{{ config('app.locale') }}</a>
               <div class="navbar-dropdown">
               @foreach (config('app.locales') as $locale)
@@ -77,14 +87,14 @@
               @endforeach 
               </div>
             </div>
-            @auth
+       -->      @auth
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                   <div style="display: flex; align-items: center">
                     <div style="padding-right: .75em">
-                      <div class="image is-48x48">
+                    <!--   <div class="image is-48x48">
                         <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
-                      </div>
+                      </div> -->
                     </div>
                     <div class="">
                       <div class="activador_media-content-usuario has-text-weight-semibold">
@@ -135,8 +145,11 @@
     @yield("content")
 
     <script src="{{ asset('js/app.js') }}"></script>
+
     </div>
 
+    @yield('extra_js')
+    
     <footer class="footer has-background-grey-lighter">
       <div class="has-text-centered">
         <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org"> Enseña por Argentina</a></p>

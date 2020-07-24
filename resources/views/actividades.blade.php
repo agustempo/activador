@@ -1,9 +1,13 @@
 @extends ('layouts.home')
 
+@section('title')
+{{ __('admin.titulo_app') }}
+@endsection('title')
+
 @section('content')
 <section class="hero is-light" style="height: 212px">
     <div class="hero-body" style="display: flex; align-items: center; justify-content: center;">
-        <h1 class="title" >{{ __('frontend.explora_actividades') }}</h1>
+        <h1 class="title align-center" >{{ __('frontend.explora_actividades') }}</h1>
     </div>
 </section>
 
@@ -22,13 +26,14 @@
 
                 <div class="card-content">
                     <div class="content">
-                        <span class="tag is-info" >#Tipo</span>
-                        <div style="margin: .75rem 0">
+                        <!-- <span class="tag is-info" >#Tipo</span> -->
+                        <div>
                             <span class="icon">
-                                <i class="fas fa-calendar-minus" ></i><time datetime="2016-1-1"></time>
+                                <i class="fas fa-building" ></i>
                             </span>
-                            <span>{{ $actividad->cuando }}</span>
+                            <span>{{ $actividad->organizacion }}</span>
                         </div>
+                        
                         <div>
                             <span class="icon">
                                 <i class="fas fa-map-marker-alt" ></i>
@@ -36,6 +41,13 @@
                             <span>{{ $actividad->lugar }}</span>
                         </div>
 
+                        <div>
+                            <span class="icon">
+                                <i class="fas fa-calendar-minus" ></i><time datetime="2016-1-1"></time>
+                            </span>
+                            <span>{{ $actividad->cuando }}</span>
+                        </div>
+<!-- 
                         <div class="media" style="align-items: center; margin: .75rem 0;">
                           <div class="media-left">
                             <div class="image is-48x48">
@@ -45,9 +57,9 @@
                           <div class="media-content">
                             <p class="">{{ $actividad->creador->nombre }}</p>
                           </div>
-                        </div> 
+                        </div>  -->
 
-                        <p>{{ $actividad->resumen }}</p>
+                        <!-- <p>{{ $actividad->resumen }}</p> -->
                     </div>
                 </div>
 

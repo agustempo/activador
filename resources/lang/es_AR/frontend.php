@@ -2,13 +2,14 @@
 
 return [
 	//iniciar sesión
-    'te_inscribiste' => '¡Te inscribiste a la actividad!',
+    'te_inscribiste' => '¡Te postulaste!',
     'ingresar' => 'INGRESAR',
     'login' => 'Ingresar',
     'logout' => 'Cerrar Sesión',
 
     //navegación principal
-    'explora_actividades' => 'Sistema Alumni',
+    'explora_actividades' => 'Pasantías Abiertas',
+    'titulo_visor_actividades' => 'Mira los detalles. Postulá!',
     
     //navegación de usuario
     'perfil' => 'Mi perfil',
@@ -19,10 +20,9 @@ return [
     'no_hay_invitaciones' => 'Todavía no hay invitados',
 
     //inscribirse
-    'inscribirme' => 'In
-    scribirme',
-    'desinscribirme' => 'Desinscribirme',
-    'inscripto' => '¡Estás inscripto!',
+    'inscribirme' => 'Postular',
+    'desinscribirme' => 'Despostular',
+    'inscripto' => '¡Ya Postulaste!',
     'descripcion' => 'Descripción',
 
     //utilitarios

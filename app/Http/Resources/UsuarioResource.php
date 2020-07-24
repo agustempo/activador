@@ -27,6 +27,7 @@ class UsuarioResource extends JsonResource
             'cohorte'    => $this->cohorte,
             'región' => $this->región,
             'trayectoria'    => $this->trayectoria,
+            'carrera'    => $this->carrera,
         ];
     }
 }

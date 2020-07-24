@@ -1,6 +1,10 @@
 <template>
   <div class="data-table">
     <div class="main-table">
+      <div v-if="filtro"> 
+        <input class="input" type="input" v-model="parametros"  @change="fetchData()" placeholder="Filtrar"></input>
+        
+      </div>
       <table class="table is-hoverable">
         <thead>
         <tr>
@@ -24,21 +28,23 @@
         </tbody>
       </table>
     </div>
-    <nav v-if="pagination && tableData.length > 0">
-      <ul class="pagination">
-        <li class="page-item" :class="{'disabled' : currentPage === 1}">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage - 1)">Anterior</a>
+    <nav v-if="pagination && tableData.length > 0" class="pagination is-right" role="navigation" aria-label="pagination">
+
+      <a class="pagination-previous" href="#" @click.prevent="changePage(currentPage - 1)"><</a>
+      <a class="pagination-next" href="#" @click.prevent="changePage(currentPage + 1)">></a>
+
+
+      <ul class="pagination-list">
+        
+        <li v-for="page in pagesNumber"
+            :class="{'is-current': page == pagination.meta.current_page}">
+          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="pagination-link {'is-current': page == pagination.meta.current_page}">{{ page }}</a>
         </li>
-        <li v-for="page in pagesNumber" class="page-item"
-            :class="{'active': page == pagination.meta.current_page}">
-          <a href="javascript:void(0)" @click.prevent="changePage(page)" class="page-link">{{ page }}</a>
-        </li>
-        <li class="page-item" :class="{'disabled': currentPage === pagination.meta.last_page }">
-          <a class="page-link" href="#" @click.prevent="changePage(currentPage + 1)">Siguiente</a>
-        </li>
-        <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }} registros.</i></span>
+        
+        <span style="margin-top: 8px;"> &nbsp; <i>Mostrando {{ pagination.data.length }} de {{ pagination.meta.total }}</i></span>
       </ul>
     </nav>
+
   </div>
 </template>
 
@@ -50,6 +56,7 @@ export default {
     fetchUrl: { type: String, required: true },
     columns: { type: Array, required: true },
     viewUrl: { type: String, required: true },
+    filtro: { type: Boolean, required: false },
   },
   data() {
     return {
@@ -62,7 +69,8 @@ export default {
       currentPage: 1,
       perPage: 50,
       sortedColumn: this.columns[0],
-      order: 'asc'
+      order: 'asc',
+      parametros: '',
     }
   },
   watch: {
@@ -107,7 +115,7 @@ export default {
   },
   methods: {
     fetchData() {
-      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}`
+      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}`
       axios.get(dataFetchUrl)
         .then(({ data }) => {
           this.pagination = data

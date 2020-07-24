@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Actividad extends Model
 {
-    use GenerarAuditoria;
+    // use GenerarAuditoria;
 
     protected $table = 'actividades';
 

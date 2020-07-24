@@ -8,6 +8,7 @@ $factory->define(App\Actividad::class, function (Faker $faker) {
     return [
         'nombre' => $faker->name,
         'descripcion' => $faker->paragraph,
+        'organizacion' => $faker->paragraph,
         'lugar' => $faker->address,
         'inicio' => $faker->dateTime,
         'fin' => $faker->dateTime,

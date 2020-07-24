@@ -16,10 +16,10 @@ return [
     'detalle_de' => 'Detalle de ',
 
     //actividades
-    'actividad' => 'Postulación',
+    'actividad' => 'Pasantía',
     'administrar_actividad' => 'Ver Todas',
 
-    'actividades' => 'Postulaciones',
+    'actividades' => 'Pasantías',
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
     'seleccionar_usuario' => 'Seleccionar usuario',
@@ -29,7 +29,7 @@ return [
     'actividades_mias' => 'Mías',
     'actividades_invitado' => 'Compartidas conmigo',
     'actividades_todas' => 'Todas',
-
+    'titulo_app' => 'Soy Alumni - ExA',
     //Menú actividad
     'general' => 'General',
     'inscripciones' => 'Inscriptos',
@@ -53,11 +53,11 @@ return [
     'mensaje_inscripciones' => 'Mensaje inscripciones',
 
     //auditorías
-    'creo_actividad' => 'creó la postulación',
-    'edito_actividad' => 'editó la postulación',
+    'creo_actividad' => 'creó la Pasantía',
+    'edito_actividad' => 'editó la Pasantía',
     'creo_inscripcion' => 'inscribió a',
-    'edito_inscripcion' => 'editó la postulación de ',
-    'elimino_inscripcion' => 'desinscribió a',
+    'edito_inscripcion' => 'editó la Pasantía de ',
+    'elimino_inscripcion' => 'despostuló a',
     'se_inscribio' => 'se postuló',
 
     //Usuarios

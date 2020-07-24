@@ -22,7 +22,7 @@
 			<data-table
 				fetch-url="{{ route('actividades.table') }}"
 				:columns="['id', 'nombre', 'organizacion' , 'fin', 'lugar']"
-				:view-url="'actividades/'"
+				:view-url="'/admin/actividades/'"
 			></data-table>
 		</div>
 
