@@ -113,10 +113,10 @@
                   @auth
                  <!--  <a class="navbar-item" href="/notificaciones" >
                       {{ __(('frontend.mis_notificaciones')) }}
-                  </a>
+                  </a>-->
                   <a class="navbar-item" href="/inscripciones" >
                       {{ __(('frontend.mis_inscripciones')) }}
-                  </a> -->
+                  </a> 
                   <a class="navbar-item" href="/admin/usuarios/{{ auth()->user()->id }}" >
                       {{ __(('frontend.perfil')) }}
                   </a>
