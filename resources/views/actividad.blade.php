@@ -70,7 +70,7 @@
                 <div class="buttons is-right">
                     <a class="button is-primary is-inverted " onclick="copiarUrl()"><i class="fas fa-share-alt" ></i> {{ __('frontend.compartir') }}</a>
                     @if (Auth::check() && $actividad->esta_inscripto(auth()->user()))
-                        <a class="button is-link is-outlined ">{{ __('frontend.inscripto') }}</a>
+                        <a href="/inscripciones" class="button is-link is-outlined ">{{ __('frontend.inscripto') }}</a>
                     @else
                         <form id="form-inscribirme" method="POST" action="/actividades/{{ $actividad->id }}/inscripciones" style="display: hidden;">
                         {{ csrf_field() }}

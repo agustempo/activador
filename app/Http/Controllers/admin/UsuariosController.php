@@ -14,7 +14,32 @@ use App\Http\Resources\UsuarioResource;
 
 class UsuariosController extends Controller
 {
+    private function arrayAtributos(){
+        return [
+                'nombre' => 'required',
+                'apellido' => 'required',
+                'telefono' => 'nullable',
+                'email' => 'required',
+                'cohorte' => 'required',
+                'región' => 'required',
+                'carrera' => 'nullable',
+                'lugar_trabajo' => 'nullable',
+                'rol_trabajo' => 'nullable',
+                'trayectoria' => 'required',
+                'provincia' => 'nullable',
+                'pais' => 'nullable',
+                'universidad' => 'nullable',
+                'intereses' => 'nullable',
+                'programa' => 'nullable',
+                'facebook' => 'nullable',
+                'instagram' => 'nullable',
+                'twitter' => 'nullable',
+                'linkedin' => 'nullable',
+        ];
 
+
+        // $atributos['password'] = Hash::make($request->password);
+    }
 
     public function index()
     {
@@ -33,26 +58,13 @@ class UsuariosController extends Controller
     public function store(Request $request)
     {
 
-        $atributos = $this->validate($request, [
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'telefono' => 'nullable',
-            'email' => 'required',
-            'cohorte' => 'required',
-            'región' => 'required',
-            'carrera' => 'nullable',
-            'lugar_trabajo' => 'nullable',
-            'rol_trabajo' => 'nullable',
-            'trayectoria' => 'required',
-            'reseña' => 'nullable',
-        ]);
+        $atributos = $this->validate($request, $this->arrayAtributos());
 
-
-        // $atributos['password'] = Hash::make($request->password);
         usuario::create($atributos);
 
         return redirect('/admin/usuarios');
     }
+
 
     public function show(usuario $usuario)
     {
@@ -67,19 +79,9 @@ class UsuariosController extends Controller
     public function update(usuario $usuario)
     {
 
-        $atributos = request()->validate([
-            'nombre' => 'required',
-            'apellido' => 'required',
-            'telefono' => 'nullable',
-            'email' => 'required',
-            'cohorte' => 'required',
-            'región' => 'required',
-            'carrera' => 'nullable',
-            'lugar_trabajo' => 'nullable',
-            'rol_trabajo' => 'nullable',
-            'trayectoria' => 'required',
-            'reseña' => 'nullable',
-        ]);
+        $atributos = request()->validate(
+            $this->arrayAtributos()
+            );
 
         //si fechas en formato datetime-local
         // $atributos['password'] = Hash::make($atributos['password']);

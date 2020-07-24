@@ -1,6 +1,6 @@
 
 		{{ csrf_field() }}
-
+		<h2 class="title is-2">Mi Perfil</h2>
 		<div class="field">
 			<label class="label">{{ __(('admin.nombre')) }}</label>
 	  		<div class="control">
@@ -40,6 +40,83 @@
 			</div>
 		</div>
 
+		<div class="field">
+			<label class="label">{{ __(('admin.provincia')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('provincia') ? 'is-danger' : '' }}" 
+					name="provincia" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->provincia)?$usuario->provincia:old('provincia')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.pais')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('pais') ? 'is-danger' : '' }}" 
+					name="pais" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->pais)?$usuario->pais:old('pais')}}"></input>
+			</div>
+		</div>
+
+	 	<div class="field">
+			<label class="label">{{ __(('admin.reseña')) }}</label>
+	  		<div class="control">
+				<quill :options="{ theme: 'snow' }" name="reseña" value="{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}">{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}></quill>
+			</div>
+		</div> 
+ 		
+
+		<h3 class="title is-3">Datos Profesionales</h3>
+
+		
+
+		<div class="field">
+			<label class="label">{{ __(('admin.carrera')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('carrera') ? 'is-danger' : '' }}" 
+					name="carrera" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->carrera)?$usuario->carrera:old('carrera')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.universidad')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('universidad') ? 'is-danger' : '' }}" 
+					name="universidad" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->universidad)?$usuario->universidad:old('universidad')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.lugar_trabajo')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('lugar_trabajo') ? 'is-danger' : '' }}" 
+					name="lugar_trabajo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->lugar_trabajo)?$usuario->lugar_trabajo:old('lugar_trabajo')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.rol_trabajo')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('rol_trabajo') ? 'is-danger' : '' }}" 
+					name="rol_trabajo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->rol_trabajo)?$usuario->rol_trabajo:old('rol_trabajo')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.intereses')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('intereses') ? 'is-danger' : '' }}" 
+					name="intereses" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->intereses)?$usuario->intereses:old('intereses')}}"></input>
+			</div>
+		</div>
+
+
+		<h3 class="title is-3">Trayectoria</h3>
 
 		<div class="field">
 			<label class="label">{{ __(('admin.cohorte')) }}</label>
@@ -63,30 +140,14 @@
 			</div>
 		</div>
 
-		<div class="field">
-			<label class="label">{{ __(('admin.carrera')) }}</label>
-	  		<div class="control">
-				<input 
-					class="input {{ $errors->has('carrera') ? 'is-danger' : '' }}" 
-					name="carrera" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->carrera)?$usuario->carrera:old('carrera')}}"></input>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('admin.lugar_trabajo')) }}</label>
-	  		<div class="control">
-				<input 
-					class="input {{ $errors->has('lugar_trabajo') ? 'is-danger' : '' }}" 
-					name="lugar_trabajo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->lugar_trabajo)?$usuario->lugar_trabajo:old('lugar_trabajo')}}"></input>
-			</div>
-		</div>
-
-		<div class="field">
-			<label class="label">{{ __(('admin.rol_trabajo')) }}</label>
-	  		<div class="control">
-				<input 
-					class="input {{ $errors->has('rol_trabajo') ? 'is-danger' : '' }}" 
-					name="rol_trabajo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->rol_trabajo)?$usuario->rol_trabajo:old('rol_trabajo')}}"></input>
+			<div class="field">
+			<label class="label">{{ __(('admin.programa')) }}</label>
+	  		<div class="select is-fullwidth">
+				<select name="programa" {{ ($deshabilitado)?"disabled":"" }}>
+  					<option value="AMBA" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "AMBA" ? 'selected' : '' }}>AMBA</option> 
+  					<option value="Co-Docencia" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Co-Docencia" ? 'selected' : '' }}>Co-Docencia</option> 
+  					<option value="Jornada Extendida" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Jornada Extendida" ? 'selected' : '' }}>Jornada Extendida</option> 
+				</select>
 			</div>
 		</div>
 
@@ -103,15 +164,46 @@
 			</div>
 		</div>
 
+
+		<h3 class="title is-3">Redes Sociales</h3>
+
 		<div class="field">
-			<label class="label">{{ __(('admin.reseña')) }}</label>
+			<label class="label">{{ __(('admin.facebook')) }}</label>
 	  		<div class="control">
-				<textarea 
-					class="textarea {{ $errors->has('reseña') ? 'is-danger' : '' }}" 
-					name="reseña" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}">{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}
-				</textarea>
+				<input 
+					class="input {{ $errors->has('facebook') ? 'is-danger' : '' }}" 
+					name="facebook" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->facebook)?$usuario->facebook:old('facebook')}}"></input>
 			</div>
 		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.instagram')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('instagram') ? 'is-danger' : '' }}" 
+					name="instagram" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->instagram)?$usuario->instagram:old('instagram')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.twitter')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('twitter') ? 'is-danger' : '' }}" 
+					name="twitter" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->twitter)?$usuario->twitter:old('twitter')}}"></input>
+			</div>
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.linkedin')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('linkedin') ? 'is-danger' : '' }}" 
+					name="linkedin" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->linkedin)?$usuario->linkedin:old('linkedin')}}"></input>
+			</div>
+		</div>
+
+		
 
 		@if($errors->any())
 		<div class="notification is-danger">
@@ -122,3 +214,4 @@
 			</ul>
 		</div>
 		@endif
+

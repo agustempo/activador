@@ -20,7 +20,9 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     protected $fillable = [
         'nombre', 'apellido', 'email', 'telefono', 'cohorte',
         'región', 'carrera', 'lugar_trabajo', 'rol_trabajo',
-        'trayectoria', 'reseña', 'cv'
+        'trayectoria', 'reseña', 'cv', 
+        'provincia', 'pais', 'universidad','intereses',
+        'programa', 'facebook', 'instagram','twitter','linkedin'
     ];
 
     /**
