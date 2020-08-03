@@ -19,7 +19,7 @@
 
 		<br/>
 
-		<div class="field is-grouped" >
+		<div class="field is-grouped" id="app">
 			<p class="control">
 				<a class="button" href="/admin/usuarios/" > {{ __(('admin.atras')) }}</a>
 			</p>

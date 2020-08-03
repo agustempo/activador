@@ -84,7 +84,7 @@
 	  		<div class="control">
 				<textarea 
 					class="textarea {{ $errors->has('reseña') ? 'is-danger' : '' }}" 
-					name="reseña" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}"></textarea>
+					name="reseña" {{ ($deshabilitado)?"disabled":"" }} >{{ ($usuario->reseña)?$usuario->reseña:old('reseña')}}</textarea>
 			</div>
 		</div>
 	 	
