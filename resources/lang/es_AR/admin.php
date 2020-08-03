@@ -80,6 +80,16 @@ return [
     'trayectoria' => 'Trayectoria',
     'reseña' => 'Perfil',
 
+    'provincia' => 'Provincia',
+    'pais' => 'País',
+    'universidad' => 'Universidad',
+    'intereses' => 'Intereses',
+    'programa' => 'Programa',
+    'facebook' => 'Facebook',
+    'instagram' => 'Instagram',
+    'twitter' => 'Twitter',
+    'linkedin' => 'Linkedin',
+
     
 
 

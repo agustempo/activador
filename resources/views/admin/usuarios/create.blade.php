@@ -6,10 +6,7 @@ Nuevo Usuario
 	
 @section("content")
 <div class="section">
-	
-	<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('admin.usuario')) }}</h1>
-	
-	<form method="POST" action="/admin/usuarios/" >
+	<form method="POST" action="/admin/usuarios/" id="app" >
 
 		@include("admin.usuarios.form", [ 'usuario' => new App\Usuario, 'textoBoton' => __(('admin.nueva')), 'deshabilitado' => false ])
 

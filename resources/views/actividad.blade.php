@@ -50,7 +50,7 @@
 
             <h3 class="title is-5"><i class="icon fas fa-bullhorn" ></i> De qué se trata</h3>
             <p class="content">
-                <p>{{ $actividad->descripcion }}</p>
+                <p>{!! $actividad->descripcion !!}</p>
             </p>
 
         </div>

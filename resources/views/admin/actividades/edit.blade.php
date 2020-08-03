@@ -3,7 +3,7 @@
 @section("contenido-actividad")
 
 
-	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" >
+	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" id="actividad" >
 		
 		{{ method_field('PATCH') }}
 
@@ -15,3 +15,16 @@
 	</form>
 
 @endsection("contenido-actividad")
+
+@section('extra_js')
+<script>
+
+	var form = document.querySelector('form#actividad');
+	form.onsubmit = function() {
+	  	// Populate hidden form on submit
+	  	var campo = document.querySelector('input[name=descripcion]');
+	  	campo.value = document.querySelector('.ql-editor').innerHTML;
+	}
+</script>
+
+@endsection('extra_js')

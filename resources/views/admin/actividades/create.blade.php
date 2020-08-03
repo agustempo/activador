@@ -13,7 +13,7 @@
 		
 			<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('admin.actividad')) }}</h1>
 			
-			<form method="POST" action="/admin/actividades/" >
+			<form method="POST" action="/admin/actividades/" id="actividad">
 
 				@include("admin.actividades.form", [ 'actividad' => new App\Actividad, 'textoBoton' => __(('admin.nueva')), 'deshabilitado' => false ])
 
@@ -27,3 +27,16 @@
 </div>
 
 @endsection("content")
+
+@section('extra_js')
+<script>
+
+	var form = document.querySelector('form#actividad');
+	form.onsubmit = function() {
+	  	// Populate hidden form on submit
+	  	var campo = document.querySelector('input[name=descripcion]');
+	  	campo.value = document.querySelector('.ql-editor').innerHTML;
+	}
+</script>
+
+@endsection('extra_js')

@@ -10,9 +10,9 @@
 
 <div class="section">
 
-	<div class="content">
+	<div class="content" id="app">
 
-		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" >
+		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" id='usuario'>
 			{{ method_field('PATCH') }}
 			@include("admin.usuarios.form", [ 'deshabilitado' => false ])
 			<input type="submit" class="button is-link" value="{{ __(('admin.guardar')) }}" ></input>
@@ -22,3 +22,4 @@
 </div>
 
 @endsection("content")
+
