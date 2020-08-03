@@ -20,7 +20,7 @@
 				@forelse ($usuario->inscripciones as $inscripto)
 					<tr>
 						<td>
-							<a href="/admin/actividades/{{$inscripto->actividad->id}}" >{{ $inscripto->actividad->nombre }}</a>
+							<a href="/actividades/{{$inscripto->actividad->id}}" >{{ $inscripto->actividad->nombre }}</a>
 						</td><td>
 									<span class="icon" >
 										<i class="fas {{  $inscripto->presente === 1 ? __(('fa-check-circle')):__(('fa-times-circle')) }}" ></i>
