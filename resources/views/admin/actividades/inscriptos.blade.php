@@ -40,7 +40,11 @@
 		<table class="table">
 			<tbody>
 				@forelse ($actividad->inscriptos as $inscripto)
-					<tr><td>{{ $inscripto->usuario->nombre }} {{ $inscripto->usuario->apellido }}</td>
+					<tr><td>
+							<a href="/admin/usuarios/{{ $inscripto->usuario->id}}">
+								{{ $inscripto->usuario->nombre }} {{ $inscripto->usuario->apellido }}
+							</a>
+						</td>
 						<td>
 						<div class="buttons is-right are-small">
 
@@ -55,7 +59,7 @@
 										</span>
 									</a>
 							</form>
-							
+							<!-- 
 							<form id="form-confirma-{{$inscripto->id}}" method="POST" action="{{ $inscripto->path_admin() }}" >
 								{{ method_field('PATCH') }}
 								{{ csrf_field() }}
@@ -67,7 +71,7 @@
 										</span>
 									</a>
 							</form>
-
+ -->
 							<form id="form-eliminar-{{$inscripto->id}}" method="POST" action="{{ $inscripto->path_admin() }}" >
 								{{ method_field('DELETE') }}
 								{{ csrf_field() }}

@@ -14,6 +14,9 @@ return [
     'nuevo' => 'Nuevo',
     'listado_de' => 'Listado de ',
     'detalle_de' => 'Detalle de ',
+    'detalle' => 'Detalle',
+
+
 
     //actividades
     'actividad' => 'Pasantía',
@@ -32,7 +35,7 @@ return [
     'titulo_app' => 'Soy Alumni - ExA',
     //Menú actividad
     'general' => 'General',
-    'inscripciones' => 'Inscriptos',
+    'inscripciones' => 'Inscripciones',
     'evaluaciones' => 'Evaluaciones',
     'invitaciones' => 'Accesos',
     'auditoria' => 'Auditoría',

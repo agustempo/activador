@@ -66,4 +66,8 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     {
         return '/admin/usuarios/' . $this->id;
     }
+    public function inscripciones()
+    {
+        return $this->hasMany(Inscripcion::class,'id_usuario');
+    }
 }

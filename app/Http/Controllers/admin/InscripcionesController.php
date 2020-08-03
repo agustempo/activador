@@ -21,6 +21,12 @@ class InscripcionesController extends Controller
         return view("admin.actividades.inscriptos", compact('actividad', 'usuarios'));
     }
 
+    public function inscripciones(Usuario $usuario)
+    {
+
+        return view("admin.usuarios.inscripciones", compact('usuario'));
+    }
+
     public function create()
     {
         //
