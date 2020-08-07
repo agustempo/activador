@@ -15,6 +15,8 @@ return [
     'perfil' => 'Mi perfil',
     'mis_inscripciones' => 'Mis inscripciones',
     'mis_notificaciones' => 'Mis notificaciones',
+    'mis_beneficios' => 'Mis beneficios',
+    'beneficios' => 'Beneficios',
     'no_hay_inscripciones' => 'Todavía no hay inscripciones',
     'no_hay_notificaciones' => 'Todavía no hay notificaciones',
     'no_hay_invitaciones' => 'Todavía no hay invitados',

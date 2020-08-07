@@ -45,4 +45,9 @@ class HomeController extends Controller
     {
         return view('notificaciones');
     }
+
+    public function beneficios()
+    {
+        return view('beneficios');
+    }
 }

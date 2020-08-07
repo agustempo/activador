@@ -64,12 +64,14 @@ return [
     'se_inscribio' => 'se postuló',
 
     //Usuarios
-    'usuarios' => 'Alumni',
+    'usuarios' => 'Movimiento ExA',
     'usuario' => 'Alumni',
     'administrar_usuarios' => 'Ver Todxs',
 
     //menu Usuario
     'CV' => 'CV',
+
+
 
     //formulario Usuarios
     'apellido' => 'Apellido',

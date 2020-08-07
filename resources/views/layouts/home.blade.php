@@ -71,6 +71,18 @@
                   </a>
                 </div>
             </div>
+            <div class="navbar-item has-dropdown is-hoverable">
+                <a class="navbar-link">
+                  {{ __('Más') }}
+                </a>
+                <div class="navbar-dropdown">
+                  <a class="navbar-item" href="/beneficios">
+                    {{ __('frontend.beneficios') }}
+                  </a>
+                  <a class="navbar-item" href="">
+                     Oportunidades Laborales                    </a>
+                </div>
+            </div>
 
             
             @show

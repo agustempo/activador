@@ -176,13 +176,15 @@
 					<label class="label">{{ __(('admin.cohorte')) }}</label>
 			  		<div class="select is-fullwidth">
 						<select class="{{ $errors->has('cohorte') ? 'is-danger' : '' }}" name="cohorte" {{ ($deshabilitado)?"disabled":"" }}>
-		  					<option value="2011" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == 2011 ? 'selected' : '' }}>2011</option> 
-		  					<option value="2012" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == 2012 ? 'selected' : '' }}>2012</option>
-		  					<option value="2013" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == 2013 ? 'selected' : '' }}>2013</option>
+							@for ($i = 2011; $i < 2021; $i++)
+								<option value="{{ $i }}" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == $i ? 'selected' : '' }}>{{ $i }}</option>
+							@endfor
 						</select>
 					</div>
 				</div>
 			</div>
+
+			
 
 			<div class="column">
 				<div class="field">
@@ -192,6 +194,18 @@
 		  					<option value="Buenos Aires" {{ (($usuario->región)?$usuario->región:old('región')) == "Buenos Aires" ? 'selected' : '' }}>Buenos Aires</option> 
 		  					<option value="Salta" {{ (($usuario->región)?$usuario->región:old('región')) == "Salta" ? 'selected' : '' }}>Salta</option> 
 		  					<option value="Córdoba" {{ (($usuario->región)?$usuario->región:old('región')) == "Córdoba" ? 'selected' : '' }}>Córdoba</option> 
+						</select>
+					</div>
+				</div>
+			</div>
+
+			<div class="column">
+				<div class="field">
+					<label class="label">{{ __(('admin.rol')) }}</label>
+			  		<div class="select is-fullwidth">
+						<select class="{{ $errors->has('rol') ? 'is-danger' : '' }}" name="rol" {{ ($deshabilitado)?"disabled":"" }}>
+		  					<option value="admin" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'admin' ? 'selected' : '' }}>admin</option> 
+		  					<option value="user" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'user' ? 'selected' : '' }}>user</option>
 						</select>
 					</div>
 				</div>

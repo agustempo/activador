@@ -34,6 +34,8 @@ Route::middleware('auth')->group(function (){
     //notificaciones
     Route::get('/notificaciones','HomeController@notificaciones');
 
+    Route::get('/beneficios','HomeController@beneficios');
+
     //evaluaciones
     Route::get('/evaluaciones','EvaluacionesController@index');
     Route::get('/actividades/{actividad}/evaluaciones','EvaluacionesController@show');
