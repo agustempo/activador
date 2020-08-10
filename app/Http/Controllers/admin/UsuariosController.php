@@ -36,23 +36,30 @@ class UsuariosController extends Controller
                 'instagram' => 'nullable',
                 'twitter' => 'nullable',
                 'linkedin' => 'nullable',
+                'rol' => 'required',
         ];
 
 
         // $atributos['password'] = Hash::make($request->password);
     }
 
-    public function index()
+    public function indexAlumni()
     {
+        return view('admin.usuarios.index', ['tipo' => 'alumni']);
+    }
 
-        $usuarios = usuario::all();
+    public function indexPexa()
+    {
+        return view('admin.usuarios.index', ['tipo' => 'pexa']);
+    }
 
-        return view('admin.usuarios.index', compact('usuarios'));
+    public function indexStaff()
+    {
+        return view('admin.usuarios.index', ['tipo' => 'staff']);
     }
 
     public function create()
     {
-        
         return view('admin.usuarios.create');
     }
 
@@ -61,9 +68,9 @@ class UsuariosController extends Controller
 
         $atributos = $this->validate($request, $this->arrayAtributos());
 
-        usuario::create($atributos);
+        $usuario = usuario::create($atributos);
 
-        return redirect('/admin/usuarios');
+        return redirect('/admin/usuarios/' . $usuario->id);
     }
 
 
@@ -109,6 +116,15 @@ class UsuariosController extends Controller
             foreach ($palabras as $palabra)
                 $query->whereRaw("concat(nombre, ' ', apellido, ' ', email, ' ', región, ' ', carrera, ' ', trayectoria) like '%". $palabra ."%' ");
         }
+
+        if ($request->tipo == 'alumni')
+            $query->whereRaw("cohorte < year(now())-2");
+        else if ($request->tipo == 'pexa')
+            $query->whereRaw("cohorte >= year(now())-2");
+        else if ($request->tipo == 'staff')
+            $query->where('rol','admin');
+
+
 
         $usuarios = $query->paginate($request->per_page);
 

@@ -71,7 +71,10 @@ return [
     //menu Usuario
     'CV' => 'CV',
 
-
+    //usuarios
+    'alumni' => 'Alumni',
+    'pexa' => 'Pexas',
+    'staff' => 'Staff',
 
     //formulario Usuarios
     'apellido' => 'Apellido',

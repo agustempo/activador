@@ -57,6 +57,7 @@ export default {
     columns: { type: Array, required: true },
     viewUrl: { type: String, required: true },
     filtro: { type: Boolean, required: false },
+    tipo: { type: String, required: false },
   },
   data() {
     return {
@@ -115,7 +116,7 @@ export default {
   },
   methods: {
     fetchData() {
-      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}`
+      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}&tipo=${this.$props.tipo}`
       axios.get(dataFetchUrl)
         .then(({ data }) => {
           this.pagination = data

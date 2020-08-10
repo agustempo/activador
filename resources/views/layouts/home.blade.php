@@ -50,11 +50,14 @@
                   {{ __('admin.usuarios') }}
                 </a>
                 <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/admin/usuarios">
-                    {{ __('admin.administrar_usuarios') }}
+                  <a class="navbar-item" href="/admin/alumni">
+                    {{ __('admin.alumni') }}
                   </a>
-                  <a class="navbar-item" href="/admin/usuarios/create">
-                    {{ __('admin.nuevo') }}
+                  <a class="navbar-item" href="/admin/pexa">
+                    {{ __('admin.pexa') }}
+                  </a>
+                  <a class="navbar-item" href="/admin/staff">
+                    {{ __('admin.staff') }}
                   </a>
                 </div>
             </div>

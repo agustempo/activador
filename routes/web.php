@@ -64,7 +64,10 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::get('/actividades_creadas','admin\ActividadesController@indexCreadas');
 
     // usuarios
-    Route::get('/usuarios','admin\UsuariosController@index');
+    // Route::get('/usuarios','admin\UsuariosController@index');
+    Route::get('/alumni','admin\UsuariosController@indexAlumni');
+    Route::get('/pexa','admin\UsuariosController@indexPexa');
+    Route::get('/staff','admin\UsuariosController@indexStaff');
     Route::get('usuarios/data-table', 'admin\UsuariosController@indexJson')->name('usuarios.table');
     Route::get('/usuarios/create','admin\UsuariosController@create');
     Route::post('/usuarios','admin\UsuariosController@store');

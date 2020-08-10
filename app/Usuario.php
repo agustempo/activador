@@ -22,7 +22,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail
         'región', 'carrera', 'lugar_trabajo', 'rol_trabajo',
         'trayectoria', 'reseña', 'cv', 
         'provincia', 'pais', 'universidad','intereses',
-        'programa', 'facebook', 'instagram','twitter','linkedin'
+        'programa', 'facebook', 'instagram','twitter','linkedin', 'rol'
     ];
 
     /**
@@ -56,6 +56,14 @@ class Usuario extends Authenticatable implements MustVerifyEmail
     public function actividades_miembro()
     {
         return $this->belongsToMany('App\Actividad', 'actividad_miembros', 'id_usuario', 'id_actividad');
+    }
+
+    public function esAdmin()
+    {
+        if ($this->rol == "admin")
+            return true;
+        else
+            return false;
     }
 
     public function evaluaciones()

@@ -30,6 +30,7 @@ class CreateUsuariosTable extends Migration
             $table->string('cohorte')->nullable();
             $table->string('región')->nullable();
             $table->string('programa')->nullable();
+            $table->string('rol');
             $table->text('reseña')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password')->nullable();

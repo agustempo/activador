@@ -8,7 +8,7 @@
 <div class="section">
 	<div class="content">
 		
-		<h3>{{ __('admin.listado_de') }} {{ __('admin.usuarios') }} 
+		<h3>{{ __('admin.listado_de') }} {{ __('admin.usuarios') }} - {{ __('admin.'.$tipo) }} 
 			<a href="/admin/usuarios/create" class="button is-link" >+</a>
 		</h3>
 		<p></p>
@@ -19,6 +19,7 @@
 				:columns="['id', 'nombre', 'apellido', 'cohorte' , 'región', 'trayectoria', 'carrera']"
 				:view-url="'/admin/usuarios/'"
 				:filtro="true"
+				tipo="{{ $tipo }}"
 			></data-table>
 		</div>
 	</div>

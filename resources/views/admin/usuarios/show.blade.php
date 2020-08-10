@@ -21,7 +21,7 @@
 
 		<div class="field is-grouped" id="app">
 			<p class="control">
-				<a class="button" href="/admin/usuarios/" > {{ __(('admin.atras')) }}</a>
+				<a class="button" href="javascript:history.back()" > {{ __(('admin.atras')) }}</a>
 			</p>
 			<p class="control">
 				<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
