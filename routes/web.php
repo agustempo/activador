@@ -34,6 +34,9 @@ Route::middleware('auth')->group(function (){
     //notificaciones
     Route::get('/notificaciones','HomeController@notificaciones');
 
+    Route::get('/changePassword','admin\UsuariosController@showChangePasswordForm');
+    Route::post('/changePassword','admin\UsuariosController@changePassword')->name('changePassword');
+
     Route::get('/beneficios','HomeController@beneficios');
 
     //evaluaciones

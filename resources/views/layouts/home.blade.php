@@ -142,6 +142,9 @@
                       {{ __(('frontend.perfil')) }}
                   </a>
                   <hr class="navbar-divider">
+                  <a class="navbar-item" href="/changePassword" >
+                      {{ __(('auth.change_password')) }}
+                  </a>
                   <a class="navbar-item" href="/logout" 
                     onclick="event.preventDefault();document.getElementById('logout-form').submit();" >
                       <form id="logout-form" method="POST" action="/logout" style="display:none">{{ csrf_field() }}</form>

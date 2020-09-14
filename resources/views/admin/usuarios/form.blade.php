@@ -199,17 +199,20 @@
 				</div>
 			</div>
 
-			<div class="column">
-				<div class="field">
-					<label class="label">{{ __(('admin.rol')) }}</label>
-			  		<div class="select is-fullwidth">
-						<select class="{{ $errors->has('rol') ? 'is-danger' : '' }}" name="rol" {{ ($deshabilitado)?"disabled":"" }}>
-		  					<option value="admin" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'admin' ? 'selected' : '' }}>admin</option> 
-		  					<option value="user" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'user' ? 'selected' : '' }}>user</option>
-						</select>
+            @if (auth()->user()->esAdmin()) 
+				<div class="column">
+					<div class="field">
+						<label class="label">{{ __(('admin.rol')) }}</label>
+				  		<div class="select is-fullwidth">
+							<select class="{{ $errors->has('rol') ? 'is-danger' : '' }}" name="rol" {{ ($deshabilitado)?"disabled":"" }}>
+			  					<option value="user" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'user' ? 'selected' : '' }}>user</option>
+			  					<option value="admin" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'admin' ? 'selected' : '' }}>admin</option> 
+			  					
+							</select>
+						</div>
 					</div>
 				</div>
-			</div>
+			@endif
 		</div>
 
 
