@@ -45,7 +45,7 @@
                             </div>
                         </div>
 
-                        <div class="field">
+                       <!--  <div class="field">
                             <div class="col-md-6 offset-md-4">
                                 <div class="form-check">
                                     <label class="checkbox" for="remember">
@@ -54,7 +54,7 @@
                                     </label>
                                 </div>
                             </div>
-                        </div>
+                        </div> -->
 
                         <div class="">
                             <div class="buttons">
@@ -62,11 +62,11 @@
                                     {{ __('auth.login') }}
                                 </button>
 
-                                @if (Route::has('password.request'))
+                               <!--  @if (Route::has('password.request'))
                                     <a class="btn btn-link" href="{{ route('password.request') }}">
                                         {{ __('auth.forgot_password') }}
                                     </a>
-                                @endif
+                                @endif -->
                             </div>
                         </div>
                     </form>

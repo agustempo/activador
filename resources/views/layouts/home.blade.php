@@ -45,35 +45,41 @@
             @auth
             @section('navbar_menu')
 
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  {{ __('admin.usuarios') }}
-                </a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/admin/alumni">
-                    {{ __('admin.alumni') }}
+            @if (auth()->user()->esAdmin()) 
+              <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    {{ __('admin.usuarios') }}
                   </a>
-                  <a class="navbar-item" href="/admin/pexa">
-                    {{ __('admin.pexa') }}
+                  <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/admin/alumni">
+                      {{ __('admin.alumni') }}
+                    </a>
+                    <a class="navbar-item" href="/admin/pexa">
+                      {{ __('admin.pexa') }}
+                    </a>
+                    <a class="navbar-item" href="/admin/staff">
+                      {{ __('admin.staff') }}
+                    </a>
+                  </div>
+              </div>
+              <div class="navbar-item has-dropdown is-hoverable">
+                  <a class="navbar-link">
+                    {{ __('admin.actividades') }}
                   </a>
-                  <a class="navbar-item" href="/admin/staff">
-                    {{ __('admin.staff') }}
-                  </a>
-                </div>
-            </div>
-            <div class="navbar-item has-dropdown is-hoverable">
-                <a class="navbar-link">
-                  {{ __('admin.actividades') }}
-                </a>
-                <div class="navbar-dropdown">
-                  <a class="navbar-item" href="/admin/actividades">
-                    {{ __('admin.administrar_actividad') }}
-                  </a>
-                  <a class="navbar-item" href="/admin/actividades/create">
-                    {{ __('admin.nueva') }}
-                  </a>
-                </div>
-            </div>
+                  <div class="navbar-dropdown">
+                    <a class="navbar-item" href="/admin/actividades">
+                      {{ __('admin.administrar_actividad') }}
+                    </a>
+                    <a class="navbar-item" href="/admin/actividades/create">
+                      {{ __('admin.nueva') }}
+                    </a>
+                  </div>
+              </div>
+            @else
+              <a class="navbar-item" href="/actividades">
+                      {{ __('admin.actividades') }}
+                    </a>
+            @endif
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                   {{ __('Más') }}

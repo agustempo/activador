@@ -13,7 +13,7 @@
 
 		<table class="table">
 			<thead>
-				<th>Actividad</th>
+				<th>Pasantía</th>
 				<th>Presente</th>
 			</thead>
 			<tbody>
