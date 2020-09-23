@@ -12,7 +12,9 @@
 
 <div class="section">
 	<div class="content">
-		@include("admin.usuarios.menu")
+		@if (auth()->user()->esAdmin()) 
+			@include("admin.usuarios.menu")
+		@endif
 		<form method="POST" action="" >
 			@include("admin.usuarios.form", [ 'deshabilitado' => true ])
 		</form>
@@ -23,16 +25,18 @@
 			<p class="control">
 				<a class="button" href="javascript:history.back()" > {{ __(('admin.atras')) }}</a>
 			</p>
-			<p class="control">
-				<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
-			</p>
-			<form id="form-eliminar" method="POST" action="/admin/usuarios/{{ $usuario->id }}" style="display:none" >
-				{{ method_field('DELETE') }}
-				{{ csrf_field() }}
-			</form>
-			<p class="control" >
-				<a class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" > {{ __(('admin.eliminar')) }}</a>
-			</p>
+			@if (auth()->user()->esAdmin())
+				<p class="control">
+					<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
+				</p>
+				<form id="form-eliminar" method="POST" action="/admin/usuarios/{{ $usuario->id }}" style="display:none" >
+					{{ method_field('DELETE') }}
+					{{ csrf_field() }}
+				</form>
+				<p class="control" >
+					<a class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" > {{ __(('admin.eliminar')) }}</a>
+				</p>
+			@endif
 		</div>
 	</div>
 </div>

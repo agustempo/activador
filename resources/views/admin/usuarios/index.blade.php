@@ -9,7 +9,9 @@
 	<div class="content">
 		
 		<h3>{{ __('admin.listado_de') }} {{ __('admin.usuarios') }} - {{ __('admin.'.$tipo) }} 
-			<a href="/admin/usuarios/create" class="button is-link" >+</a>
+			@if (auth()->user()->esAdmin())
+				<a href="/admin/usuarios/create" class="button is-link" >+</a>
+			@endif
 		</h3>
 		<p></p>
 

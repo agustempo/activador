@@ -45,7 +45,7 @@
             @auth
             @section('navbar_menu')
 
-            @if (auth()->user()->esAdmin()) 
+            @if (auth()->user()->esAlumni() || auth()->user()->esAdmin()) 
               <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     {{ __('admin.usuarios') }}
@@ -54,14 +54,22 @@
                     <a class="navbar-item" href="/admin/alumni">
                       {{ __('admin.alumni') }}
                     </a>
-                    <a class="navbar-item" href="/admin/pexa">
-                      {{ __('admin.pexa') }}
-                    </a>
-                    <a class="navbar-item" href="/admin/staff">
-                      {{ __('admin.staff') }}
-                    </a>
+                    @if (auth()->user()->esAdmin())
+                      <a class="navbar-item" href="/admin/pexa">
+                        {{ __('admin.pexa') }}
+                      </a>
+                      <a class="navbar-item" href="/admin/staff">
+                        {{ __('admin.staff') }}
+                      </a>
+                    @endif
                   </div>
               </div>
+            @else
+              <a class="navbar-item" href="/actividades">
+                      {{ __('admin.actividades') }}
+                    </a>
+            @endif
+            @if (auth()->user()->esAdmin())
               <div class="navbar-item has-dropdown is-hoverable">
                   <a class="navbar-link">
                     {{ __('admin.actividades') }}
@@ -75,10 +83,6 @@
                     </a>
                   </div>
               </div>
-            @else
-              <a class="navbar-item" href="/actividades">
-                      {{ __('admin.actividades') }}
-                    </a>
             @endif
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">

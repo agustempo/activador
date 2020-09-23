@@ -24,7 +24,7 @@
     </tr>
   </thead>
   <tbody>
-  	@if (auth()->user()->cohorte < 2018)
+  	@if (auth()->user()->esAlumni())
 	    <tr>
 	      <th>FLACSO Alumni</th>
 	      <td><a href="https://www.flacso.org.ar/formacion-academica/ciencias-sociales-con-orientacion-en-educacion/" target="_blank">Área Ciencias Sociales (orientación en Educación)</a>

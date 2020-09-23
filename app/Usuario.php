@@ -66,6 +66,14 @@ class Usuario extends Authenticatable implements MustVerifyEmail
             return false;
     }
 
+    public function esAlumni()
+    {
+        if ($this->cohorte < date("Y")-2)
+            return true;
+        else
+            return false;
+    }
+
     public function evaluaciones()
     {
         return $this->hasMany(Evaluacion::class,'id_usuario');
