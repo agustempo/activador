@@ -172,7 +172,7 @@
 				<div class="field">
 					<label class="label">{{ __(('admin.programa')) }}</label>
 			  		<div class="select is-fullwidth">
-						<select name="programa" {{ ($deshabilitado)?"disabled":"" }}>
+						<select name="programa" {{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}>
 		  					<option value="AMBA" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "AMBA" ? 'selected' : '' }}>AMBA</option> 
 		  					<option value="Co-Docencia" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Co-Docencia" ? 'selected' : '' }}>Co-Docencia</option> 
 		  					<option value="Jornada Extendida" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Jornada Extendida" ? 'selected' : '' }}>Jornada Extendida</option> 
@@ -186,7 +186,7 @@
 				<div class="field">
 					<label class="label">{{ __(('admin.cohorte')) }}</label>
 			  		<div class="select is-fullwidth">
-						<select class="{{ $errors->has('cohorte') ? 'is-danger' : '' }}" name="cohorte" {{ ($deshabilitado)?"disabled":"" }}>
+						<select class="{{ $errors->has('cohorte') ? 'is-danger' : '' }}" name="cohorte" {{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}>
 							@for ($i = 2011; $i < 2021; $i++)
 								<option value="{{ $i }}" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == $i ? 'selected' : '' }}>{{ $i }}</option>
 							@endfor
@@ -202,7 +202,7 @@
 				<div class="field">
 					<label class="label">{{ __(('admin.region')) }}</label>
 			  		<div class="select is-fullwidth">
-						<select name="región" {{ ($deshabilitado)?"disabled":"" }}>
+						<select name="región" {{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}>
 		  					<option value="Buenos Aires" {{ (($usuario->región)?$usuario->región:old('región')) == "Buenos Aires" ? 'selected' : '' }}>Buenos Aires</option> 
 		  					<option value="Salta" {{ (($usuario->región)?$usuario->región:old('región')) == "Salta" ? 'selected' : '' }}>Salta</option> 
 		  					<option value="Córdoba" {{ (($usuario->región)?$usuario->región:old('región')) == "Córdoba" ? 'selected' : '' }}>Córdoba</option> 
