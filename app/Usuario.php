@@ -68,7 +68,7 @@ class Usuario extends Authenticatable implements MustVerifyEmail
 
     public function esAlumni()
     {
-        if ($this->cohorte < date("Y")-2)
+        if ($this->cohorte < date("Y")-1)
             return true;
         else
             return false;

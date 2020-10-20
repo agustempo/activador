@@ -36,7 +36,7 @@ class UsuariosController extends Controller
                 'instagram' => 'nullable',
                 'twitter' => 'nullable',
                 'linkedin' => 'nullable',
-                'rol' => 'required',
+                'rol' => 'nullable',
         ];
 
 
@@ -68,7 +68,8 @@ class UsuariosController extends Controller
 
         $atributos = $this->validate($request, $this->arrayAtributos());
 
-        $usuario = usuario::create($atributos);
+        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id))
+            $usuario = usuario::create($atributos);
 
         return redirect('/admin/usuarios/' . $usuario->id);
     }
@@ -93,18 +94,21 @@ class UsuariosController extends Controller
 
         //si fechas en formato datetime-local
         // $atributos['password'] = Hash::make($atributos['password']);
+        if (!Auth::user()->esAdmin())
+            $atributos['rol'] = 'user';
         
-        $usuario->update($atributos);
+        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id))
+            $usuario->update($atributos);
 
         return redirect()->to('admin/usuarios/'.$usuario->id); 
     }
 
     public function destroy(usuario $usuario)
-    {
+    {   
+        if (Auth::user()->esAdmin())
+            $usuario->delete();
 
-        $usuario->delete();
-
-        return redirect('/admin/usuarios');
+        return redirect('/admin/alumni');
     }
 
     public function indexJson(Request $request)
@@ -117,10 +121,11 @@ class UsuariosController extends Controller
                 $query->whereRaw("concat(nombre, ' ', apellido, ' ', email, ' ', región, ' ', carrera, ' ', trayectoria) like '%". $palabra ."%' ");
         }
 
-        if ($request->tipo == 'alumni')
-            $query->whereRaw("cohorte < year(now())-2");
-        else if ($request->tipo == 'pexa')
-            $query->whereRaw("cohorte >= year(now())-2");
+        if ($request->tipo == 'alumni'){
+            $query->whereRaw("cohorte < year(now())-1");
+            $query->whereRaw("cohorte <> 0");
+        } else if ($request->tipo == 'pexa')
+            $query->whereRaw("cohorte >= year(now())-1");
         else if ($request->tipo == 'staff')
             $query->where('rol','admin');
 
@@ -142,8 +147,9 @@ class UsuariosController extends Controller
             'cv' => 'required|file|mimes:pdf'
         ]);
         
-        $request->cv->store('cv');
-        $usuario->update(['cv' => $request->cv->hashName()]);
+        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id))
+            $request->cv->store('cv');
+            $usuario->update(['cv' => $request->cv->hashName()]);
 
         return redirect('/admin/usuarios/'.$usuario->id.'/cv');
     }
@@ -156,12 +162,12 @@ class UsuariosController extends Controller
 
         if (!(Hash::check($request->get('current-password'), Auth::user()->password))) {
             // The passwords matches
-            return redirect()->back()->with("error","Your current password does not matches with the password you provided. Please try again.");
+            return redirect()->back()->with("error","La contraseña ingresada es incorrecta");
         }
 
         if(strcmp($request->get('current-password'), $request->get('new-password')) == 0){
             //Current password and new password are same
-            return redirect()->back()->with("error","New Password cannot be same as your current password. Please choose a different password.");
+            return redirect()->back()->with("error","La nueva Password debe ser distinta a la usada");
         }
 
         $validatedData = $request->validate([
@@ -174,7 +180,7 @@ class UsuariosController extends Controller
         $user->password = bcrypt($request->get('new-password'));
         $user->save();
 
-        return redirect()->back()->with("success","Password changed successfully !");
+        return redirect()->back()->with("success","Password cambiada correctamente!");
 
     }
 }

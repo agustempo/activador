@@ -37,6 +37,11 @@
 					<a class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" > {{ __(('admin.eliminar')) }}</a>
 				</p>
 			@endif
+			@if (auth()->user()->id == $usuario->id)
+				<p class="control">
+					<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
+				</p>
+			@endif
 		</div>
 	</div>
 </div>

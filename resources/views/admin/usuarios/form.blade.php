@@ -2,6 +2,16 @@
 		{{ csrf_field() }}
     <div class="container">
       <h1 class="title">Perfil</h1>
+
+      @if($errors->any())
+		<div class="notification is-danger">
+			<ul>
+				@foreach ($errors->all() as $error)
+					<li>{{ $error }}</li>
+				@endforeach
+			</ul>
+		</div>
+		@endif
 		<div class="columns">
 			<div class="column">
 				<div class="field">
@@ -166,6 +176,7 @@
 		  					<option value="AMBA" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "AMBA" ? 'selected' : '' }}>AMBA</option> 
 		  					<option value="Co-Docencia" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Co-Docencia" ? 'selected' : '' }}>Co-Docencia</option> 
 		  					<option value="Jornada Extendida" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Jornada Extendida" ? 'selected' : '' }}>Jornada Extendida</option> 
+		  					<option value="Otro" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Otro" ? 'selected' : '' }}>Otro</option> 
 						</select>
 					</div>
 				</div>
@@ -179,6 +190,7 @@
 							@for ($i = 2011; $i < 2021; $i++)
 								<option value="{{ $i }}" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == $i ? 'selected' : '' }}>{{ $i }}</option>
 							@endfor
+								<option value="0" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == 0 ? 'selected' : '' }}> Staff </option>
 						</select>
 					</div>
 				</div>
@@ -285,13 +297,5 @@
 
 		
 
-		@if($errors->any())
-		<div class="notification is-danger">
-			<ul>
-				@foreach ($errors->all() as $error)
-					<li>{{ $error }}</li>
-				@endforeach
-			</ul>
-		</div>
-		@endif
+		
 
