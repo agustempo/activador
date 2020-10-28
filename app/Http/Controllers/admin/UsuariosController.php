@@ -20,7 +20,7 @@ class UsuariosController extends Controller
                 'apellido' => 'required',
                 'telefono' => 'nullable',
                 'reseña' => 'nullable',
-                'email' => 'required',
+                'email' => 'nullable',
                 'cohorte' => 'nullable',
                 'región' => 'nullable',
                 'carrera' => 'nullable',

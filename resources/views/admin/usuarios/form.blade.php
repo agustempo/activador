@@ -49,16 +49,17 @@
 				</div>
 			</div>
 		
+			
 			<div class="column">
 				<div class="field">
-					<label class="label">{{ __(('admin.email')) }}</label>
+					<label class="label">{{ __(('admin.email_personal')) }}</label>
 			  		<div class="control">
 						<input 
-						class="input {{ $errors->has('email') ? 'is-danger' : '' }}" 
+						class="input {{ $errors->has('email_personal') ? 'is-danger' : '' }}" 
 						type="text" 
-						name="email" 
-						value="{{ ($usuario->email)?$usuario->email:old('email')}}" 
-						{{ ($deshabilitado)?"disabled":"" }}></input>
+						name="email_personal" 
+						value="{{ ($usuario->email_personal)?$usuario->email_personal:old('email_personal')}}" 
+						{{ ($deshabilitado) }}></input>
 					</div>
 				</div>
 			</div>
@@ -211,11 +212,25 @@
 				</div>
 			</div>
 
+			<div class="column">
+				<div class="field">
+					<label class="label">{{ __(('admin.email')) }}</label>
+			  		<div class="control">
+						<input 
+						class="input {{ $errors->has('email') ? 'is-danger' : '' }}" 
+						type="text" 
+						name="email" 
+						value="{{ ($usuario->email)?$usuario->email:old('email')}}" 
+						{{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}></input>
+					</div>
+				</div>
+			</div>
+
             @if (auth()->user()->esAdmin()) 
 				<div class="column">
 					<div class="field">
 						<label class="label">{{ __(('admin.rol')) }}</label>
-				  		<div class="select is-fullwidth">
+				  		<div class="select">
 							<select class="{{ $errors->has('rol') ? 'is-danger' : '' }}" name="rol" {{ ($deshabilitado)?"disabled":"" }}>
 			  					<option value="user" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'user' ? 'selected' : '' }}>user</option>
 			  					<option value="admin" {{ (($usuario->rol)?$usuario->rol:old('rol')) == 'admin' ? 'selected' : '' }}>admin</option> 

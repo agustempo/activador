@@ -18,6 +18,7 @@ class CreateUsuariosTable extends Migration
             $table->string('nombre');
             $table->string('apellido');
             $table->string('email')->unique();
+            $table->string('email_personal')->nullable();
             $table->string('telefono')->nullable();
             $table->string('provincia')->nullable();
             $table->string('pais')->nullable();

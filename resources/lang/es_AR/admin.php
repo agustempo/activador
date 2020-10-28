@@ -79,7 +79,8 @@ return [
     //formulario Usuarios
     'apellido' => 'Apellido',
     'telefono' => 'Telefono',
-    'email' => 'Email',
+    'email' => 'Email ExA',
+    'email_personal' => 'Email Personal',
     'cohorte' => 'Cohorte',
     'region' => 'Región',
     'carrera' => 'Carrera',
