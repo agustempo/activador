@@ -180,13 +180,22 @@
     
     <footer class="footer has-background-grey-lighter">
       <div class="has-text-centered">
-        <p><strong>Alumni</strong> by <a href="http://www.ensenaporargentina.org"> Enseña por Argentina</a></p>
+        <p><strong>Movimiento ExA</strong> for <a href="http://www.ensenaporargentina.org"> Enseña por Argentina</a></p>
         <p>
-          <span class="icon is-medium"><i class="fab fa-lg fa-twitter-square"></i></span>
-          <span class="icon is-medium"><i class="fab fa-lg fa-facebook"></i></span>
-          <span class="icon is-medium"><i class="fab fa-lg fa-instagram"></i></span>
+          <span class="icon is-medium">
+            <a href="https://twitter.com/ensenaxarg" target="_blank">
+              <i class="fab fa-lg fa-twitter-square"></i></span>
+            </a>
+          <span class="icon is-medium">
+            <a href="https://es-la.facebook.com/EnsenaxArgentina/" target="_blank">
+              <i class="fab fa-lg fa-facebook"></i></span>
+            </a>
+          <span class="icon is-medium">
+            <a href="https://www.instagram.com/ensenaxargentina/" target="_blank">
+              <i class="fab fa-lg fa-instagram"></i></span>
+            </a>
         </p>
-        <p>Accedé al código en <a href="https://github.com/agustempo/activador"><i class="fab fa-github-alt"></i> Github</a></p>
+        <h6> <a href="https://about.me/agusvilas" target="_blank"><i class="fab fa-github-alt"></i> Meet the developer</a></h6>
       </div>
     </footer>
 
