@@ -59,7 +59,7 @@
 						type="text" 
 						name="email_personal" 
 						value="{{ ($usuario->email_personal)?$usuario->email_personal:old('email_personal')}}" 
-						{{ ($deshabilitado) }}></input>
+						{{ ($deshabilitado)?"disabled":"" }}></input>
 					</div>
 				</div>
 			</div>
