@@ -20,7 +20,7 @@ class UsuariosController extends Controller
                 'apellido' => 'required',
                 'telefono' => 'nullable',
                 'reseña' => 'nullable',
-                'email' => 'required',
+                'email' => 'nullable',
                 'email_personal' => 'nullable',
                 'cohorte' => 'nullable',
                 'región' => 'nullable',
@@ -93,8 +93,6 @@ class UsuariosController extends Controller
             $this->arrayAtributos()
             );
 
-        //si fechas en formato datetime-local
-        // $atributos['password'] = Hash::make($atributos['password']);
         if (!Auth::user()->esAdmin())
             $atributos['rol'] = 'user';
         
