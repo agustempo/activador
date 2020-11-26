@@ -14,47 +14,19 @@
 </section>
 
 <div class="section content">
-	<table class="table">
-  <thead>
-    <tr>
-      <th>Institución</th>
-      <th>Oferta Académica</th>
-      <th>Beneficio</th>
-      <th>Contacto</th>
-    </tr>
-  </thead>
-  <tbody>
-  	@if (auth()->user()->esAlumni())
-	    <tr>
-	      <th>FLACSO Alumni</th>
-	      <td><a href="https://www.flacso.org.ar/formacion-academica/ciencias-sociales-con-orientacion-en-educacion/" target="_blank">Área Ciencias Sociales (orientación en Educación)</a>
-	      </td>
-	      <td>50%</td>
-	      <td>maestriaedusec@flacso.org.ar</td>
-	    </tr>
-	    <tr>
-	    	<th>FLACSO</th>
-	    	<td>Área Psicología del Conocimiento y Aprendizaje</td>
-	    	<td>15 %</td>
-	    	<td>mariob@ensenaporargentina.org</td>
-	    </tr>
+
+
+
+
+  	@if (auth()->user()->esAdmin())
+  		<iframe style="width: -webkit-fill-available; height: -webkit-fill-available;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-2GAqHvP1LFNI2Dc8jngX0xkHGjyiDX7uG-zbg8ZgPfaipF350hMAC6reCCmydT_0vM8PDsCD64NA/pubhtml?gid=1886865329&amp;single=true&amp;widget=false&amp;range=B4:G21"></iframe>
+  	@elseif(auth()->user()->esAlumni())
+	    <iframe style="width: -webkit-fill-available; height: -webkit-fill-available;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vQ-2GAqHvP1LFNI2Dc8jngX0xkHGjyiDX7uG-zbg8ZgPfaipF350hMAC6reCCmydT_0vM8PDsCD64NA/pubhtml?gid=1886865329&amp;single=true&amp;widget=false&amp;range=B4:G21"></iframe>
 	@else
-		<tr>
-	      <th>FLACSO </th>
-	      <td><a href="https://www.flacso.org.ar/formacion-academica/ciencias-sociales-con-orientacion-en-educacion/"¿ target="_blank">Área Ciencias Sociales (orientación en Educación)</a>
-	      </td>
-	      <td>10%</td>
-	      <td>maestriaedusec@flacso.org.ar</td>
-	    </tr>
-	    <tr>
-	    	<th>FLACSO</th>
-	    	<td>Área Psicología del Conocimiento y Aprendizaje</td>
-	    	<td>15 %</td>
-	    	<td>mariob@ensenaporargentina.org</td>
-	    </tr>
+		<iframe style="width: -webkit-fill-available; height: -webkit-fill-available;" src="https://docs.google.com/spreadsheets/d/e/2PACX-1vRFHJKxwCwmF7Qu6hyMMB0RZvNeRrBkxMBnbwEA2dTChqaS1HtqqCqyj8ZGFKQ3GRQxvZJuAOdzF8vD/pubhtml?gid=1886865329&amp;single=true&amp;widget=false&amp;range=B4:G21"></iframe>
 	@endif
   </tbody>
 </table>
 	
 </div>
-@endsection('content')
+@endsection('content') 

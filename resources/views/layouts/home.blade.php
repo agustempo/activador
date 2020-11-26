@@ -96,8 +96,6 @@
                   <a class="navbar-item" href="/beneficios">
                     {{ __('frontend.beneficios') }}
                   </a>
-                  <a class="navbar-item" href="">
-                     Oportunidades Laborales                    </a>
                 </div>
             </div>
 
