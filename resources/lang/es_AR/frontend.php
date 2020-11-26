@@ -8,7 +8,7 @@ return [
     'logout' => 'Cerrar Sesión',
 
     //navegación principal
-    'explora_actividades' => 'Pasantías Abiertas',
+    'explora_actividades' => 'Postulaciones Abiertas',
     'titulo_visor_actividades' => 'Mira los detalles. Postulá!',
     
     //navegación de usuario

@@ -2,6 +2,16 @@
 		{{ csrf_field() }}
 
 		<div class="field">
+			<label class="label">{{ __(('admin.tipo')) }}</label>
+			<div class="select  is-fullwidth">
+						<select name="tipo" {{ ($deshabilitado)?"disabled":"" }}>
+		  					<option value="1" {{ (($actividad->tipo)?$actividad->tipo:old('tipo')) == "1" ? 'selected' : '' }}>{{ __(('admin.pasantia')) }}</option> 
+		  					<option value="2" {{ (($actividad->tipo)?$actividad->tipo:old('tipo')) == "2" ? 'selected' : '' }}>{{ __(('admin.mentoria')) }}</option> 
+						</select>
+					</div>
+		</div>
+
+		<div class="field">
 			<label class="label">{{ __(('admin.nombre')) }}</label>
 	  		<div class="control">
 				<input class="input {{ $errors->has('nombre') ? 'is-danger' : '' }}" type="text" name="nombre" value="{{ ($actividad->nombre)?$actividad->nombre:old('nombre')}}"  {{ ($deshabilitado)?"disabled":"" }}></input>
@@ -16,6 +26,8 @@
 				</input>
 			</div>
 		</div>
+
+		
 
 		<!-- <div class="field">
 			<label class="label">{{ __(('admin.descripcion')) }}</label>
@@ -39,6 +51,16 @@
 		  		{!! ($actividad->descripcion)?$actividad->descripcion:old('descripcion') !!}
 			</div>
 			@endif	
+		</div>
+
+		<div class="field">
+			<label class="label">{{ __(('admin.cupo')) }}</label>
+	  		<div class="control">
+				<input 
+					class="input {{ $errors->has('cupo') ? 'is-danger' : '' }}" 
+					name="cupo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($actividad->organizacion)?$actividad->organizacion:old('organizacion')}}">
+				</input>
+			</div>
 		</div>
 
 

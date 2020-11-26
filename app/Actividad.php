@@ -18,6 +18,8 @@ class Actividad extends Model
     	'organizacion',
         'inicio',
         'fin',
+        'tipo',
+        'cupo',
         'lugar'
     ];
 

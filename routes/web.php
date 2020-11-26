@@ -51,7 +51,7 @@ Route::middleware('auth')->group(function (){
 Route::middleware('auth')->prefix('/admin')->group(function (){
 
     //actividades
-    Route::get('/','admin\ActividadesController@index');
+    Route::get('/actividades/tipo/{tipo}','admin\ActividadesController@index');
     Route::get('/actividades','admin\ActividadesController@index');
     Route::get('/actividades/create','admin\ActividadesController@create');
     Route::get('/actividades/{actividad}','admin\ActividadesController@show');
@@ -60,7 +60,7 @@ Route::middleware('auth')->prefix('/admin')->group(function (){
     Route::patch('/actividades/{actividad}','admin\ActividadesController@update');
     Route::delete('/actividades/{actividad}','admin\ActividadesController@destroy');
 
-    Route::get('ajax/actividades', 'admin\ActividadesController@indexJson')->name('actividades.table');
+    Route::get('ajax/actividades/tipo/{tipo}', 'admin\ActividadesController@indexJson');
 
 
     Route::get('/actividades_invitado','admin\ActividadesController@indexInvitado');

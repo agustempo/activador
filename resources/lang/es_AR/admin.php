@@ -19,10 +19,13 @@ return [
 
 
     //actividades
-    'actividad' => 'Pasantía',
+    'actividad' => 'Postulación',
     'administrar_actividad' => 'Ver Todas',
-
-    'actividades' => 'Pasantías',
+    'actividades' => 'Postulaciones',
+    'pasantia' => 'Pasantía',
+    'pasantias' => 'Pasantías',
+    'mentoria' => 'Mentoría',
+    'mentorias' => 'Mentorías',
     'inscribir' => 'Inscribir',
     'invitar' => 'Invitar',
     'seleccionar_usuario' => 'Seleccionar usuario',
@@ -43,8 +46,8 @@ return [
     'grupos' => 'Grupos',
 
     //formulario actividad
-    'nombre' => 'Nombre',
-    'organizacion' => 'Organización',
+    'nombre' => 'Nombre/Rol/Proyecto',
+    'organizacion' => 'Organización/Persona',
     'descripcion' => 'Descripción',
     'lugar' => 'Lugar',
     'estado' => 'Estado',
@@ -54,6 +57,8 @@ return [
     'fin' => 'Fin',
     'limite_inscripciones' => 'Límite inscripciones',
     'mensaje_inscripciones' => 'Mensaje inscripciones',
+    'cupo' => 'Cupo',
+    'tipo' => 'Tipo',
 
     //auditorías
     'creo_actividad' => 'creó la Pasantía',

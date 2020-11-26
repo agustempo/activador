@@ -18,7 +18,17 @@
             <div class="notification is-success">{{__('frontend.'.session('mensaje'))}}</div>
             @endif
                 
-            <h1 class="title" >{{ $actividad->nombre }}</h1>
+            <h1 class="title" >{{ $actividad->nombre }}
+
+            @if($actividad->tipo == '1')
+                            <span class="tag is-info" > {{ __(('admin.pasantia')) }} 
+                         @else  
+                            <span class="tag is-danger" > {{ __(('admin.mentoria')) }} 
+                         @endif 
+                     </h1>
+
+
+            
 
         </div>
 
@@ -59,10 +69,11 @@
                 <h3 class="title is-5"><i class="icon fas fa-map-marker-alt"></i> Dónde</h3> 
                 <div>{{ $actividad->lugar }}</div>
         </div>        
+         <div class="column is-10 is-offset-1">
+                <h3 class="title is-5"><i class="icon fas fa-users"></i> Cupo</h3> 
+                <div>{{ $actividad->cupo }}</div>
+        </div>        
 
-        <div class="column is-10 is-offset-1">
-            <div><span class="tag is-info" >#Pasantia</span><!--  <span class="tag is-warning" >#TipoMásLargo</span> --></div>
-        </div>
 
         <div class="column" style="border-top: solid 1px #cecece; margin: 1rem 0; position: sticky; bottom: 0; background-color: white">
             <div style="display: flex; justify-content: space-between; flex-wrap: wrap;">

@@ -13,8 +13,7 @@
 				<a href="/admin/usuarios/create" class="button is-link" >+</a>
 			@endif
 		</h3>
-		<p></p>
-
+		
 		<div class="flex-center position-ref full-height" id="app">
 			<data-table
 				fetch-url="{{ route('usuarios.table') }}"

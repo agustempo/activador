@@ -1771,6 +1771,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
@@ -1810,7 +1818,8 @@ __webpack_require__.r(__webpack_exports__);
       perPage: 50,
       sortedColumn: this.columns[0],
       order: 'asc',
-      parametros: ''
+      parametros: '',
+      region: ''
     };
   },
   watch: {
@@ -1865,7 +1874,7 @@ __webpack_require__.r(__webpack_exports__);
     fetchData: function fetchData() {
       var _this = this;
 
-      var dataFetchUrl = "".concat(this.url, "?page=").concat(this.currentPage, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage, "&filtro=").concat(this.parametros, "&tipo=").concat(this.$props.tipo);
+      var dataFetchUrl = "".concat(this.url, "?page=").concat(this.currentPage, "&column=").concat(this.sortedColumn, "&order=").concat(this.order, "&per_page=").concat(this.perPage, "&filtro=").concat(this.parametros).concat(this.region, "&tipo=").concat(this.$props.tipo);
       axios__WEBPACK_IMPORTED_MODULE_0___default.a.get(dataFetchUrl).then(function (_ref) {
         var data = _ref.data;
         _this.pagination = data;
@@ -2439,6 +2448,59 @@ var render = function() {
     _c("div", { staticClass: "main-table" }, [
       _vm.filtro
         ? _c("div", [
+            _c("div", { staticClass: "select" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.region,
+                      expression: "region"
+                    }
+                  ],
+                  on: {
+                    change: [
+                      function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.region = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      },
+                      function($event) {
+                        return _vm.fetchData()
+                      }
+                    ]
+                  }
+                },
+                [
+                  _c("option", { attrs: { value: "", selected: "" } }, [
+                    _vm._v("Todas las regiones")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Buenos Aires" } }, [
+                    _vm._v("Buenos Aires")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Salta" } }, [
+                    _vm._v("Salta")
+                  ]),
+                  _vm._v(" "),
+                  _c("option", { attrs: { value: "Córdoba" } }, [
+                    _vm._v("Córdoba")
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
             _c("input", {
               directives: [
                 {

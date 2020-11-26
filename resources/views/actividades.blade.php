@@ -26,7 +26,12 @@
 
                 <div class="card-content">
                     <div class="content">
-                        <!-- <span class="tag is-info" >#Tipo</span> -->
+                         @if($actividad->tipo == '1')
+                            <span class="tag is-info" > {{ __(('admin.pasantia')) }} 
+                         @else  
+                            <span class="tag is-danger" > {{ __(('admin.mentoria')) }} 
+                         @endif 
+                            </span>
                         <div>
                             <span class="icon">
                                 <i class="fas fa-building" ></i>

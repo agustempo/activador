@@ -15,20 +15,21 @@ use App\Http\Resources\ActividadResource;
 class ActividadesController extends Controller
 {
 
-    public function index()
+    public function index($tipo)
     {
 
-        $actividades_mias = auth()->user()->actividades_creadas;
-        $actividades_invitado = auth()->user()->actividades_miembro;
+        // $actividades_mias = auth()->user()->actividades_creadas;
+        // $actividades_invitado = auth()->user()->actividades_miembro;
 
-        $actividades = $actividades_mias->merge($actividades_invitado);
+        // $actividades = $actividades_mias->merge($actividades_invitado);
 
-        return view('admin.actividades.index', compact('actividades'));
+        return view('admin.actividades.index', compact('tipo'));
     }
 
-    public function indexJson(Request $request)
+    public function indexJson(Request $request, $tipo)
     {
         $query = Actividad::orderBy($request->column, $request->order);
+        $query->where('tipo', '=', $tipo);
         $actividades = $query->paginate($request->per_page);
 
         return ActividadResource::collection($actividades);
@@ -65,6 +66,8 @@ class ActividadesController extends Controller
             'organizacion' => 'required',
             'inicio' => 'required',
             'fin' => 'required',
+            'tipo' => 'required',
+            'cupo' => '',
             'lugar' => ''
         ]);
         
@@ -74,7 +77,7 @@ class ActividadesController extends Controller
 
         Auth::user()->actividades_creadas()->create($atributos);
 
-        return redirect('/admin/actividades');
+        return redirect('/admin/actividades/tipo/'.$atributos['tipo']);
     }
 
     public function show(Actividad $actividad)

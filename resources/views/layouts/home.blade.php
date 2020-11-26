@@ -75,8 +75,11 @@
                     {{ __('admin.actividades') }}
                   </a>
                   <div class="navbar-dropdown">
-                    <a class="navbar-item" href="/admin/actividades">
-                      {{ __('admin.administrar_actividad') }}
+                    <a class="navbar-item" href="/admin/actividades/tipo/1">
+                      {{ __('admin.pasantias') }}
+                    </a>
+                    <a class="navbar-item" href="/admin/actividades/tipo/2">
+                      {{ __('admin.mentorias') }}
                     </a>
                     <a class="navbar-item" href="/admin/actividades/create">
                       {{ __('admin.nueva') }}
@@ -84,6 +87,7 @@
                   </div>
               </div>
             @endif
+
             <div class="navbar-item has-dropdown is-hoverable">
                 <a class="navbar-link">
                   {{ __('Más') }}

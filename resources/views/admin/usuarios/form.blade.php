@@ -175,8 +175,10 @@
 			  		<div class="select is-fullwidth">
 						<select name="programa" {{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}>
 		  					<option value="AMBA" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "AMBA" ? 'selected' : '' }}>AMBA</option> 
+		  					<option value="Docencia" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Docencia" ? 'selected' : '' }}>Docencia</option> 
 		  					<option value="Co-Docencia" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Co-Docencia" ? 'selected' : '' }}>Co-Docencia</option> 
 		  					<option value="Jornada Extendida" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Jornada Extendida" ? 'selected' : '' }}>Jornada Extendida</option> 
+		  					<option value="OIM" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "OIM" ? 'selected' : '' }}>OIM</option> 
 		  					<option value="Otro" {{ (($usuario->programa)?$usuario->programa:old('programa')) == "Otro" ? 'selected' : '' }}>Otro</option> 
 						</select>
 					</div>
@@ -188,7 +190,7 @@
 					<label class="label">{{ __(('admin.cohorte')) }}</label>
 			  		<div class="select is-fullwidth">
 						<select class="{{ $errors->has('cohorte') ? 'is-danger' : '' }}" name="cohorte" {{ ($deshabilitado || !auth()->user()->esAdmin())?"disabled":"" }}>
-							@for ($i = 2011; $i < 2021; $i++)
+							@for ($i = 2011; $i < 2031; $i++)
 								<option value="{{ $i }}" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == $i ? 'selected' : '' }}>{{ $i }}</option>
 							@endfor
 								<option value="0" {{ (($usuario->cohorte)?$usuario->cohorte:old('cohorte')) == 0 ? 'selected' : '' }}> Staff </option>

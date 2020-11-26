@@ -2,6 +2,14 @@
   <div class="data-table">
     <div class="main-table">
       <div v-if="filtro"> 
+        <div class="select">
+            <select v-model="region" @change="fetchData()">
+                <option value="" selected>Todas las regiones</option> 
+                <option value="Buenos Aires">Buenos Aires</option> 
+                <option value="Salta">Salta</option> 
+                <option value="Córdoba">Córdoba</option> 
+            </select>
+          </div>
         <input class="input" type="input" v-model="parametros"  @change="fetchData()" placeholder="Filtrar"></input>
         
       </div>
@@ -72,6 +80,7 @@ export default {
       sortedColumn: this.columns[0],
       order: 'asc',
       parametros: '',
+      region: '',
     }
   },
   watch: {
@@ -116,7 +125,7 @@ export default {
   },
   methods: {
     fetchData() {
-      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}&tipo=${this.$props.tipo}`
+      let dataFetchUrl = `${this.url}?page=${this.currentPage}&column=${this.sortedColumn}&order=${this.order}&per_page=${this.perPage}&filtro=${this.parametros}${this.region}&tipo=${this.$props.tipo}`
       axios.get(dataFetchUrl)
         .then(({ data }) => {
           this.pagination = data
