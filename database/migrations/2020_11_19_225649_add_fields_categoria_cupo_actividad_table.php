@@ -26,6 +26,9 @@ class AddFieldsCategoriaCupoActividadTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('actividades', function (Blueprint $table) {
+            $table->dropColumn('tipo')->default('Pasantia');
+            $table->dropColumn('cupo')->nullable();;
+        });
     }
 }

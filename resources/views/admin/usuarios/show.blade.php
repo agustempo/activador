@@ -12,7 +12,7 @@
 
 <div class="section">
 	<div class="content">
-		@if (auth()->user()->esAdmin()) 
+		@if (auth()->user()->esAdmin() or (auth()->user()->id == $usuario->id)) 
 			@include("admin.usuarios.menu")
 		@endif
 		<form method="POST" action="" >
