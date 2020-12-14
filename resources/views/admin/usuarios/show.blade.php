@@ -12,6 +12,15 @@
 
 <div class="section">
 	<div class="content">
+		<div class="columns is-centered">
+	        <figure class="image is-128x128">
+				<img class="is-rounded" src="/storage/foto_perfil/{{ $usuario->foto_perfil }}">
+			</figure>
+	        <h3>{{ $usuario->nombre }} {{ $usuario->apellido }} </h3>
+      	</div>
+    </div>
+		
+		
 		@if (auth()->user()->esAdmin() or (auth()->user()->id == $usuario->id)) 
 			@include("admin.usuarios.menu")
 		@endif
@@ -36,8 +45,7 @@
 				<p class="control" >
 					<a class="button is-danger" onclick="document.getElementById('form-eliminar').submit()" > {{ __(('admin.eliminar')) }}</a>
 				</p>
-			@endif
-			@if (auth()->user()->id == $usuario->id)
+			@elseif (auth()->user()->id == $usuario->id)
 				<p class="control">
 					<a class="button" href="/admin/usuarios/{{ $usuario->id }}/edit" > {{ __(('admin.editar')) }}</a>
 				</p>

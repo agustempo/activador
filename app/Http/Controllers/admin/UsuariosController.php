@@ -10,6 +10,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Resources\UsuarioResource;
+use Illuminate\Support\Facades\Storage;
 
 
 class UsuariosController extends Controller
@@ -20,7 +21,7 @@ class UsuariosController extends Controller
                 'apellido' => 'required',
                 'telefono' => 'nullable',
                 'reseña' => 'nullable',
-                'email' => 'nullable',
+                'email' => 'required',
                 'email_personal' => 'nullable',
                 'cohorte' => 'nullable',
                 'región' => 'nullable',
@@ -38,6 +39,7 @@ class UsuariosController extends Controller
                 'twitter' => 'nullable',
                 'linkedin' => 'nullable',
                 'rol' => 'nullable',
+                'foto_perfil' => 'nullable|file|mimes:jpeg,jpg,png'
         ];
 
 
@@ -69,8 +71,13 @@ class UsuariosController extends Controller
 
         $atributos = $this->validate($request, $this->arrayAtributos());
 
-        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id))
+        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id)){
             $usuario = usuario::create($atributos);
+            if (request()->foto_perfil){
+                $request->foto_perfil->store('foto_perfil');
+                $usuario->update(['foto_perfil' => $request->foto_perfil->hashName()]);               
+            }
+       }
 
         return redirect('/admin/usuarios/' . $usuario->id);
     }
@@ -88,7 +95,6 @@ class UsuariosController extends Controller
 
     public function update(usuario $usuario)
     {
-
         $atributos = request()->validate(
             $this->arrayAtributos()
             );
@@ -96,8 +102,14 @@ class UsuariosController extends Controller
         if (!Auth::user()->esAdmin())
             $atributos['rol'] = 'user';
         
-        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id))
+        if (Auth::user()->esAdmin() || (Auth::user()->id == $usuario->id)){
             $usuario->update($atributos);
+
+            if (request()->foto_perfil){
+                request()->foto_perfil->store('foto_perfil');
+                $usuario->update(['foto_perfil' => request()->foto_perfil->hashName()]);       
+            }
+        }
 
         return redirect()->to('admin/usuarios/'.$usuario->id); 
     }

@@ -119,9 +119,9 @@
                 <a class="navbar-link">
                   <div style="display: flex; align-items: center">
                     <div style="padding-right: .75em">
-                    <!--   <div class="image is-48x48">
-                        <img class="is-rounded" style="min-height: 48px" src="https://bulma.io/images/placeholders/128x128.png">
-                      </div> -->
+                    <div class="image is-48x48">
+                        <img class="is-rounded" style="min-height: 48px" src="/storage/foto_perfil/{{ auth()->user()->foto_perfil }}">
+                    </div>
                     </div>
                     <div class="">
                       <div class="activador_media-content-usuario has-text-weight-semibold">

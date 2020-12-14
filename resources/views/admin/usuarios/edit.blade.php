@@ -12,7 +12,7 @@
 
 	<div class="content" id="app">
 
-		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" >
+		<form method="POST" action="/admin/usuarios/{{ $usuario->id }}" enctype="multipart/form-data">
 			{{ method_field('PATCH') }}
 			@include("admin.usuarios.form", [ 'deshabilitado' => false ])
 			<input type="submit" class="button is-link" value="{{ __(('admin.guardar')) }}" ></input>

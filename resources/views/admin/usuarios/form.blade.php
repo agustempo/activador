@@ -1,7 +1,6 @@
 
 		{{ csrf_field() }}
     <div class="container">
-      <h1 class="title">Perfil</h1>
 
       @if($errors->any())
 		<div class="notification is-danger">
@@ -12,7 +11,11 @@
 			</ul>
 		</div>
 		@endif
+			@if(!$deshabilitado)
+
+
 		<div class="columns">
+
 			<div class="column">
 				<div class="field">
 					<label class="label">{{ __(('admin.nombre')) }}</label>
@@ -34,8 +37,22 @@
 				</div>
 				</div>
 			</div>
-		</div>
 
+			<div class="column">
+				<div class="field">
+					<label class="label">{{ __(('admin.foto_perfil')) }}</label>
+			  		<div class="control">
+
+				    							<input class="input {{ $errors->has('foto_perfil') ? 'is-danger' : '' }}" 
+						type="file" name="foto_perfil" placeholder="{{ ($usuario->foto_perfil)?$usuario->foto_perfil:old('foto_perfil') }}"  
+						{{ ($deshabilitado)?"disabled":"" }}></input>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		
+			@endif
 		<div class="columns">
 
 			<div class="column">

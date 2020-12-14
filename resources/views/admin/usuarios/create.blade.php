@@ -6,7 +6,7 @@ Nuevo Usuario
 	
 @section("content")
 <div class="section">
-	<form method="POST" action="/admin/usuarios" id="app" >
+	<form method="POST" action="/admin/usuarios" id="app"  enctype="multipart/form-data">
 
 		@include("admin.usuarios.form", [ 'usuario' => new App\Usuario, 'textoBoton' => __(('admin.nueva')), 'deshabilitado' => false ])
 

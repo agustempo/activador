@@ -11,7 +11,14 @@
 
 
 <div class="section">
-	<div class="content">
+    <div class="content">
+        <div class="columns is-centered">
+            <figure class="image is-128x128">
+                <img class="is-rounded" src="/storage/foto_perfil/{{ $usuario->foto_perfil }}">
+            </figure>
+            <h3>{{ $usuario->nombre }} {{ $usuario->apellido }} </h3>
+        </div>
+        
 		@include("admin.usuarios.menu")
 
 	<form action="/admin/usuarios/{{ $usuario->id }}/cv" method="POST" enctype="multipart/form-data">
