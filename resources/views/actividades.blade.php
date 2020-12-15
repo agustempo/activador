@@ -20,6 +20,10 @@
 
                 <header class="card-header">
                     <div class="card-header-title">
+                        
+                        <figure class="image is-64x64">
+                            <img class="is-rounded" src="/storage/foto/{{ $actividad->foto }}">
+                        </figure>
                         <p class="title is-4">{{ $actividad->nombre }}</p>
                     </div>
                 </header>

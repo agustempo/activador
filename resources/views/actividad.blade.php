@@ -17,6 +17,11 @@
             @if(session('mensaje'))
             <div class="notification is-success">{{__('frontend.'.session('mensaje'))}}</div>
             @endif
+
+        <div class="columns is-centered">
+             <figure class="image is-128x128">
+                            <img class="is-rounded" src="/storage/foto/{{ $actividad->foto }}">
+                        </figure>
                 
             <h1 class="title" >{{ $actividad->nombre }}
 
@@ -25,9 +30,10 @@
                          @else  
                             <span class="tag is-danger" > {{ __(('admin.mentoria')) }} 
                          @endif 
+                     </span>
                      </h1>
 
-
+</div>
             
 
         </div>
