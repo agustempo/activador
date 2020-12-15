@@ -12,6 +12,7 @@ use App\Http\Resources\ActividadResource;
 
 
 
+
 class ActividadesController extends Controller
 {
 
@@ -68,12 +69,18 @@ class ActividadesController extends Controller
             'fin' => 'required',
             'tipo' => 'required',
             'cupo' => '',
-            'lugar' => ''
+            'lugar' => '',
+            'foto' => 'nullable|file|mimes:jpeg,jpg,png'
         ]);
         
         //si fechas en formato datetime-local
         $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
         $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
+
+        if (request()->foto){
+            request()->foto->store('foto');
+            $actividad->update(['foto' => request()->foto->hashName()]);     
+        }
 
         Auth::user()->actividades_creadas()->create($atributos);
 
@@ -104,7 +111,10 @@ class ActividadesController extends Controller
             'organizacion' => 'required',
             'inicio' => 'required',
             'fin' => 'required',
-            'lugar' => ''
+            'lugar' => 'nullable',
+            'tipo' => 'required',
+            'cupo' => 'nullable',
+            'foto' => 'nullable|file|mimes:jpeg,jpg,png',
         ]);
 
         //si fechas en formato datetime-local
@@ -112,6 +122,10 @@ class ActividadesController extends Controller
         $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
         
         $actividad->update($atributos);
+        if (request()->foto){
+            request()->foto->store('foto');
+            $actividad->update(['foto' => request()->foto->hashName()]);     
+        }
 
         //notificar inscriptos
         foreach ($actividad->inscriptos as $inscripto)

@@ -13,7 +13,7 @@
 		
 			<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('admin.actividad')) }}</h1>
 			
-			<form method="POST" action="/admin/actividades/" id="actividad">
+			<form method="POST" action="/admin/actividades/" id="actividad" enctype="multipart/form-data">
 
 				@include("admin.actividades.form", [ 'actividad' => new App\Actividad, 'textoBoton' => __(('admin.nueva')), 'deshabilitado' => false ])
 

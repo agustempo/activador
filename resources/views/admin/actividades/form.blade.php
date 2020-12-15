@@ -1,6 +1,22 @@
 
 		{{ csrf_field() }}
 
+		@if(!$deshabilitado)
+
+
+			<div class="field">
+				<label class="label">{{ __(('admin.foto_actividad')) }}</label>
+		  		<div class="control">
+
+			    							<input class="input {{ $errors->has('foto') ? 'is-danger' : '' }}" 
+					type="file" name="foto" placeholder="{{ ($actividad->foto)?$actividad->foto:old('foto') }}"  
+					{{ ($deshabilitado)?"disabled":"" }}></input>
+
+				</div>
+			</div>
+	
+		@endif
+
 		<div class="field">
 			<label class="label">{{ __(('admin.tipo')) }}</label>
 			<div class="select  is-fullwidth">
@@ -58,7 +74,7 @@
 	  		<div class="control">
 				<input 
 					class="input {{ $errors->has('cupo') ? 'is-danger' : '' }}" 
-					name="cupo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($actividad->organizacion)?$actividad->organizacion:old('organizacion')}}">
+					name="cupo" {{ ($deshabilitado)?"disabled":"" }} value="{{ ($actividad->cupo)?$actividad->cupo:old('cupo')}}">
 				</input>
 			</div>
 		</div>

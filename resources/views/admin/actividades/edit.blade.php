@@ -3,7 +3,7 @@
 @section("contenido-actividad")
 
 
-	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" id="actividad" >
+	<form method="POST" action="/admin/actividades/{{ $actividad->id }}" id="actividad"   enctype="multipart/form-data">
 		
 		{{ method_field('PATCH') }}
 
