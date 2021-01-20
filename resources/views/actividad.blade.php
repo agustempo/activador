@@ -19,9 +19,11 @@
             @endif
 
         <div class="columns is-centered">
+            @if($actividad->foto != '')
              <figure class="image is-128x128">
                             <img class="is-rounded" src="/storage/foto/{{ $actividad->foto }}">
                         </figure>
+            @endif
                 
             <h1 class="title" >{{ $actividad->nombre }}
 

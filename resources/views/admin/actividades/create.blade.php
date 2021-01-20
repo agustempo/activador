@@ -11,7 +11,7 @@
 
 		<div class="column is-8 is-offset-2">
 		
-			<h1 class="title is-4" >{{ __(('admin.nueva')) }} {{ __(('admin.actividad')) }}</h1>
+			<h1 class="title is-4" >{{ __(('admin.nueva')) }}</h1>
 			
 			<form method="POST" action="/admin/actividades/" id="actividad" enctype="multipart/form-data">
 

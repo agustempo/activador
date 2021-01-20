@@ -86,7 +86,7 @@
 	  		<div class="control">
 				<input 
 					class="input {{ $errors->has('inicio') ? 'is-danger' : '' }}" 
-					type="datetime-local" 
+					type="date" 
 					name="inicio" 
 					value="{{ ($actividad->inicio)?$actividad->finDatetimeLocal:old('inicio')}}" 
 					{{ ($deshabilitado)?"disabled":"" }}></input>
@@ -98,7 +98,7 @@
 	  		<div class="control">
 				<input 
 					class="input {{ $errors->has('fin') ? 'is-danger' : '' }}" 
-					type="datetime-local" 
+					type="date" 
 					name="fin" 
 					value="{{ ($actividad->fin)?$actividad->finDatetimeLocal:old('fin')}}" 
 					{{ ($deshabilitado)?"disabled":"" }}></input>

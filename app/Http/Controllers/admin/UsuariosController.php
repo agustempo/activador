@@ -129,7 +129,7 @@ class UsuariosController extends Controller
         if ($request->filtro) {
             $palabras = explode(' ',$request->filtro);
             foreach ($palabras as $palabra)
-                $query->whereRaw("concat(nombre, ' ', apellido, ' ', email, ' ', región, ' ', carrera, ' ', trayectoria) like '%". $palabra ."%' ");
+                $query->whereRaw("concat(nombre, ' ', apellido, ' ', email, ' ', región, ' ',cohorte, ' ', carrera, ' ', trayectoria) like '%". $palabra ."%' ");
         }
 
         if ($request->tipo == 'alumni'){

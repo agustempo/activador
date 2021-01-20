@@ -73,16 +73,18 @@ class ActividadesController extends Controller
             'foto' => 'nullable|file|mimes:jpeg,jpg,png'
         ]);
         
-        //si fechas en formato datetime-local
-        $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
-        $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
+        // //si fechas en formato datetime-local
+        // $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
+        // $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
+
+        
+        $actividad = Auth::user()->actividades_creadas()->create($atributos);
 
         if (request()->foto){
             request()->foto->store('foto');
             $actividad->update(['foto' => request()->foto->hashName()]);     
         }
 
-        Auth::user()->actividades_creadas()->create($atributos);
 
         return redirect('/admin/actividades/tipo/'.$atributos['tipo']);
     }
@@ -117,9 +119,9 @@ class ActividadesController extends Controller
             'foto' => 'nullable|file|mimes:jpeg,jpg,png',
         ]);
 
-        //si fechas en formato datetime-local
-        $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
-        $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
+        // //si fechas en formato datetime-local
+        // $atributos['inicio'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['inicio']);
+        // $atributos['fin'] = preg_replace('/(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})/', '$1-$2-$3 $4:$5:00', $atributos['fin']);
         
         $actividad->update($atributos);
         if (request()->foto){

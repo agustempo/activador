@@ -42,12 +42,12 @@ class Actividad extends Model
 
     public function getInicioDatetimeLocalAttribute()
     {
-        return $this->inicio->format('Y-m-d\TH:i');
+        return $this->inicio->format('Y-m-d');
     }
 
     public function getFinDatetimeLocalAttribute()
     {
-        return $this->fin->format('Y-m-d\TH:i');
+        return $this->fin->format('Y-m-d');
     }
 
     public function getInicioISOAttribute()
@@ -68,14 +68,14 @@ class Actividad extends Model
     function getFechasAttribute () 
     {
         if ($this->inicio->diffInHours($this->fin) < 24)
-            return $this->inicio->isoFormat("D MMM YYYY HH:mm") . " - " . $this->fin->isoFormat("HH:mm");
+            return $this->inicio->isoFormat("D MMM YYYY") . " - " . $this->fin->isoFormat("HH:mm");
         else
-            return $this->inicio->isoFormat("D MMM YYYY HH:mm") . " - " . $this->fin->isoFormat("D MMM YYYY HH:mm");
+            return $this->inicio->isoFormat("D MMM YYYY") . " - " . $this->fin->isoFormat("D MMM YYYY");
     }
 
     function getCuandoAttribute () 
     {
-        return $this->inicio->isoFormat("D MMM YYYY HH:mm");
+        return $this->inicio->isoFormat("D MMM YYYY");
     }
 
     function getDuracionAttribute () 
