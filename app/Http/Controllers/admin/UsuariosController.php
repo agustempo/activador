@@ -77,6 +77,11 @@ class UsuariosController extends Controller
                 $request->foto_perfil->store('foto_perfil');
                 $usuario->update(['foto_perfil' => $request->foto_perfil->hashName()]);               
             }
+            if (is_null($usuario->password)){
+                $usuario->password = bcrypt($usuario->telefono);
+                $usuario->save();
+
+            }
        }
 
         return redirect('/admin/usuarios/' . $usuario->id);

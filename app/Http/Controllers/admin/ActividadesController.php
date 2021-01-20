@@ -149,7 +149,7 @@ class ActividadesController extends Controller
 
         $actividad->delete();
 
-        return redirect('/admin/actividades');
+        return redirect('/admin/actividades/tipo/1');
     }
 
     public function auditorias(Actividad $actividad)
