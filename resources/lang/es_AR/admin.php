@@ -46,8 +46,8 @@ return [
     'grupos' => 'Grupos',
 
     //formulario actividad
-    'nombre' => 'Nombre/Rol/Proyecto',
-    'organizacion' => 'Organización/Persona',
+    'nombre' => 'Nombre',
+    'organizacion' => 'Coordina',
     'descripcion' => 'Descripción',
     'lugar' => 'Lugar',
     'estado' => 'Estado',
